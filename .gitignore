@@ -1,0 +1,9 @@
+out/
+build/
+*.o
+*.d
+*.elf
+*.hex
+*.map
+compile_commands.json
+*.log
