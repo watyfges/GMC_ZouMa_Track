@@ -1,13 +1,12 @@
 #!/bin/bash
 # 脚本功能：清理out目录无关文件 -> cmake编译 -> 编译项目 -> 上传目标文件到远程设备
 
-export PATH=/opt/loongarch-toolchain/bin:$PATH
 
 # ===================== 核心配置区（可根据需要修改，一目了然） =====================
 WORK_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"  # 脚本所在绝对路径（关键修复）
 OUT_DIR="${WORK_DIR}/../out"                              # out目录绝对路径
 USER_DIR="${WORK_DIR}/../user"                            # user目录绝对路径
-REMOTE_IP="192.168.1.107"                                  # 远程设备IP
+REMOTE_IP="192.168.1.130"                                  # 远程设备IP
 REMOTE_USER="root"                                        # 远程登录用户
 REMOTE_PATH="/home/root/"                                 # 远程上传路径
 MAKE_JOBS=$(nproc)                                        # make编译线程数

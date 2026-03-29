@@ -295,33 +295,34 @@ cv::Mat zf_device_uvc::get_frame_mjpg() const
 // 使用示例 int8 res = uvc_obj.uvc_camera_init("/dev/video0");
 // 备注信息 配置MJPG格式、指定分辨率、帧率，打开摄像头设备
 //-------------------------------------------------------------------------------------------------------------------
-int8 zf_device_uvc::init(const char *path)
+int8 zf_device_uvc::init(const char *path, int width, int height, int fps)
 {
     cap.open(path);
 
     if(!cap.isOpened())
     {
-        std::cerr << "error: no find uvc camera ." << std::endl;
+        std::cerr << "error: no find uvc camera at " << path << std::endl;
         return -1;
     } 
     else 
     {
-        std::cout << "find uvc camera Successfully." << std::endl;
+        std::cout << "find uvc camera " << path << " Successfully." << std::endl;
     }
 
+    // 强制使用 MJPG 格式
     cap.set(cv::CAP_PROP_FOURCC, cv::VideoWriter::fourcc('M', 'J', 'P', 'G'));
-    cap.set(cv::CAP_PROP_FRAME_WIDTH, UVC_WIDTH);
-    cap.set(cv::CAP_PROP_FRAME_HEIGHT, UVC_HEIGHT);
-    cap.set(cv::CAP_PROP_FPS, UVC_FPS);
+    
+    // 使用传入的参数配置分辨率和帧率
+    cap.set(cv::CAP_PROP_FRAME_WIDTH, width);
+    cap.set(cv::CAP_PROP_FRAME_HEIGHT, height);
+    cap.set(cv::CAP_PROP_FPS, fps);
 
     // 初始化时默认开启自动曝光
     set_auto_exposure(UVC_AUTO_EXPOSURE_MODE);
 
-    std::cout << "get uvc width = "  << cap.get(cv::CAP_PROP_FRAME_WIDTH)  << std::endl;
-    std::cout << "get uvc height = " << cap.get(cv::CAP_PROP_FRAME_HEIGHT) << std::endl;
-    std::cout << "get uvc fps = "    << cap.get(cv::CAP_PROP_FPS)         << std::endl;
-    std::cout << "get uvc auto exposure mode = " << get_auto_exposure_mode() << std::endl;
+    std::cout << "[" << path << "] get uvc width = "  << cap.get(cv::CAP_PROP_FRAME_WIDTH)  << std::endl;
+    std::cout << "[" << path << "] get uvc height = " << cap.get(cv::CAP_PROP_FRAME_HEIGHT) << std::endl;
+    std::cout << "[" << path << "] get uvc fps = "    << cap.get(cv::CAP_PROP_FPS)          << std::endl;
     
-
     return 0;
 }

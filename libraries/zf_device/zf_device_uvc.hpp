@@ -41,10 +41,10 @@
 #include <opencv2/opencv.hpp>
 #include <iostream>
 
-#define UVC_WIDTH     160
-#define UVC_HEIGHT    120
-#define UVC_FPS       180
-#define UVC_PATH     "/dev/video0"
+#define UVC_WIDTH     1280  //无用
+#define UVC_HEIGHT    720   //无用 
+#define UVC_FPS       30    //无用
+#define UVC_PATH     "/dev/video0"  //无用
 #define UVC_AUTO_EXPOSURE_MODE     UVC_AUTO_EXPOSURE_ENABLE     // 开启自动曝光（适配LS2K0300平台/对应摄像头）(3为自动曝光模式，1为手动曝光模式)
 #define UVC_DEFAULT_EXPOSURE       300                          // 默认曝光值，范围一般在0-2500之间，具体看摄像头支持
 
@@ -172,7 +172,7 @@ public:
     // 使用示例 int8 res = uvc_obj.uvc_camera_init("/dev/video0");
     // 备注信息 配置MJPG格式、指定分辨率、帧率，打开摄像头设备
     //-------------------------------------------------------------------------------------------------------------------
-    int8 init(const char *path = UVC_PATH);
+    int8 init(const char *path, int width, int height, int fps);
 
 
 

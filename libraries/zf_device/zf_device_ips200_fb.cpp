@@ -92,7 +92,11 @@ void zf_device_ips200::full(const uint16 color)
 // 备注信息     在指定坐标绘制一个像素点
 //-------------------------------------------------------------------------------------------------------------------
 void zf_device_ips200::draw_point(uint16 x, uint16 y, const uint16 color)
-{
+{   
+    if (x >= width || y >= height) 
+    {
+        return; // 超出屏幕物理分辨率的像素，直接丢弃，不执行写入
+    }
     if(nullptr != screen_base)
     {
         screen_base[y * width + x] = color;

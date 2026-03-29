@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/project/user
+CMAKE_SOURCE_DIR = /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/user
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/project/out
+CMAKE_BINARY_DIR = /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/out
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/project/out/CMakeFiles /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/project/out//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/out/CMakeFiles /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/out//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/project/out/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/out/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -129,509 +129,941 @@ project/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/build
 .PHONY : project/fast
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_fifo.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_fifo.cpp.o
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_fifo.o
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_fifo.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_fifo.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_fifo.o
 
 # target to build an object file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_fifo.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_fifo.cpp.o
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_fifo.cpp.o
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_fifo.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_fifo.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_fifo.cpp.o
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_fifo.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_fifo.cpp.i
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_fifo.i
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_fifo.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_fifo.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_fifo.i
 
 # target to preprocess a source file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_fifo.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_fifo.cpp.i
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_fifo.cpp.i
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_fifo.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_fifo.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_fifo.cpp.i
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_fifo.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_fifo.cpp.s
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_fifo.s
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_fifo.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_fifo.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_fifo.s
 
 # target to generate assembly for a file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_fifo.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_fifo.cpp.s
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_fifo.cpp.s
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_fifo.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_fifo.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_fifo.cpp.s
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_font.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_font.cpp.o
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_font.o
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_font.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_font.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_font.o
 
 # target to build an object file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_font.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_font.cpp.o
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_font.cpp.o
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_font.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_font.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_font.cpp.o
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_font.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_font.cpp.i
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_font.i
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_font.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_font.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_font.i
 
 # target to preprocess a source file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_font.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_font.cpp.i
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_font.cpp.i
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_font.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_font.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_font.cpp.i
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_font.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_font.cpp.s
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_font.s
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_font.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_font.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_font.s
 
 # target to generate assembly for a file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_font.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_font.cpp.s
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_font.cpp.s
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_font.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_font.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_font.cpp.s
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_function.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_function.cpp.o
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_function.o
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_function.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_function.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_function.o
 
 # target to build an object file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_function.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_function.cpp.o
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_function.cpp.o
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_function.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_function.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_function.cpp.o
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_function.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_function.cpp.i
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_function.i
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_function.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_function.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_function.i
 
 # target to preprocess a source file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_function.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_function.cpp.i
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_function.cpp.i
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_function.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_function.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_function.cpp.i
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_function.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_function.cpp.s
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_function.s
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_function.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_function.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_function.s
 
 # target to generate assembly for a file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_function.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_function.cpp.s
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_function.cpp.s
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_function.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_function.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_function.cpp.s
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_components/seekfree_assistant/seekfree_assistant.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_components/seekfree_assistant/seekfree_assistant.cpp.o
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_components/seekfree_assistant/seekfree_assistant.o
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_components/seekfree_assistant/seekfree_assistant.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_components/seekfree_assistant/seekfree_assistant.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_components/seekfree_assistant/seekfree_assistant.o
 
 # target to build an object file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_components/seekfree_assistant/seekfree_assistant.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_components/seekfree_assistant/seekfree_assistant.cpp.o
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_components/seekfree_assistant/seekfree_assistant.cpp.o
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_components/seekfree_assistant/seekfree_assistant.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_components/seekfree_assistant/seekfree_assistant.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_components/seekfree_assistant/seekfree_assistant.cpp.o
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_components/seekfree_assistant/seekfree_assistant.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_components/seekfree_assistant/seekfree_assistant.cpp.i
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_components/seekfree_assistant/seekfree_assistant.i
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_components/seekfree_assistant/seekfree_assistant.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_components/seekfree_assistant/seekfree_assistant.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_components/seekfree_assistant/seekfree_assistant.i
 
 # target to preprocess a source file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_components/seekfree_assistant/seekfree_assistant.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_components/seekfree_assistant/seekfree_assistant.cpp.i
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_components/seekfree_assistant/seekfree_assistant.cpp.i
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_components/seekfree_assistant/seekfree_assistant.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_components/seekfree_assistant/seekfree_assistant.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_components/seekfree_assistant/seekfree_assistant.cpp.i
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_components/seekfree_assistant/seekfree_assistant.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_components/seekfree_assistant/seekfree_assistant.cpp.s
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_components/seekfree_assistant/seekfree_assistant.s
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_components/seekfree_assistant/seekfree_assistant.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_components/seekfree_assistant/seekfree_assistant.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_components/seekfree_assistant/seekfree_assistant.s
 
 # target to generate assembly for a file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_components/seekfree_assistant/seekfree_assistant.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_components/seekfree_assistant/seekfree_assistant.cpp.s
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_components/seekfree_assistant/seekfree_assistant.cpp.s
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_components/seekfree_assistant/seekfree_assistant.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_components/seekfree_assistant/seekfree_assistant.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_components/seekfree_assistant/seekfree_assistant.cpp.s
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_components/seekfree_assistant/seekfree_assistant_interface.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_components/seekfree_assistant/seekfree_assistant_interface.cpp.o
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_components/seekfree_assistant/seekfree_assistant_interface.o
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_components/seekfree_assistant/seekfree_assistant_interface.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_components/seekfree_assistant/seekfree_assistant_interface.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_components/seekfree_assistant/seekfree_assistant_interface.o
 
 # target to build an object file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_components/seekfree_assistant/seekfree_assistant_interface.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_components/seekfree_assistant/seekfree_assistant_interface.cpp.o
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_components/seekfree_assistant/seekfree_assistant_interface.cpp.o
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_components/seekfree_assistant/seekfree_assistant_interface.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_components/seekfree_assistant/seekfree_assistant_interface.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_components/seekfree_assistant/seekfree_assistant_interface.cpp.o
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_components/seekfree_assistant/seekfree_assistant_interface.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_components/seekfree_assistant/seekfree_assistant_interface.cpp.i
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_components/seekfree_assistant/seekfree_assistant_interface.i
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_components/seekfree_assistant/seekfree_assistant_interface.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_components/seekfree_assistant/seekfree_assistant_interface.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_components/seekfree_assistant/seekfree_assistant_interface.i
 
 # target to preprocess a source file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_components/seekfree_assistant/seekfree_assistant_interface.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_components/seekfree_assistant/seekfree_assistant_interface.cpp.i
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_components/seekfree_assistant/seekfree_assistant_interface.cpp.i
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_components/seekfree_assistant/seekfree_assistant_interface.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_components/seekfree_assistant/seekfree_assistant_interface.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_components/seekfree_assistant/seekfree_assistant_interface.cpp.i
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_components/seekfree_assistant/seekfree_assistant_interface.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_components/seekfree_assistant/seekfree_assistant_interface.cpp.s
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_components/seekfree_assistant/seekfree_assistant_interface.s
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_components/seekfree_assistant/seekfree_assistant_interface.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_components/seekfree_assistant/seekfree_assistant_interface.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_components/seekfree_assistant/seekfree_assistant_interface.s
 
 # target to generate assembly for a file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_components/seekfree_assistant/seekfree_assistant_interface.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_components/seekfree_assistant/seekfree_assistant_interface.cpp.s
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_components/seekfree_assistant/seekfree_assistant_interface.cpp.s
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_components/seekfree_assistant/seekfree_assistant_interface.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_components/seekfree_assistant/seekfree_assistant_interface.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_components/seekfree_assistant/seekfree_assistant_interface.cpp.s
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_dl1x.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_dl1x.cpp.o
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_dl1x.o
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_dl1x.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_dl1x.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_dl1x.o
 
 # target to build an object file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_dl1x.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_dl1x.cpp.o
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_dl1x.cpp.o
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_dl1x.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_dl1x.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_dl1x.cpp.o
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_dl1x.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_dl1x.cpp.i
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_dl1x.i
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_dl1x.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_dl1x.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_dl1x.i
 
 # target to preprocess a source file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_dl1x.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_dl1x.cpp.i
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_dl1x.cpp.i
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_dl1x.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_dl1x.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_dl1x.cpp.i
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_dl1x.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_dl1x.cpp.s
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_dl1x.s
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_dl1x.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_dl1x.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_dl1x.s
 
 # target to generate assembly for a file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_dl1x.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_dl1x.cpp.s
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_dl1x.cpp.s
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_dl1x.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_dl1x.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_dl1x.cpp.s
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_imu.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_imu.cpp.o
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_imu.o
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_imu.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_imu.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_imu.o
 
 # target to build an object file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_imu.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_imu.cpp.o
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_imu.cpp.o
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_imu.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_imu.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_imu.cpp.o
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_imu.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_imu.cpp.i
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_imu.i
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_imu.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_imu.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_imu.i
 
 # target to preprocess a source file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_imu.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_imu.cpp.i
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_imu.cpp.i
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_imu.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_imu.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_imu.cpp.i
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_imu.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_imu.cpp.s
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_imu.s
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_imu.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_imu.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_imu.s
 
 # target to generate assembly for a file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_imu.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_imu.cpp.s
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_imu.cpp.s
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_imu.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_imu.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_imu.cpp.s
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_ips200_fb.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_ips200_fb.cpp.o
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_ips200_fb.o
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_ips200_fb.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_ips200_fb.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_ips200_fb.o
 
 # target to build an object file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_ips200_fb.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_ips200_fb.cpp.o
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_ips200_fb.cpp.o
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_ips200_fb.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_ips200_fb.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_ips200_fb.cpp.o
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_ips200_fb.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_ips200_fb.cpp.i
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_ips200_fb.i
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_ips200_fb.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_ips200_fb.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_ips200_fb.i
 
 # target to preprocess a source file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_ips200_fb.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_ips200_fb.cpp.i
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_ips200_fb.cpp.i
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_ips200_fb.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_ips200_fb.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_ips200_fb.cpp.i
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_ips200_fb.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_ips200_fb.cpp.s
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_ips200_fb.s
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_ips200_fb.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_ips200_fb.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_ips200_fb.s
 
 # target to generate assembly for a file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_ips200_fb.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_ips200_fb.cpp.s
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_ips200_fb.cpp.s
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_ips200_fb.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_ips200_fb.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_ips200_fb.cpp.s
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_tft180_fb.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_tft180_fb.cpp.o
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_tft180_fb.o
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_tft180_fb.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_tft180_fb.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_tft180_fb.o
 
 # target to build an object file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_tft180_fb.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_tft180_fb.cpp.o
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_tft180_fb.cpp.o
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_tft180_fb.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_tft180_fb.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_tft180_fb.cpp.o
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_tft180_fb.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_tft180_fb.cpp.i
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_tft180_fb.i
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_tft180_fb.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_tft180_fb.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_tft180_fb.i
 
 # target to preprocess a source file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_tft180_fb.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_tft180_fb.cpp.i
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_tft180_fb.cpp.i
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_tft180_fb.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_tft180_fb.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_tft180_fb.cpp.i
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_tft180_fb.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_tft180_fb.cpp.s
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_tft180_fb.s
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_tft180_fb.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_tft180_fb.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_tft180_fb.s
 
 # target to generate assembly for a file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_tft180_fb.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_tft180_fb.cpp.s
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_tft180_fb.cpp.s
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_tft180_fb.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_tft180_fb.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_tft180_fb.cpp.s
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_uvc.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_uvc.cpp.o
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_uvc.o
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_uvc.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_uvc.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_uvc.o
 
 # target to build an object file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_uvc.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_uvc.cpp.o
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_uvc.cpp.o
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_uvc.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_uvc.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_uvc.cpp.o
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_uvc.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_uvc.cpp.i
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_uvc.i
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_uvc.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_uvc.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_uvc.i
 
 # target to preprocess a source file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_uvc.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_uvc.cpp.i
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_uvc.cpp.i
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_uvc.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_uvc.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_uvc.cpp.i
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_uvc.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_uvc.cpp.s
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_uvc.s
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_uvc.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_uvc.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_uvc.s
 
 # target to generate assembly for a file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_uvc.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_uvc.cpp.s
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_uvc.cpp.s
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_uvc.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_uvc.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_uvc.cpp.s
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_adc.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_adc.cpp.o
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_adc.o
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_adc.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_adc.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_adc.o
 
 # target to build an object file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_adc.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_adc.cpp.o
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_adc.cpp.o
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_adc.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_adc.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_adc.cpp.o
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_adc.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_adc.cpp.i
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_adc.i
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_adc.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_adc.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_adc.i
 
 # target to preprocess a source file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_adc.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_adc.cpp.i
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_adc.cpp.i
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_adc.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_adc.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_adc.cpp.i
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_adc.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_adc.cpp.s
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_adc.s
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_adc.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_adc.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_adc.s
 
 # target to generate assembly for a file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_adc.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_adc.cpp.s
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_adc.cpp.s
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_adc.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_adc.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_adc.cpp.s
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_delay.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_delay.cpp.o
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_delay.o
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_delay.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_delay.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_delay.o
 
 # target to build an object file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_delay.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_delay.cpp.o
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_delay.cpp.o
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_delay.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_delay.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_delay.cpp.o
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_delay.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_delay.cpp.i
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_delay.i
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_delay.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_delay.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_delay.i
 
 # target to preprocess a source file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_delay.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_delay.cpp.i
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_delay.cpp.i
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_delay.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_delay.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_delay.cpp.i
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_delay.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_delay.cpp.s
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_delay.s
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_delay.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_delay.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_delay.s
 
 # target to generate assembly for a file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_delay.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_delay.cpp.s
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_delay.cpp.s
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_delay.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_delay.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_delay.cpp.s
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_encoder.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_encoder.cpp.o
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_encoder.o
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_encoder.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_encoder.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_encoder.o
 
 # target to build an object file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_encoder.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_encoder.cpp.o
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_encoder.cpp.o
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_encoder.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_encoder.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_encoder.cpp.o
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_encoder.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_encoder.cpp.i
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_encoder.i
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_encoder.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_encoder.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_encoder.i
 
 # target to preprocess a source file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_encoder.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_encoder.cpp.i
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_encoder.cpp.i
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_encoder.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_encoder.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_encoder.cpp.i
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_encoder.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_encoder.cpp.s
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_encoder.s
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_encoder.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_encoder.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_encoder.s
 
 # target to generate assembly for a file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_encoder.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_encoder.cpp.s
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_encoder.cpp.s
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_encoder.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_encoder.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_encoder.cpp.s
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_file_buffer.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_file_buffer.cpp.o
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_file_buffer.o
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_file_buffer.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_file_buffer.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_file_buffer.o
 
 # target to build an object file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_file_buffer.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_file_buffer.cpp.o
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_file_buffer.cpp.o
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_file_buffer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_file_buffer.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_file_buffer.cpp.o
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_file_buffer.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_file_buffer.cpp.i
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_file_buffer.i
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_file_buffer.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_file_buffer.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_file_buffer.i
 
 # target to preprocess a source file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_file_buffer.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_file_buffer.cpp.i
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_file_buffer.cpp.i
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_file_buffer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_file_buffer.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_file_buffer.cpp.i
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_file_buffer.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_file_buffer.cpp.s
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_file_buffer.s
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_file_buffer.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_file_buffer.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_file_buffer.s
 
 # target to generate assembly for a file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_file_buffer.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_file_buffer.cpp.s
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_file_buffer.cpp.s
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_file_buffer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_file_buffer.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_file_buffer.cpp.s
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_file_string.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_file_string.cpp.o
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_file_string.o
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_file_string.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_file_string.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_file_string.o
 
 # target to build an object file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_file_string.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_file_string.cpp.o
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_file_string.cpp.o
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_file_string.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_file_string.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_file_string.cpp.o
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_file_string.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_file_string.cpp.i
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_file_string.i
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_file_string.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_file_string.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_file_string.i
 
 # target to preprocess a source file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_file_string.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_file_string.cpp.i
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_file_string.cpp.i
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_file_string.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_file_string.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_file_string.cpp.i
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_file_string.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_file_string.cpp.s
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_file_string.s
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_file_string.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_file_string.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_file_string.s
 
 # target to generate assembly for a file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_file_string.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_file_string.cpp.s
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_file_string.cpp.s
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_file_string.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_file_string.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_file_string.cpp.s
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_gpio.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_gpio.cpp.o
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_gpio.o
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_gpio.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_gpio.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_gpio.o
 
 # target to build an object file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_gpio.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_gpio.cpp.o
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_gpio.cpp.o
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_gpio.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_gpio.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_gpio.cpp.o
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_gpio.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_gpio.cpp.i
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_gpio.i
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_gpio.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_gpio.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_gpio.i
 
 # target to preprocess a source file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_gpio.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_gpio.cpp.i
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_gpio.cpp.i
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_gpio.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_gpio.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_gpio.cpp.i
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_gpio.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_gpio.cpp.s
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_gpio.s
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_gpio.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_gpio.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_gpio.s
 
 # target to generate assembly for a file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_gpio.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_gpio.cpp.s
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_gpio.cpp.s
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_gpio.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_gpio.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_gpio.cpp.s
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pit.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pit.cpp.o
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pit.o
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pit.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pit.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pit.o
 
 # target to build an object file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pit.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pit.cpp.o
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pit.cpp.o
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pit.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pit.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pit.cpp.o
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pit.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pit.cpp.i
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pit.i
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pit.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pit.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pit.i
 
 # target to preprocess a source file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pit.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pit.cpp.i
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pit.cpp.i
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pit.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pit.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pit.cpp.i
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pit.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pit.cpp.s
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pit.s
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pit.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pit.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pit.s
 
 # target to generate assembly for a file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pit.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pit.cpp.s
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pit.cpp.s
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pit.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pit.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pit.cpp.s
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pit_fd.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pit_fd.cpp.o
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pit_fd.o
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pit_fd.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pit_fd.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pit_fd.o
 
 # target to build an object file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pit_fd.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pit_fd.cpp.o
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pit_fd.cpp.o
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pit_fd.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pit_fd.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pit_fd.cpp.o
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pit_fd.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pit_fd.cpp.i
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pit_fd.i
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pit_fd.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pit_fd.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pit_fd.i
 
 # target to preprocess a source file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pit_fd.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pit_fd.cpp.i
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pit_fd.cpp.i
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pit_fd.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pit_fd.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pit_fd.cpp.i
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pit_fd.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pit_fd.cpp.s
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pit_fd.s
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pit_fd.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pit_fd.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pit_fd.s
 
 # target to generate assembly for a file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pit_fd.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pit_fd.cpp.s
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pit_fd.cpp.s
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pit_fd.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pit_fd.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pit_fd.cpp.s
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pwm.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pwm.cpp.o
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pwm.o
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pwm.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pwm.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pwm.o
 
 # target to build an object file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pwm.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pwm.cpp.o
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pwm.cpp.o
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pwm.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pwm.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pwm.cpp.o
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pwm.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pwm.cpp.i
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pwm.i
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pwm.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pwm.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pwm.i
 
 # target to preprocess a source file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pwm.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pwm.cpp.i
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pwm.cpp.i
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pwm.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pwm.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pwm.cpp.i
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pwm.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pwm.cpp.s
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pwm.s
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pwm.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pwm.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pwm.s
 
 # target to generate assembly for a file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pwm.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pwm.cpp.s
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pwm.cpp.s
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pwm.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pwm.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pwm.cpp.s
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_tcp_client.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_tcp_client.cpp.o
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_tcp_client.o
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_tcp_client.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_tcp_client.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_tcp_client.o
 
 # target to build an object file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_tcp_client.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_tcp_client.cpp.o
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_tcp_client.cpp.o
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_tcp_client.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_tcp_client.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_tcp_client.cpp.o
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_tcp_client.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_tcp_client.cpp.i
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_tcp_client.i
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_tcp_client.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_tcp_client.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_tcp_client.i
 
 # target to preprocess a source file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_tcp_client.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_tcp_client.cpp.i
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_tcp_client.cpp.i
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_tcp_client.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_tcp_client.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_tcp_client.cpp.i
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_tcp_client.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_tcp_client.cpp.s
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_tcp_client.s
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_tcp_client.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_tcp_client.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_tcp_client.s
 
 # target to generate assembly for a file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_tcp_client.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_tcp_client.cpp.s
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_tcp_client.cpp.s
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_tcp_client.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_tcp_client.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_tcp_client.cpp.s
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_udp.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_udp.cpp.o
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_udp.o
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_udp.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_udp.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_udp.o
 
 # target to build an object file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_udp.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_udp.cpp.o
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_udp.cpp.o
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_udp.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_udp.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_udp.cpp.o
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_udp.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_udp.cpp.i
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_udp.i
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_udp.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_udp.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_udp.i
 
 # target to preprocess a source file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_udp.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_udp.cpp.i
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_udp.cpp.i
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_udp.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_udp.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_udp.cpp.i
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_udp.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_udp.cpp.s
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_udp.s
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_udp.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_udp.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_udp.s
 
 # target to generate assembly for a file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_udp.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_udp.cpp.s
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_udp.cpp.s
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_udp.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_udp.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_udp.cpp.s
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/Fuzzy.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/Fuzzy.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/Fuzzy.o
+
+# target to build an object file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/Fuzzy.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/Fuzzy.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/Fuzzy.cpp.o
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/Fuzzy.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/Fuzzy.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/Fuzzy.i
+
+# target to preprocess a source file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/Fuzzy.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/Fuzzy.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/Fuzzy.cpp.i
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/Fuzzy.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/Fuzzy.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/Fuzzy.s
+
+# target to generate assembly for a file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/Fuzzy.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/Fuzzy.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/Fuzzy.cpp.s
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/PID.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/PID.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/PID.o
+
+# target to build an object file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/PID.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/PID.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/PID.cpp.o
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/PID.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/PID.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/PID.i
+
+# target to preprocess a source file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/PID.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/PID.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/PID.cpp.i
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/PID.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/PID.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/PID.s
+
+# target to generate assembly for a file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/PID.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/PID.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/PID.cpp.s
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/TCPDebug.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/TCPDebug.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/TCPDebug.o
+
+# target to build an object file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/TCPDebug.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/TCPDebug.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/TCPDebug.cpp.o
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/TCPDebug.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/TCPDebug.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/TCPDebug.i
+
+# target to preprocess a source file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/TCPDebug.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/TCPDebug.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/TCPDebug.cpp.i
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/TCPDebug.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/TCPDebug.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/TCPDebug.s
+
+# target to generate assembly for a file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/TCPDebug.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/TCPDebug.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/TCPDebug.cpp.s
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/control.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/control.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/control.o
+
+# target to build an object file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/control.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/control.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/control.cpp.o
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/control.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/control.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/control.i
+
+# target to preprocess a source file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/control.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/control.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/control.cpp.i
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/control.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/control.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/control.s
+
+# target to generate assembly for a file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/control.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/control.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/control.cpp.s
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/cross.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/cross.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/cross.o
+
+# target to build an object file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/cross.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/cross.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/cross.cpp.o
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/cross.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/cross.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/cross.i
+
+# target to preprocess a source file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/cross.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/cross.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/cross.cpp.i
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/cross.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/cross.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/cross.s
+
+# target to generate assembly for a file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/cross.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/cross.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/cross.cpp.s
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/island.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/island.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/island.o
+
+# target to build an object file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/island.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/island.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/island.cpp.o
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/island.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/island.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/island.i
+
+# target to preprocess a source file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/island.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/island.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/island.cpp.i
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/island.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/island.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/island.s
+
+# target to generate assembly for a file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/island.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/island.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/island.cpp.s
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/ramp.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/ramp.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/ramp.o
+
+# target to build an object file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/ramp.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/ramp.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/ramp.cpp.o
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/ramp.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/ramp.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/ramp.i
+
+# target to preprocess a source file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/ramp.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/ramp.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/ramp.cpp.i
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/ramp.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/ramp.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/ramp.s
+
+# target to generate assembly for a file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/ramp.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/ramp.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/ramp.cpp.s
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/aiuvc.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/aiuvc.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/aiuvc.o
+
+# target to build an object file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/aiuvc.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/aiuvc.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/aiuvc.cpp.o
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/aiuvc.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/aiuvc.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/aiuvc.i
+
+# target to preprocess a source file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/aiuvc.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/aiuvc.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/aiuvc.cpp.i
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/aiuvc.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/aiuvc.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/aiuvc.s
+
+# target to generate assembly for a file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/aiuvc.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/aiuvc.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/aiuvc.cpp.s
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/beep.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/beep.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/beep.o
+
+# target to build an object file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/beep.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/beep.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/beep.cpp.o
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/beep.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/beep.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/beep.i
+
+# target to preprocess a source file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/beep.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/beep.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/beep.cpp.i
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/beep.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/beep.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/beep.s
+
+# target to generate assembly for a file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/beep.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/beep.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/beep.cpp.s
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/button.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/button.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/button.o
+
+# target to build an object file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/button.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/button.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/button.cpp.o
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/button.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/button.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/button.i
+
+# target to preprocess a source file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/button.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/button.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/button.cpp.i
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/button.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/button.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/button.s
+
+# target to generate assembly for a file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/button.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/button.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/button.cpp.s
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/encoder.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/encoder.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/encoder.o
+
+# target to build an object file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/encoder.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/encoder.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/encoder.cpp.o
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/encoder.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/encoder.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/encoder.i
+
+# target to preprocess a source file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/encoder.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/encoder.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/encoder.cpp.i
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/encoder.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/encoder.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/encoder.s
+
+# target to generate assembly for a file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/encoder.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/encoder.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/encoder.cpp.s
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/imu.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/imu.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/imu.o
+
+# target to build an object file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/imu.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/imu.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/imu.cpp.o
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/imu.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/imu.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/imu.i
+
+# target to preprocess a source file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/imu.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/imu.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/imu.cpp.i
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/imu.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/imu.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/imu.s
+
+# target to generate assembly for a file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/imu.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/imu.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/imu.cpp.s
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/ips200.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/ips200.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/ips200.o
+
+# target to build an object file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/ips200.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/ips200.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/ips200.cpp.o
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/ips200.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/ips200.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/ips200.i
+
+# target to preprocess a source file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/ips200.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/ips200.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/ips200.cpp.i
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/ips200.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/ips200.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/ips200.s
+
+# target to generate assembly for a file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/ips200.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/ips200.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/ips200.cpp.s
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/motor.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/motor.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/motor.o
+
+# target to build an object file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/motor.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/motor.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/motor.cpp.o
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/motor.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/motor.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/motor.i
+
+# target to preprocess a source file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/motor.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/motor.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/motor.cpp.i
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/motor.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/motor.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/motor.s
+
+# target to generate assembly for a file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/motor.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/motor.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/motor.cpp.s
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/trackuvc.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/trackuvc.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/trackuvc.o
+
+# target to build an object file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/trackuvc.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/trackuvc.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/trackuvc.cpp.o
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/trackuvc.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/trackuvc.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/trackuvc.i
+
+# target to preprocess a source file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/trackuvc.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/trackuvc.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/trackuvc.cpp.i
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/trackuvc.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/trackuvc.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/trackuvc.s
+
+# target to generate assembly for a file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/trackuvc.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/trackuvc.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/trackuvc.cpp.s
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/tflite/aitask.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/tflite/aitask.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/tflite/aitask.o
+
+# target to build an object file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/tflite/aitask.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/tflite/aitask.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/tflite/aitask.cpp.o
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/tflite/aitask.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/tflite/aitask.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/tflite/aitask.i
+
+# target to preprocess a source file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/tflite/aitask.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/tflite/aitask.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/tflite/aitask.cpp.i
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/tflite/aitask.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/tflite/aitask.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/tflite/aitask.s
+
+# target to generate assembly for a file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/tflite/aitask.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/tflite/aitask.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/tflite/aitask.cpp.s
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/vision/Threshold.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/vision/Threshold.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/vision/Threshold.o
+
+# target to build an object file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/vision/Threshold.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/vision/Threshold.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/vision/Threshold.cpp.o
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/vision/Threshold.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/vision/Threshold.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/vision/Threshold.i
+
+# target to preprocess a source file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/vision/Threshold.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/vision/Threshold.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/vision/Threshold.cpp.i
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/vision/Threshold.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/vision/Threshold.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/vision/Threshold.s
+
+# target to generate assembly for a file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/vision/Threshold.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/vision/Threshold.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/vision/Threshold.cpp.s
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/vision/edge_extract.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/vision/edge_extract.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/vision/edge_extract.o
+
+# target to build an object file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/vision/edge_extract.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/vision/edge_extract.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/vision/edge_extract.cpp.o
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/vision/edge_extract.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/vision/edge_extract.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/vision/edge_extract.i
+
+# target to preprocess a source file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/vision/edge_extract.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/vision/edge_extract.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/vision/edge_extract.cpp.i
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/vision/edge_extract.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/vision/edge_extract.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/vision/edge_extract.s
+
+# target to generate assembly for a file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/vision/edge_extract.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/vision/edge_extract.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/vision/edge_extract.cpp.s
 
 main.o: main.cpp.o
 .PHONY : main.o
@@ -666,69 +1098,123 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... project"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_fifo.o"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_fifo.i"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_fifo.s"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_font.o"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_font.i"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_font.s"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_function.o"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_function.i"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_common/zf_common_function.s"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_components/seekfree_assistant/seekfree_assistant.o"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_components/seekfree_assistant/seekfree_assistant.i"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_components/seekfree_assistant/seekfree_assistant.s"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_components/seekfree_assistant/seekfree_assistant_interface.o"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_components/seekfree_assistant/seekfree_assistant_interface.i"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_components/seekfree_assistant/seekfree_assistant_interface.s"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_dl1x.o"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_dl1x.i"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_dl1x.s"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_imu.o"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_imu.i"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_imu.s"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_ips200_fb.o"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_ips200_fb.i"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_ips200_fb.s"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_tft180_fb.o"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_tft180_fb.i"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_tft180_fb.s"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_uvc.o"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_uvc.i"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_device/zf_device_uvc.s"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_adc.o"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_adc.i"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_adc.s"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_delay.o"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_delay.i"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_delay.s"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_encoder.o"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_encoder.i"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_encoder.s"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_file_buffer.o"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_file_buffer.i"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_file_buffer.s"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_file_string.o"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_file_string.i"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_file_string.s"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_gpio.o"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_gpio.i"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_gpio.s"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pit.o"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pit.i"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pit.s"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pit_fd.o"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pit_fd.i"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pit_fd.s"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pwm.o"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pwm.i"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_pwm.s"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_tcp_client.o"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_tcp_client.i"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_tcp_client.s"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_udp.o"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_udp.i"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Seekfree_LS2K0300_Opensource_Library/libraries/zf_driver/zf_driver_udp.s"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_fifo.o"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_fifo.i"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_fifo.s"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_font.o"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_font.i"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_font.s"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_function.o"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_function.i"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_common/zf_common_function.s"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_components/seekfree_assistant/seekfree_assistant.o"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_components/seekfree_assistant/seekfree_assistant.i"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_components/seekfree_assistant/seekfree_assistant.s"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_components/seekfree_assistant/seekfree_assistant_interface.o"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_components/seekfree_assistant/seekfree_assistant_interface.i"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_components/seekfree_assistant/seekfree_assistant_interface.s"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_dl1x.o"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_dl1x.i"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_dl1x.s"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_imu.o"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_imu.i"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_imu.s"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_ips200_fb.o"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_ips200_fb.i"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_ips200_fb.s"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_tft180_fb.o"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_tft180_fb.i"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_tft180_fb.s"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_uvc.o"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_uvc.i"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_device/zf_device_uvc.s"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_adc.o"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_adc.i"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_adc.s"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_delay.o"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_delay.i"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_delay.s"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_encoder.o"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_encoder.i"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_encoder.s"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_file_buffer.o"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_file_buffer.i"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_file_buffer.s"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_file_string.o"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_file_string.i"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_file_string.s"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_gpio.o"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_gpio.i"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_gpio.s"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pit.o"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pit.i"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pit.s"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pit_fd.o"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pit_fd.i"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pit_fd.s"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pwm.o"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pwm.i"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_pwm.s"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_tcp_client.o"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_tcp_client.i"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_tcp_client.s"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_udp.o"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_udp.i"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/libraries/zf_driver/zf_driver_udp.s"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/Fuzzy.o"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/Fuzzy.i"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/Fuzzy.s"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/PID.o"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/PID.i"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/PID.s"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/TCPDebug.o"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/TCPDebug.i"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/TCPDebug.s"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/control.o"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/control.i"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/control/control.s"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/cross.o"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/cross.i"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/cross.s"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/island.o"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/island.i"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/island.s"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/ramp.o"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/ramp.i"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/element/ramp.s"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/aiuvc.o"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/aiuvc.i"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/aiuvc.s"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/beep.o"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/beep.i"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/beep.s"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/button.o"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/button.i"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/button.s"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/encoder.o"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/encoder.i"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/encoder.s"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/imu.o"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/imu.i"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/imu.s"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/ips200.o"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/ips200.i"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/ips200.s"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/motor.o"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/motor.i"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/motor.s"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/trackuvc.o"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/trackuvc.i"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/hardware/trackuvc.s"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/tflite/aitask.o"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/tflite/aitask.i"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/tflite/aitask.s"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/vision/Threshold.o"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/vision/Threshold.i"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/vision/Threshold.s"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/vision/edge_extract.o"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/vision/edge_extract.i"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V0/project/code/vision/edge_extract.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

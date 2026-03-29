@@ -30,8 +30,12 @@ message(STATUS "OpenCV_INCLUDE: ${OpenCV_INCLUDE_DIRS}, OpenCV_LIBS: ${OpenCV_LI
 include_directories(
     ${OpenCV_INCLUDE_DIRS}
     # 业务代码头文件
-    ../user 
-    ../code 
+    ../code/hardware
+    ../code/control
+    ../code/element
+    ../code/vision
+    ../code/tflite 
+    ../user
     ../model
     ../../libraries/zf_common 
     ../../libraries/zf_device 
@@ -61,8 +65,12 @@ link_directories(
 )
 
 # 业务源文件
+aux_source_directory(../code/hardware DIR_SRCS)
+aux_source_directory(../code/control DIR_SRCS)
+aux_source_directory(../code/element DIR_SRCS)
+aux_source_directory(../code/vision DIR_SRCS)
+aux_source_directory(../code/tflite DIR_SRCS)
 aux_source_directory(../user DIR_SRCS)
-aux_source_directory(../code DIR_SRCS)
 aux_source_directory(../model DIR_SRCS)
 aux_source_directory(../../libraries/zf_common DIR_SRCS)
 aux_source_directory(../../libraries/zf_device DIR_SRCS)
