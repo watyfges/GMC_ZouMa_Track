@@ -71,9 +71,12 @@ float Dynamic_PD_Compute(Dynamic_PD *pd, float setpoint, float current) {
         return 0.0f;
     }
 
+    // 2. 修正为真正的“二次”公式（保留符号）
+    // 用 error * abs(error) 代替 error * error * error
     float p_out = (error * absolute_error * pd->Kp2) + (error * pd->Kp1);
 
-    // 3. 微分项低通滤波
+    // 3. 微分项低通滤波 (极其重要：消除像素跳变带来的“抽搐”)
+    // 这里的 0.3 是平滑系数，越小越平滑，越大越灵敏，可微调
     float current_derivative = error - pd->prev_error;
     static float filtered_derivative = 0.0f; 
     filtered_derivative = filtered_derivative * 0.7f + current_derivative * 0.3f;

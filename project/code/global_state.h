@@ -13,11 +13,11 @@ typedef enum {
 
 // 赛道状态结构体
 typedef struct {
-    bool is_cross;         // 十字路口标志 ok
-    bool is_island;        // 环岛标志 ok
+    bool is_cross;         // 十字路口标志
+    bool is_island;        // 环岛标志
     bool is_ramp;          // 坡道标志
     bool is_zebra;         // 斑马线/起跑线标志
-    bool is_straight;      // 直道标志 ok
+    bool is_straight;      // 直道标志
     bool is_barrier;       // 障碍物标志
     bool is_special_barrier;   
     BypassDir_e special_barrier_dir;
@@ -25,10 +25,9 @@ typedef struct {
     // 视野前瞻与安全参数
     int longest_white_len; // 最长白列长度 (视野深度)
     int longest_white_x;   // 最长白列对应的 X 坐标 (寻线锚点)
-    int white_pixel_count[TRACK_W];
     
     // 停车控制
-    int stop_flag; //0：停车 1：预备发车 2：发车        
+    int stop_flag;         
 } TrackState_t;
 
 

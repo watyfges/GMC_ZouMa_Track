@@ -10,16 +10,15 @@
 #include "../code/hardware/trackuvc.h"
 #include "../code/hardware/aiuvc.h"
 #include "../code/vision/edge_extract.h"
-#include "../code/vision/Threshold.h"
 #include "../code/control/control.h"
 #include "../code/control/PID.h"
 #include "../code/control/Fuzzy.h"
 #include "../code/control/TCPDebug.h"
 #include "../code/tflite/aitask.h"
 #include "../code/global_state.h"
-#include "../code/element/cross.h"
-#include "../code/element/island.h"
 
+//#include "../code/element/cross.h"
+// #include "island.h"
 // #include "ramp.h"
 // 
 // #include "servo.h"
@@ -42,10 +41,9 @@
 #include <stdexcept>
 #include <sstream>
 #include <cctype>
-#include <stdlib.h>
 
 //定义TCP服务器地址
-#define SERVER_IP "192.168.1.108" 
+#define SERVER_IP "192.168.1.103" 
 #define PORT_VOFA 1347
 #define PORT_SEEKFREE 8086
 
@@ -56,4 +54,4 @@
 #define TRACK_H 120
 
 #define AI_W 480
-#define AI_H 640
+#define AI_H 480

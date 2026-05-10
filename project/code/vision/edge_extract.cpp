@@ -14,15 +14,14 @@ uint8_t M_boundary[TRACK_H] = {0};
 //漫水填充队列 (扩大以防8连通爆队列)
 static uint16_t fill_queue[TRACK_W * TRACK_H];
 
-extern void Cross_Detect();
-extern void Island_Detect();
-
 //元素检测
 // extern bool detect_zebra_crossing(void); // 斑马线
 // extern bool Special_Barrier_Detect(void); 
 // extern BypassDir_e Get_Special_Barrier_Dir(void); // 获取特殊障碍物绕行方向
 // extern bool Barrier_Detect(void);   // 标准障碍物
 // extern bool Ramp_Detect(void);      // 坡道
+// extern bool Cross_Detect(void);     // 十字路口
+// extern bool Island_Detect(void);    // 环岛
 
 //蜂鸣器
 extern void beep_on(void);          
@@ -109,63 +108,63 @@ int fetch_new_frame(void) {
     return 1;
 }
 
-// void preprocess_image(void) {
-//     int histogram[256] = {0};
-//     int pixel_sum = TRACK_W * TRACK_H; 
-//     long gray_sum = 0;
+void preprocess_image(void) {
+    int histogram[256] = {0};
+    int pixel_sum = TRACK_W * TRACK_H; 
+    long gray_sum = 0;
 
-//     for (int i = 0; i < TRACK_H; i++) {
-//         for (int j = 0; j < TRACK_W; j++) {
-//             uint8_t gray_val = img_gray[i][j];
-//             histogram[gray_val]++;
-//             gray_sum += gray_val;
-//         }
-//     }
+    for (int i = 0; i < TRACK_H; i++) {
+        for (int j = 0; j < TRACK_W; j++) {
+            uint8_t gray_val = img_gray[i][j];
+            histogram[gray_val]++;
+            gray_sum += gray_val;
+        }
+    }
 
-//     float delta_max = 0;
-//     uint8_t threshold = 0;
-//     long w0 = 0, u0tmp = 0;
+    float delta_max = 0;
+    uint8_t threshold = 0;
+    long w0 = 0, u0tmp = 0;
 
-//     for (int i = 0; i < 180; i++) {
-//         w0 += histogram[i];
-//         if (w0 == 0) continue;
-//         long w1 = pixel_sum - w0;
-//         if (w1 == 0) break; 
-//         u0tmp += i * histogram[i];
-//         long u1tmp = gray_sum - u0tmp;
-//         float u0 = (float)u0tmp / w0;
-//         float u1 = (float)u1tmp / w1;
-//         float delta_tmp = (float)w0 * w1 * (u0 - u1) * (u0 - u1);
-//         if (delta_tmp > delta_max) {
-//             delta_max = delta_tmp;
-//             threshold = i;
-//         }
-//     }
+    for (int i = 0; i < 180; i++) {
+        w0 += histogram[i];
+        if (w0 == 0) continue;
+        long w1 = pixel_sum - w0;
+        if (w1 == 0) break; 
+        u0tmp += i * histogram[i];
+        long u1tmp = gray_sum - u0tmp;
+        float u0 = (float)u0tmp / w0;
+        float u1 = (float)u1tmp / w1;
+        float delta_tmp = (float)w0 * w1 * (u0 - u1) * (u0 - u1);
+        if (delta_tmp > delta_max) {
+            delta_max = delta_tmp;
+            threshold = i;
+        }
+    }
 
-//     if (threshold < 70) threshold = 70; 
+    if (threshold < 70) threshold = 70; 
 
-//     for (int i = 0; i < TRACK_H; i++) {
-//         for (int j = 0; j < TRACK_W; j++) {
-//             uint8_t current_threshold = threshold;
-//             if (j <= 15 || j >= TRACK_W - 16) current_threshold -= 10;
+    for (int i = 0; i < TRACK_H; i++) {
+        for (int j = 0; j < TRACK_W; j++) {
+            uint8_t current_threshold = threshold;
+            if (j <= 15 || j >= TRACK_W - 16) current_threshold -= 10;
 
-//             if (img_gray[i][j] > current_threshold) img_bin[i][j] = 255; 
-//             else img_bin[i][j] = 0;   
-//         }
-//     }
+            if (img_gray[i][j] > current_threshold) img_bin[i][j] = 255; 
+            else img_bin[i][j] = 0;   
+        }
+    }
 
-//     //孤立噪点滤波 Pixle_Filter 
-//     for (int r = 10; r < TRACK_H - 10; r++) {
-//         for (int c = 10; c < TRACK_W - 10; c++) {
-//             if (img_bin[r][c] == 0) {
-//                 int sum = img_bin[r-1][c] + img_bin[r+1][c] + img_bin[r][c-1] + img_bin[r][c+1];
-//                 if (sum >= 255 * 3) {
-//                     img_bin[r][c] = 255; 
-//                 }
-//             }
-//         }
-//     }
-// }
+    //孤立噪点滤波 Pixle_Filter 
+    for (int r = 10; r < TRACK_H - 10; r++) {
+        for (int c = 10; c < TRACK_W - 10; c++) {
+            if (img_bin[r][c] == 0) {
+                int sum = img_bin[r-1][c] + img_bin[r+1][c] + img_bin[r][c-1] + img_bin[r][c+1];
+                if (sum >= 255 * 3) {
+                    img_bin[r][c] = 255; 
+                }
+            }
+        }
+    }
+}
 
 void extract_track_region(void) {
     int check = 0;
@@ -243,7 +242,6 @@ void extract_track_region(void) {
             if (img_bin[y][x] == 255) current_len++;
             else break; 
         }
-        track_state.white_pixel_count[x] = current_len;
         if (current_len > track_state.longest_white_len) {
             track_state.longest_white_len = current_len;
             track_state.longest_white_x = x;
@@ -281,7 +279,7 @@ void find_track_boundaries(void) {
 }
 
 // 直道均方误差判定 
-bool L_Straight_Judge() {
+static bool L_Straight_Judge() {
     int start = LOWEST_ROW, end;
     for(int i = LOWEST_ROW; i >= 0; i--) {
         if(L_boundary[i] != 0) {
@@ -303,7 +301,7 @@ bool L_Straight_Judge() {
     return 0; 
 }
 
-bool R_Straight_Judge() {
+static bool R_Straight_Judge() {
     int start = LOWEST_ROW, end;
     for(int i = LOWEST_ROW; i >= 0; i--) {
         if(R_boundary[i] != TRACK_W - 1) {
@@ -345,12 +343,12 @@ void detect_track_elements(void) {
     // ==========================================================
     // 优先级 3：标准赛道地形 (基础态 Base State，互斥排他)
     // ==========================================================
-    // bool is_base_locked = track_state.is_island || 
-    //                       track_state.is_cross || 
-    //                       track_state.is_ramp || 
-    //                       track_state.is_barrier; 
+    bool is_base_locked = track_state.is_island || 
+                          track_state.is_cross || 
+                          track_state.is_ramp || 
+                          track_state.is_barrier; 
 
-    //if (!is_base_locked) {
+    if (!is_base_locked) {
         // if (Barrier_Detect()) {
         //     track_state.is_barrier = true;
         // } 
@@ -363,13 +361,8 @@ void detect_track_elements(void) {
         // else if (Island_Detect()) {
         //     track_state.is_island = true;
         // }
-   //}
-    if (!track_state.is_island){
-        Cross_Detect();
     }
-    if (!track_state.is_cross){
-        Island_Detect();
-    }
+
     if (track_state.is_island || track_state.is_cross || 
         track_state.is_ramp || track_state.is_barrier || 
         track_state.is_zebra || track_state.is_special_barrier) 
@@ -487,7 +480,7 @@ void calculate_centerline(void) {
 
 void edge_extract(void) {
     if (fetch_new_frame() == 0) return; 
-    Get01change_dajin();
+    preprocess_image();
     extract_track_region(); 
     find_track_boundaries();
     detect_track_elements();

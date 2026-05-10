@@ -23,8 +23,6 @@ extern uint8_t M_boundary[TRACK_H]; // 中线
 
 // 图像处理主程序
 void edge_extract(void);
-bool L_Straight_Judge();
-bool R_Straight_Judge();
 
 #endif
 

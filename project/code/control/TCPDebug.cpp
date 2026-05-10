@@ -1,17 +1,6 @@
 #include "TCPDebug.h"
 
-//电机PID定义
-extern float Left_Motor_Kp;
-extern float Left_Motor_Ki;
-extern float Left_Motor_Kd;
-extern float Right_Motor_Kp;
-extern float Right_Motor_Ki;
-extern float Right_Motor_Kd;
-
 uint8 current_camera_view = VIEW_TRACK_CAMERA; // 默认显示巡线画面
-uint8 allow_send_image_flag = 0; //允许发送的标志位
-uint16 ai_image_copy[AI_H][AI_W];
-
 
 // 根据模式按需实例化 TCP 客户端
 #if CURRENT_DEBUG_MODE != DEBUG_MODE_NONE
@@ -78,78 +67,23 @@ void Vofa_Send_Waveform(float ch0, float ch1, float ch2, float ch3) {
 // ==========================================================
 static void Vofa_Receive_Task() {
 #if CURRENT_DEBUG_MODE == DEBUG_MODE_VOFA || CURRENT_DEBUG_MODE == DEBUG_MODE_BOTH
-    uint8 rx_buf[65]; // 多留一位给字符串结束符 '\0'
-    
-    // 读取数据，传入 sizeof(rx_buf)-1 防止填满后无法放置结束符
-    uint32 len = vofa_tcp.read_data(rx_buf, sizeof(rx_buf) - 1);
-    
+    uint8 rx_buf[64];
+    uint32 len = vofa_tcp.read_data(rx_buf, sizeof(rx_buf));
+    beep_on();
+    system_delay_ms(200);
+    beep_off();
     if (len > 0) {
-        rx_buf[len] = '\0'; // 强制在末尾添加字符串结束符，使其变成合法 C 字符串
-        char *cmd_str = (char *)rx_buf;
-        char *ptr = NULL;   // 用于定位字符串的指针
-
-        // 提示音
-        beep_on();
-        system_delay_ms(50); // 稍微缩短一点延时，防止阻塞主循环太久
-        beep_off();
-
-        // --------------------------------------------------
-        // 1. 处理 start / stop 控制指令
-        // --------------------------------------------------
-        if (strstr(cmd_str, "start") != NULL) {
-            track_state.stop_flag = 2;
-            printf("Command: start, stop_flag set to 2\r\n");
-        } 
-        else if (strstr(cmd_str, "stop") != NULL) {
-            track_state.stop_flag = 0;
-            printf("Command: stop, stop_flag set to 0\r\n");
-        }
-
-        // --------------------------------------------------
-        // 2. 解析 左电机 PID 参数 (例如 "LDJKp3.0")
-        // --------------------------------------------------
-        if ((ptr = strstr(cmd_str, "LDJKp")) != NULL) {
-            Left_Motor_Kp = atof(ptr + 5); // "+5" 是跳过 "LDJKp" 前 5 个字符，直接解析后面的数字
-            printf("Set Left Kp: %f\r\n", Left_Motor_Kp);
-        }
-        if ((ptr = strstr(cmd_str, "LDJKi")) != NULL) {
-            Left_Motor_Ki = atof(ptr + 5);
-            printf("Set Left Ki: %f\r\n", Left_Motor_Ki);
-        }
-        if ((ptr = strstr(cmd_str, "LDJKd")) != NULL) {
-            Left_Motor_Kd = atof(ptr + 5);
-            printf("Set Left Kd: %f\r\n", Left_Motor_Kd);
-        }
-
-        // --------------------------------------------------
-        // 3. 解析 右电机 PID 参数 (例如 "RDJKp3.0")
-        // --------------------------------------------------
-        if ((ptr = strstr(cmd_str, "RDJKp")) != NULL) {
-            Right_Motor_Kp = atof(ptr + 5);
-            printf("Set Right Kp: %f\r\n", Right_Motor_Kp);
-        }
-        if ((ptr = strstr(cmd_str, "RDJKi")) != NULL) {
-            Right_Motor_Ki = atof(ptr + 5);
-            printf("Set Right Ki: %f\r\n", Right_Motor_Ki);
-        }
-        if ((ptr = strstr(cmd_str, "RDJKd")) != NULL) {
-            Right_Motor_Kd = atof(ptr + 5);
-            printf("Set Right Kd: %f\r\n", Right_Motor_Kd);
-        }
-
-        // --------------------------------------------------
-        // 4. 兼容原来的 'T' 和 'A' 摄像头切换
-        // (为了防止 "start" 里面的字母 't'/'a' 触发切换，
-        //  我们限制仅当发过来的字符很短时才触发)
-        // --------------------------------------------------
-        if (len <= 3) { // 考虑到串口可能带 \r \n，限制长度
-            if (cmd_str[0] == 'T' || cmd_str[0] == 't') {
+        // 解析 Vofa 发来的数据
+        // 比如在 Vofa 文本发送框里发 'T' 切换巡线，发 'A' 切换AI
+        for (uint32 i = 0; i < len; i++) {
+            if (rx_buf[i] == 'T' || rx_buf[i] == 't') {
                 current_camera_view = VIEW_TRACK_CAMERA;
                 printf("Switched to Track Camera View.\r\n");
-            } else if (cmd_str[0] == 'A' || cmd_str[0] == 'a') {
+            } else if (rx_buf[i] == 'A' || rx_buf[i] == 'a') {
                 current_camera_view = VIEW_AI_CAMERA;
                 printf("Switched to AI Camera View.\r\n");
             }
+            // 可以在这里扩展其他的调参协议解析逻辑...
         }
     }
 #endif
@@ -160,9 +94,6 @@ static void Vofa_Receive_Task() {
 // ==========================================================
 static void Seekfree_Send_Image_Task() {
 #if CURRENT_DEBUG_MODE == DEBUG_MODE_BOTH
-    // 只有允许发送标志位置 1 时，才发送一帧图像（防止撑爆TCP缓冲区）
-    if (allow_send_image_flag == 0) return;
-    allow_send_image_flag = 0; // 清除标志位，等待下一个周期
     if (current_camera_view == VIEW_TRACK_CAMERA) {
         // 1. 巡线模式 (带边界的灰度图)
         seekfree_assistant_camera_information_config(
@@ -182,16 +113,9 @@ static void Seekfree_Send_Image_Task() {
     } else if (current_camera_view == VIEW_AI_CAMERA) {
         // 2. AI 摄像头模式
         // 假设 ai_img 是 uint16 的 RGB565 格式
-        for(uint32_t i = 0; i < AI_W * AI_H; i++)
-        {
-            uint16_t pixel = (img_ai[0])[i]; 
-            
-            // 进行大小端字节交换，并存入备份数组
-            (ai_image_copy[0])[i] = ((pixel & 0x00FF) << 8) | ((pixel & 0xFF00) >> 8);
-        }
         seekfree_assistant_camera_information_config(
             SEEKFREE_ASSISTANT_RGB565, 
-            ai_image_copy[0], 
+            img_ai[0], 
             AI_W, 
             AI_H
         );
@@ -209,14 +133,4 @@ static void Seekfree_Send_Image_Task() {
 void Debug_Task() {
     Vofa_Receive_Task();
     Seekfree_Send_Image_Task();
-}
-
-void tcp_pit_callback() {
-    // 增加一个静态计数器限制发图帧率
-    static int img_timer_cnt = 0;
-    img_timer_cnt++;
-    if (img_timer_cnt >= 10) { // 10ms * 10 = 100ms (即限制为10FPS传图)
-        img_timer_cnt = 0;
-        allow_send_image_flag = 1;
-    }
 }

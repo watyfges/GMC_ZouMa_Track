@@ -35,6 +35,4 @@ void Debug_Task(void);
 // Vofa 发送波形数据 (使用 JustFloat 协议，支持最多4个通道，按需增减)
 void Vofa_Send_Waveform(float ch0, float ch1, float ch2, float ch3);
 
-void tcp_pit_callback(void);
-
 #endif // TCPDEBUG_H
