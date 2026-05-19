@@ -1,6 +1,6 @@
 #ifndef __BUTTON_H__
 #include "zf_common_headfile.hpp"
 
-int key(int num);
+int scan_key(int num);
 
 #endif

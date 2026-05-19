@@ -1,8 +1,12 @@
 #ifndef _AI_UVC_H_
 #define _AI_UVC_H_
 
+//获取到的原始画面宽高
+#define AI_S_W 640 
+#define AI_S_H 480
+
 #define AI_W 480
-#define AI_H 480
+#define AI_H 640
 
 #include "zf_common_headfile.hpp"
 

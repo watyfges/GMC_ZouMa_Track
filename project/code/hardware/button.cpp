@@ -13,7 +13,7 @@ static zf_driver_gpio  key_3(KEY_3_PATH, O_RDWR);
 static zf_driver_gpio  key_4(KEY_4_PATH, O_RDWR);
 
 // 3. 统一读取函数
-int key(int num)
+int scan_key(int num)
 {
     switch(num)
     {

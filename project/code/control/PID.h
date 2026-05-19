@@ -35,6 +35,6 @@ float Dynamic_PD_Compute(Dynamic_PD *pd, float setpoint, float current);
 void PID_Init(IncrementalPID *pid, float Kp, float Ki, float Kd, 
               float max_out);
 
-float IncPIDCal(IncrementalPID *pid, int32_t NowValue, int32_t AimValue);
+float IncPIDCal(IncrementalPID *pid, int32_t AimValue, int32_t NowValue);
 
 #endif

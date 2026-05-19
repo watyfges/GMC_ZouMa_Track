@@ -13,6 +13,15 @@ static float right_enc_buffer[FILTER_WINDOW] = {0};
 static uint8_t filter_index = 0;   // 当前写入数组的索引
 static uint8_t filter_count = 0;   // 记录已存入的数据个数（处理刚启动时数据不满的情况
 
+//电机PID定义
+float Left_Motor_Kp = 7;
+float Left_Motor_Ki = 0.09;
+float Left_Motor_Kd = 0;
+int Left_Motor_Maxduty = 300;
+float Right_Motor_Kp = 7;
+float Right_Motor_Ki = 0.09;
+float Right_Motor_Kd = 0;
+int Right_Motor_Maxduty = 300;
 
 float V_Left, V_Right, Speed;//速度，左轮速度，右轮速度
 float Right_Duty = 0, Left_Duty = 0; //左右电机占空比
@@ -27,23 +36,24 @@ extern int16 last_encoder_left, last_encoder_right;//编码器计数
 extern uint8 M_boundary[TRACK_H];//中线边界数组
 //extern float roll,pitch,yaw; //姿态角 **外部读取
 
-// --- 初始化函数 ---
+//变量初始化
 void control_signal_init() {
     Right_Motor_PID.LastError = 0; Right_Motor_PID.PrevError = 0;
     Left_Motor_PID.LastError = 0; Left_Motor_PID.PrevError = 0; Servo_PD.prev_error = 0;Right_Duty = 0;
     Left_Duty = 0;
 }
 
+//PID选择
 void Choice_PID(int num) {
     switch(num){
         case 0://测试
                 Speed = 200;
-                Dis = 60;             // 前瞻距离 
+                Dis = 70;             // 前瞻距离 
                 //Island_Time = 12;
                 // 转向PD控制器 (输出左右轮速度差)
                 Dynamic_PD_Init(&Servo_PD, 
                     1.0,    // Kp1 一次项
-                    0.0,    // Kp2 二次项
+                    0.18,    // Kp2 二次项
                     1.0,    // 误差敏感度参数σ
                     1.0,   // Kd 微分系数
                     0,      // 陀螺仪参数Kz 
@@ -57,14 +67,14 @@ void Choice_PID(int num) {
             }
 } 
 
-
+//初始化控制程序所有项目，变量，电机PID，选择PID参数
 void control_init() {
     control_signal_init();
     // 电机速度闭环 PID (这部分决定了车轮跟调速指令有多紧)
     // PID_Init(&Right_Motor_PID, 19, 2.7, 0, 300);
     // PID_Init(&Left_Motor_PID,  19, 2.7, 0, 300);
-    PID_Init(&Right_Motor_PID, 3, 0.15, 0, 300);//kp,ki,kd,maxduty
-    PID_Init(&Left_Motor_PID,  3, 0.15, 0, 300);
+    PID_Init(&Right_Motor_PID, Right_Motor_Kp, Right_Motor_Ki, Right_Motor_Kd, Right_Motor_Maxduty); //kp,ki,kd,maxduty
+    PID_Init(&Left_Motor_PID, Left_Motor_Kp, Left_Motor_Ki, Left_Motor_Kd, Left_Motor_Maxduty);
     Choice_PID(0);
 }
 
@@ -123,14 +133,15 @@ void turn_pit_callback() {
 }
 
 void motor_pit_callback() {
-    //V_Right = 300.0f;
+    // V_Right = 120.0f;
+    // V_Left  = 120.0f; 
     // 读取编码器,写在encoder.cpp中
 
     // 编码器低通滤波
     encoder_left = last_encoder_left * 0.2f + encoder_left * 0.8f;
     encoder_right = last_encoder_right * 0.2f + encoder_right * 0.8f;
 
-    // ------------------- 滑动均值滤波开始 -------------------
+    // 编码器滑动均值滤波
     // 1. 将最新数据存入缓冲区
     left_enc_buffer[filter_index] = encoder_left;
     right_enc_buffer[filter_index] = encoder_right;
@@ -164,11 +175,13 @@ void motor_pit_callback() {
     // PWM 限幅保护
     if(fabs(Right_Duty) >= MAX_DUTY) Right_Duty = (Right_Duty / fabs(Right_Duty)) * MAX_DUTY;
     if(fabs(Left_Duty)  >= MAX_DUTY) Left_Duty  = (Left_Duty  / fabs(Left_Duty))  * MAX_DUTY;
-    
-    // Set_Right_Pwm(Right_Duty);
-    // Set_Left_Pwm(Left_Duty);
+
+    Set_Right_Pwm(Right_Duty);
+    Set_Left_Pwm(Left_Duty);
+
     //printf("l_enc: %f, r_enc: %f, l_out: %f, r_out: %f\n", encoder_left, encoder_right,Left_Duty,Right_Duty);
     //printf("%f,%f,%f\n", V_Right, encoder_right, Right_Duty);
+    //Vofa_Send_Waveform(V_Right, encoder_right, V_Left,encoder_left);
 }
 
 void cleanup() {
@@ -177,6 +190,7 @@ void cleanup() {
 }
 
 // 中断总回调函数
+// imu的写在imu.cpp里
 void pit_callback() {
     encoder_pit_callback();
     turn_pit_callback(); 
@@ -184,6 +198,3 @@ void pit_callback() {
     clear_encoder_pit_callback();
     //time_pit_callback();
 }
-
-
-void IMU_pit_callback();

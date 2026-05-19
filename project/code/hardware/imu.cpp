@@ -79,7 +79,7 @@ void IMU_pit_callback()
     Angle_seem();
 }
 
-void IMU_init()             //适用于多种传感器
+void IMU_init(void)             //适用于多种传感器
 {
     imu_dev.init();
     

@@ -3,6 +3,6 @@
 
 #include "head.h"
 
-bool Cross_Detect(void);
+//bool Cross_Detect(void);
 
 #endif

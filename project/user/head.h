@@ -9,16 +9,18 @@
 #include "../code/hardware/ips200.h"
 #include "../code/hardware/trackuvc.h"
 #include "../code/hardware/aiuvc.h"
+#include "../code/hardware/tof.h"
 #include "../code/vision/edge_extract.h"
+#include "../code/vision/Threshold.h"
 #include "../code/control/control.h"
 #include "../code/control/PID.h"
 #include "../code/control/Fuzzy.h"
-#include "../code/control/TCPDebug.h"
 #include "../code/tflite/aitask.h"
 #include "../code/global_state.h"
+#include "../code/element/cross.h"
+#include "../code/element/island.h"
+#include "../code/communication/TCPDebug.h"
 
-//#include "../code/element/cross.h"
-// #include "island.h"
 // #include "ramp.h"
 // 
 // #include "servo.h"
@@ -41,17 +43,10 @@
 #include <stdexcept>
 #include <sstream>
 #include <cctype>
+#include <stdlib.h>
+#include <utility>
 
-//定义TCP服务器地址
-#define SERVER_IP "192.168.1.103" 
-#define PORT_VOFA 1347
-#define PORT_SEEKFREE 8086
 
-#define MAX_DUTY  (60 )   // 最大 MAX_DUTY% 占空比
 
-//定义巡线摄像头参数
-#define TRACK_W 160
-#define TRACK_H 120
-
-#define AI_W 480
-#define AI_H 480
+using namespace cv;
+using namespace std;
