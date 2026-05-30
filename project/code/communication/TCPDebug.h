@@ -25,6 +25,20 @@ extern uint8 M_boundary[];
 extern uint8 R_boundary[];
 extern uint16 img_ai[AI_H][AI_W]; // AI摄像头图像
 
+//电机PID定义
+extern float Left_Motor_Kp;
+extern float Left_Motor_Ki;
+extern float Left_Motor_Kd;
+extern float Right_Motor_Kp;
+extern float Right_Motor_Ki;
+extern float Right_Motor_Kd;
+
+//小车pid定义
+extern int Dis;
+extern float kp1,kp2,kd;
+extern float Speed;
+extern float kz;
+
 // ======================= 接口声明 =======================
 // 初始化调试模块 (传入服务器IP，以及两个不同的端口)
 void Debug_Init(const char* ip, uint32 vofa_port, uint32 seekfree_port);

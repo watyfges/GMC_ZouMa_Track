@@ -10,375 +10,25 @@ uint8_t img_bin[TRACK_H][TRACK_W] = {0};
 uint8_t L_boundary[TRACK_H] = {0};
 uint8_t R_boundary[TRACK_H] = {0};
 uint8_t M_boundary[TRACK_H] = {0};
-vector<pair<uint8_t, uint8_t>> L_boundary_8;
-vector<pair<uint8_t, uint8_t>> R_boundary_8;
-vector<Point> fact_L_boundary, fact_R_boundary;
 
+//漫水填充队列 (扩大以防8连通爆队列)
+static uint16_t fill_queue[TRACK_W * TRACK_H];
 
 extern void Cross_Detect();
 extern void Island_Detect();
 extern void Get01change_dajin(); 
 
+//元素检测
+// extern bool detect_zebra_crossing(void); // 斑马线
+// extern bool Special_Barrier_Detect(void); 
+// extern BypassDir_e Get_Special_Barrier_Dir(void); // 获取特殊障碍物绕行方向
+// extern bool Barrier_Detect(void);   // 标准障碍物
+// extern bool Ramp_Detect(void);      // 坡道
+
 // 蜂鸣器
 extern void beep_on(void);          
 extern void beep_off(void);
 
-// 方向枚举定义
-enum Direction {
-    LEFT_DOWN = 0,     // 0: (0,1)
-    LEFT,               // 1: (-1,1)
-    LEFT_UP,            // 2: (-1,0)
-    UP_LEFT,            // 3: (-1,-1)
-    UP,                 // 4: (0,-1)
-    RIGHT_UP,           // 5: (1,-1)
-    RIGHT,              // 6: (1,0)
-    DOWN_RIGHT          // 7: (1,1)
-};
-
-struct BorderConfig {
-    int borderMin = 0;            // 允许从0边缘开始搜
-    int borderMax = TRACK_W - 1;  // 允许贴到最右侧边缘
-    int whitePixel = 255;
-    int blackPixel = 0;
-    int maxIterations = 5000;
-    int morphologySize = 3;
-    int stabilityCheckDepth = 3;  // 连续同点检测深度
-};
-BorderConfig config;
-
-//八邻域寻线
-pair<vector<Point>, vector<Point>> trackEdges(
-    const Mat& binImage, 
-    Point leftStart, 
-    Point rightStart,
-    const BorderConfig& config) 
-    {
-        // 搜索方向模板
-        // 左边搜索顺序（顺时针）
-        const array<Point, 8> leftSearchOrder = {
-            Point(0, 1),   // 0: 向下
-            Point(-1, 1),  // 1: 左下 
-            Point(-1, 0),  // 2: 左
-            Point(-1, -1), // 3: 左上
-            Point(0, -1),  // 4: 上
-            Point(1, -1),  // 5: 右上
-            Point(1, 0),   // 6: 右
-            Point(1, 1)    // 7: 右下
-        };
-        
-        // 右边搜索顺序（逆时针）
-        const array<Point, 8> rightSearchOrder = {
-            Point(0, 1),   // 0: 向下
-            Point(1, 1),   // 1: 右下 
-            Point(1, 0),   // 2: 右
-            Point(1, -1),  // 3: 右上
-            Point(0, -1),  // 4: 上
-            Point(-1, -1), // 5: 左上  
-            Point(-1, 0),  // 6: 左
-            Point(-1, 1)   // 7: 左下
-        };
-
-        vector<Point> leftPoints, rightPoints; //已经找到的边线点列表，使用point存储，point 可以理解成一个坐标点，里面有：Point.x Point.y
-        vector<int> leftDirections, rightDirections; //记录搜索方向
-        Point currentLeft = leftStart;  //当前巡线点（左）
-        Point currentRight = rightStart;//当前巡线点（右）
-        int safeCounter = 0;            //安全计数器
-        int leftLastDir = -1;           //初始搜索方向，还没开始就设置成-1
-        int rightLastDir = -1;
-
-        // 安全获取像素，将图像越界外围统统视为黑色（虚拟黑墙）
-        auto getPixelSafe = [&](int x, int y) -> uint8_t {
-            if (x < 0 || x >= binImage.cols || y < 0 || y >= binImage.rows) {
-                return config.blackPixel; 
-            }
-            return binImage.at<uint8_t>(y, x);
-        };
-
-        // 等于findNextPoint(当前点, 搜索方向表, 上一次方向)
-        auto findNextPoint = [&](const Point& current, const array<Point, 8>& order,int lastDir) -> 
-            //返回下一个点 + 这次走的方向编号
-            pair<Point, int> 
-            {
-                int startIdx = (lastDir == -1) ? 0 : (lastDir + 5) % 8;
-                for (int step = 0; step < 8; ++step) {
-                    int i = (startIdx + step) % 8;
-                    const Point neighbor = current + order[i];
-                    const Point nextNeighbor = current + order[(i + 1) % 8];
-                    
-                    // 采用虚拟黑墙读取像素
-                    uint8_t valNeighbor = getPixelSafe(neighbor.x, neighbor.y);
-                    uint8_t valNextNeighbor = getPixelSafe(nextNeighbor.x, nextNeighbor.y);
-
-                    // 如果 neighbor 是黑（或者是屏幕外），且 nextNeighbor 是白
-                    if (valNeighbor == config.blackPixel && valNextNeighbor == config.whitePixel) {
-                        // 能读出白色，说明 nextNeighbor 一定在屏幕内部，无需再做边界拦截
-                        return {nextNeighbor, (i + 1) % 8};
-                    }
-                }
-                return {current, -1};
-            };
-
-        bool leftStagnant = false;
-        bool rightStagnant = false;
-
-        while (safeCounter++ < config.maxIterations) {
-            bool leftUpdated = false;
-            bool rightUpdated = false;
-
-            // 等高同步控制逻辑
-            // y坐标越大，代表在图像中越靠下（越靠近车身），说明该侧落后了。
-            bool allowLeft = true;
-            bool allowRight = true;
-
-            if (!leftStagnant && !rightStagnant) {
-                if (currentLeft.y > currentRight.y) {
-                    allowRight = false; // 左边落后，右边暂停等待
-                } else if (currentRight.y > currentLeft.y) {
-                    allowLeft = false;  // 右边落后，左边暂停等待
-                }
-                // 如果 currentLeft.y == currentRight.y，两边 allow 都为 true，一起走
-            }
-
-            // ================= 左边处理 =================
-            if (allowLeft && !leftStagnant && currentLeft.x >= 0 && currentLeft.y >= 0) {
-                auto [newLeft, dir] = findNextPoint(currentLeft, leftSearchOrder, leftLastDir);
-                if (dir != -1) {
-                    // 方向突变检测
-                    if (leftDirections.size() >= 3) {
-                        int dirChange = abs(dir - leftDirections.back());
-                        if (dirChange > 4) dirChange = 8 - dirChange;
-                        if (dirChange > 2) leftStagnant = true; // 发生锐角转折
-                    }
-
-                    if (!leftStagnant) {
-                        leftPoints.push_back(newLeft);
-                        leftDirections.push_back(dir);
-                        currentLeft = newLeft;
-                        leftLastDir = dir;
-                        leftUpdated = true;
-                    }
-                } else {
-                    leftStagnant = true; 
-                }
-            }
-
-            // ================= 右边处理 =================
-            if (allowRight && !rightStagnant && currentRight.x >= 0 && currentRight.y >= 0) {
-                auto [newRight, dir] = findNextPoint(currentRight, rightSearchOrder, rightLastDir);
-                if (dir != -1) {
-                    // 方向突变检测
-                    if (rightDirections.size() >= 3) {
-                        int dirChange = abs(dir - rightDirections.back());
-                        if (dirChange > 4) dirChange = 8 - dirChange;
-                        if (dirChange > 2) rightStagnant = true; // 发生锐角转折
-                    }
-
-                    if (!rightStagnant) {
-                        rightPoints.push_back(newRight);
-                        rightDirections.push_back(dir);
-                        currentRight = newRight;
-                        rightLastDir = dir; 
-                        rightUpdated = true;
-                    }
-                } else {
-                    rightStagnant = true; 
-                }
-            }
-
-            // ================= 稳定性检查 =================
-            if (leftPoints.size() >= static_cast<std::size_t>(config.stabilityCheckDepth)) {
-                auto& p1 = leftPoints.end()[-1];
-                auto& p2 = leftPoints.end()[-2];
-                auto& p3 = leftPoints.end()[-3];
-                if ((p1 == p2) && (p2 == p3)) leftStagnant = true;
-            }
-            
-            if (rightPoints.size() >= static_cast<std::size_t>(config.stabilityCheckDepth)) {
-                auto& p1 = rightPoints.end()[-1];
-                auto& p2 = rightPoints.end()[-2];
-                auto& p3 = rightPoints.end()[-3];
-                if ((p1 == p2) && (p2 == p3)) rightStagnant = true;
-            }
-
-            // 边界相遇检测
-            bool boundariesMeet = false;
-            if (!leftPoints.empty() && !rightPoints.empty()) {
-                Point lastLeft = leftPoints.back();
-                Point lastRight = rightPoints.back();
-                boundariesMeet = (abs(lastLeft.x - lastRight.x) < 2) && 
-                                (abs(lastLeft.y - lastRight.y) < 2);
-            }
-
-            // (注：这里删除了你原来强行 pop_back 的 "下移等待机制" 代码，
-            // 因为上面的 allowLeft/allowRight 已经优雅地实现了严格等高，不再需要删点了)
-
-            // ================= 终止条件 =================
-            if (leftStagnant || rightStagnant || boundariesMeet || (!leftUpdated && !rightUpdated)) {
-                break;
-            }
-        }
-
-    return {leftPoints, rightPoints};
-}
-static int limitBoundaryStep(int value) {
-    if (value > 1) return 1;
-    if (value < -1) return -1;
-    return value;
-}
-
-static vector<Point> filterBoundaryNeighborPoints(const vector<Point>& points) {
-    if (points.empty()) return points;
-
-    vector<Point> filteredPoints;
-    filteredPoints.reserve(points.size());
-    filteredPoints.push_back(points.front());
-
-    for (size_t i = 1; i < points.size(); ++i) {
-        const Point& lastPoint = filteredPoints.back();
-        const Point& currentPoint = points[i];
-        Point filteredPoint(
-            lastPoint.x + limitBoundaryStep(currentPoint.x - lastPoint.x),
-            lastPoint.y + limitBoundaryStep(currentPoint.y - lastPoint.y)
-        );
-        filteredPoints.push_back(filteredPoint);
-    }
-
-    return filteredPoints;
-}
-
-static void filterBoundaryRows(uint8_t boundary[], int invalidValue) {
-    bool hasLastPoint = false;
-    int lastX = 0;
-
-    for (int y = LOWEST_ROW; y >= 0; --y) {
-        if (boundary[y] == invalidValue) continue;
-
-        if (hasLastPoint) {
-            int diff = (int)boundary[y] - lastX;
-            boundary[y] = static_cast<uint8_t>(lastX + limitBoundaryStep(diff));
-        }
-
-        lastX = boundary[y];
-        hasLastPoint = true;
-    }
-}
-
-
-void extract_track_region(void) {
-    Mat binary(TRACK_H, TRACK_W, CV_8U, &img_bin[0][0]);
-    config.borderMin = 0;
-    config.borderMax = binary.cols - 1;
-
-    L_boundary_8.clear();
-    R_boundary_8.clear();
-
-    for (int i = 0; i < TRACK_H; i++) {
-        L_boundary[i] = 0;
-        R_boundary[i] = TRACK_W - 1;
-    }
-
-    // 起点检测：同样引入虚拟黑墙机制来判断最底部的点是否贴边
-    auto [foundLeft, foundRight, leftStart, rightStart] = [&](){
-        const int startRow = binary.rows - 2;
-        Point left(-1, startRow), right(-1, startRow);
-        bool bLeft = false, bRight = false;
-        uint8_t R_Start = TRACK_W / 2;
-        uint8_t L_Start = TRACK_W / 2;
-        for(int i = R_Start; i >= 0; i--)
-        {
-            if(img_bin[startRow][i] == 255)
-            {
-                R_Start = i;
-                break;
-            }
-        }
-
-        for(int i = L_Start; i < TRACK_W; i++)
-        {
-            if(img_bin[startRow][i] == 255)
-            {
-                L_Start = i;
-                break;
-            }
-        }
-
-        //以（L_Start，startRow）为坐标原点进行洪水填充
-        Mat mask = Mat::zeros(TRACK_H+2, TRACK_W+2, CV_8U);// 掩码图像
-        floodFill(binary, mask, Point(L_Start,startRow), Scalar(255), 0, Scalar(), Scalar(), 8 | (255 << 8));// 填充连通域
-        for(int y=0; y<TRACK_H; ++y){// 遍历掩码图像
-            uchar* m = mask.ptr(y+1)+1;//获取掩码图像的指针
-            for(int x=0; x<TRACK_W; ++x){// 遍历掩码图像的每一个像素
-                if(m[x] == 0) img_bin[y][x] = 0;// 如果掩码图像的像素为0，则将原图像的像素置为0
-            }
-        }
-
-        if (config.morphologySize > 1) {
-            Mat kernel = getStructuringElement(
-                MORPH_RECT,
-                Size(config.morphologySize, config.morphologySize)
-            );
-            dilate(binary, binary, kernel);
-            erode(binary, binary, kernel);
-        }
-
-        // 左边搜索
-        for (int x = L_Start; x >= config.borderMin; --x) {
-            uint8_t p = binary.at<uint8_t>(startRow, x);
-            uint8_t left_p = (x - 1 < 0) ? config.blackPixel : binary.at<uint8_t>(startRow, x-1);
-            if (p == config.whitePixel && left_p == config.blackPixel) {
-                left = Point(x, startRow);
-                bLeft = true;
-                break;
-            }
-        }
-
-        // 右边搜索
-        for (int x = R_Start; x <= config.borderMax; ++x) {
-            uint8_t p = binary.at<uint8_t>(startRow, x);
-            uint8_t right_p = (x + 1 >= binary.cols) ? config.blackPixel : binary.at<uint8_t>(startRow, x+1);
-            if (p == config.whitePixel && right_p == config.blackPixel) {
-                right = Point(x, startRow);
-                bRight = true;
-                break;
-            }
-        }
-        return make_tuple(bLeft, bRight, left, right);
-    }();
-
-    if (foundLeft || foundRight) {
-
-        auto [leftPoints, rightPoints] = trackEdges(binary, leftStart, rightStart, config);
-        leftPoints = filterBoundaryNeighborPoints(leftPoints);
-        rightPoints = filterBoundaryNeighborPoints(rightPoints);
-
-        fact_L_boundary = leftPoints;
-        fact_R_boundary = rightPoints;
-        
-        for (const auto& p : leftPoints) {
-            L_boundary_8.push_back({p.x, p.y});
-            if (p.y >= 0 && p.y < TRACK_H) 
-            {
-                L_boundary[p.y] = fmax(L_boundary[p.y], p.x);
-                track_state.longest_white_len = fmin(p.y, track_state.longest_white_len);
-            }
-        }
-        for (const auto& p : rightPoints) {
-            R_boundary_8.push_back({p.x, p.y});
-            if (p.y >= 0 && p.y < TRACK_H) 
-            {
-                R_boundary[p.y] = fmin(R_boundary[p.y], p.x);
-                track_state.longest_white_len = fmin(p.y, track_state.longest_white_len);
-            }
-        }
-        filterBoundaryRows(L_boundary, 0);
-        filterBoundaryRows(R_boundary, TRACK_W - 1);
-    }
-
-    track_state.longest_white_len = fmin(fmax(0,TRACK_H - track_state.longest_white_len),TRACK_H);
-
-    //printf("%d\r\n",track_state.longest_white_len);
-
-}
 
 // 两点连线的最小二乘法斜率
 static float Mid_calculateSlopeConnect(int first_y, int second_y, int first_x, int second_x) {
@@ -461,6 +111,161 @@ int fetch_new_frame(void) {
     return 1;
 }
 
+static void push_external_black_pixel(int y, int x, int *tail) {
+    if (x < 0 || x >= TRACK_W || y < 0 || y >= TRACK_H) return;
+    if (img_bin[y][x] != 0) return;
+
+    img_bin[y][x] = 64;
+    fill_queue[(*tail)++] = (y << 8) | x;
+}
+
+static void fill_internal_black_holes(void) {
+    const int dx[] = {0, 0, -1, 1, -1, -1, 1, 1};
+    const int dy[] = {-1, 1, 0, 0, -1, 1, -1, 1};
+    int head = 0;
+    int tail = 0;
+
+    // Mark black areas connected to the image border, then fill the remaining inner holes.
+    for (int x = 0; x < TRACK_W; x++) {
+        push_external_black_pixel(0, x, &tail);
+        push_external_black_pixel(TRACK_H - 1, x, &tail);
+    }
+    for (int y = 0; y < TRACK_H; y++) {
+        push_external_black_pixel(y, 0, &tail);
+        push_external_black_pixel(y, TRACK_W - 1, &tail);
+    }
+
+    while (head < tail) {
+        uint16_t node = fill_queue[head++];
+        int y = node >> 8;
+        int x = node & 0xFF;
+
+        for (int d = 0; d < 8; d++) {
+            push_external_black_pixel(y + dy[d], x + dx[d], &tail);
+        }
+    }
+
+    for (int y = 0; y < TRACK_H; y++) {
+        for (int x = 0; x < TRACK_W; x++) {
+            if (img_bin[y][x] == 0) img_bin[y][x] = 255;
+            else if (img_bin[y][x] == 64) img_bin[y][x] = 0;
+        }
+    }
+}
+
+void extract_track_region(void) {
+    int check = 0;
+    
+    // 从底层两边分别寻点发散，使用 8连通 漫水填充
+    const int dx[] = {0, 0, -1, 1, -1, -1, 1, 1};
+    const int dy[] = {-1, 1, 0, 0, -1, 1, -1, 1};
+
+    // 从中心向右寻点填充
+    for(int i = TRACK_W/2; i < TRACK_W; ++i){
+        if(check) break;
+        if(img_bin[LOWEST_ROW][i] == 255) {
+            int head = 0, tail = 0;
+            fill_queue[tail++] = (LOWEST_ROW << 8) | i;
+            img_bin[LOWEST_ROW][i] = 128; 
+            while (head < tail) {
+                uint16_t node = fill_queue[head++];
+                int y = node >> 8;
+                int x = node & 0xFF;
+                for (int d = 0; d < 8; d++) {
+                    int nx = x + dx[d];
+                    int ny = y + dy[d];
+                    if (nx >= 0 && nx < TRACK_W && ny >= 0 && ny < TRACK_H) {
+                        if (img_bin[ny][nx] == 255) {
+                            img_bin[ny][nx] = 128; 
+                            fill_queue[tail++] = (ny << 8) | nx; 
+                        }
+                    }
+                }
+            }
+            check = 1;
+        }
+    }
+
+    // 从中心向左寻点填充
+    for(int i = TRACK_W/2 - 1; i >= 0; --i){
+        if(check) break;
+        if(img_bin[LOWEST_ROW][i] == 255) {
+            int head = 0, tail = 0;
+            fill_queue[tail++] = (LOWEST_ROW << 8) | i;
+            img_bin[LOWEST_ROW][i] = 128; 
+            while (head < tail) {
+                uint16_t node = fill_queue[head++];
+                int y = node >> 8;
+                int x = node & 0xFF;
+                for (int d = 0; d < 8; d++) {
+                    int nx = x + dx[d];
+                    int ny = y + dy[d];
+                    if (nx >= 0 && nx < TRACK_W && ny >= 0 && ny < TRACK_H) {
+                        if (img_bin[ny][nx] == 255) {
+                            img_bin[ny][nx] = 128; 
+                            fill_queue[tail++] = (ny << 8) | nx; 
+                        }
+                    }
+                }
+            }
+            check = 1;
+        }
+    }
+
+    // 杂点清零
+    for (int i = 0; i < TRACK_H; i++) {
+        for (int j = 0; j < TRACK_W; j++) {
+            if (img_bin[i][j] == 128) img_bin[i][j] = 255;
+            else img_bin[i][j] = 0;
+        }
+    }
+
+    // 寻找最长白列
+    track_state.longest_white_len = 0;
+    track_state.longest_white_x = 0; 
+    for (int x = 0; x < TRACK_W; x++) {
+        int current_len = 0;
+        for (int y = LOWEST_ROW; y >= 0; y--) {
+            if (img_bin[y][x] == 255) current_len++;
+            else break; 
+        }
+        track_state.white_pixel_count[x] = current_len;
+        if (current_len > track_state.longest_white_len) {
+            track_state.longest_white_len = current_len;
+            track_state.longest_white_x = x;
+        }
+    }
+}
+
+void find_track_boundaries(void) {
+    for (int i = 0; i < TRACK_H; i++) {
+        L_boundary[i] = 0;
+        R_boundary[i] = TRACK_W - 1;
+    }
+
+    int start_row = LOWEST_ROW;
+    int end_row = LOWEST_ROW - track_state.longest_white_len;
+    if (end_row < 0) end_row = 0;
+
+    int anchor_x = track_state.longest_white_x; 
+
+    // 从底向上，从锚点向两侧补正边线
+    for (int i = start_row; i >= end_row; i--) {
+        for (int j = anchor_x; j > 0; j--) {
+            if (img_bin[i][j] == 255 && img_bin[i][j - 1] == 0) {
+                L_boundary[i] = j - 1;  
+                break;                  
+            }
+        }
+        for (int j = anchor_x; j < TRACK_W - 1; j++) {
+            if (img_bin[i][j] == 255 && img_bin[i][j + 1] == 0) {
+                R_boundary[i] = j + 1;  
+                break;                  
+            }
+        }
+    }
+}
+
 // 直道均方误差判定 
 bool L_Straight_Judge() {
     int start = LOWEST_ROW, end;
@@ -522,7 +327,7 @@ void detect_track_elements(void) {
     //     track_state.is_special_barrier = false;
     //     track_state.special_barrier_dir = DIR_NONE;
     // }
-
+    
     // ==========================================================
     // 优先级 3：标准赛道地形 (基础态 Base State，互斥排他)
     // ==========================================================
@@ -624,6 +429,30 @@ void calculate_centerline(void) {
             M_boundary[i] = x;
         }
     }
+
+    //绕标志牌
+    // if(track_state.special_barrier_dir==DIR_LEFT&&track_state.is_special_barrier){
+    //     for (int i = 0; i < TRACK_H; i++) {
+    //         M_boundary[i] = M_boundary[i]-30;
+    //     }
+    // }
+    // if(track_state.special_barrier_dir==DIR_RIGHT&&track_state.is_special_barrier){
+    //     for (int i = 0; i < TRACK_H; i++) {
+    //         M_boundary[i] = M_boundary[i]+30;
+    //     }
+    // }
+    //test
+    if(track_state.special_barrier_dir==DIR_LEFT&&track_state.is_special_barrier){
+        for (int i = 0; i < TRACK_H; i++) {
+            M_boundary[i] = L_boundary[i];
+        }
+    }
+    if(track_state.special_barrier_dir==DIR_RIGHT&&track_state.is_special_barrier){
+        for (int i = 0; i < TRACK_H; i++) {
+            M_boundary[i] = R_boundary[i];
+        }
+    }
+
 }
 
 // 越界停车保护机制 
@@ -654,13 +483,11 @@ void edge_extract(void) {
     if (fetch_new_frame() == 0) return; 
     Get01change_dajin();
     extract_track_region();
+    fill_internal_black_holes();
+    find_track_boundaries();
     detect_track_elements();
-    
-    // if (track_state.is_special_barrier && track_state.special_barrier_dir != DIR_STRAIGHT) { 
-    //     draw_virtual_wall(); // 涂黑半边屏幕
-    //     find_track_boundaries(); // 重新扫一次线！
-    // }
     
     calculate_centerline();
     //check_failsafe(); // Failsafe是基础巡线保底，启用执行
+
 }

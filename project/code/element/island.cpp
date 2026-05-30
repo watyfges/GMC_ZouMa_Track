@@ -15,14 +15,14 @@
 
 #define R_STATE3_INFLECTION_V_START_ROW             (LOWEST_ROW - 20)   //寻找右突变点的范围
 #define R_STATE3_INFLECTION_V_END_ROW               10
-#define R_STATE3_LEFT_BOUNDARY_SLOPE                -2.0f               //拉线斜率
+#define R_STATE3_LEFT_BOUNDARY_SLOPE                -1.8f               //拉线斜率
 #define R_STATE3_INSIDE_V_ROW_MIN                   30                  //右突变点大于多少进入状态4
 
 #define R_STATE4_INFLECTION_V_START_ROW             (LOWEST_ROW - 20)   //寻找右突变点的范围
 #define R_STATE4_INFLECTION_V_END_ROW               10
 #define R_STATE4_LEFT_INFLECTION_V_START_ROW        LOWEST_ROW          //寻找左突变点的范围
 #define R_STATE4_LEFT_INFLECTION_V_END_ROW          10
-#define R_STATE4_LEFT_FIT_ROW                       75                  //左突变点找到后连续的范围
+#define R_STATE4_LEFT_FIT_ROW                       75                  //左突变点找到后连线的范围
 
 #define R_STATE6_LEFT_FIT_ROW                       20                  //出环岛时连线的X，Y值（左点找得到的情况）
 #define R_STATE6_LEFT_FIT_X                         150
@@ -36,6 +36,42 @@
 #define R_STATE8_EXIT_V_END_ROW                     10
 #define R_STATE8_RIGHT_END_X                        (TRACK_W - 5)       //出弯连线时的点X，Y值    
 #define R_STATE8_RIGHT_END_Y                        (TRACK_H - 5)
+
+
+//左岛状态机调整参数
+#define L_STATE1_MONOTONIC_MUTATION_START_ROW       LOWEST_ROW          //寻找左突变点
+#define L_STATE1_MONOTONIC_MUTATION_END_ROW         40
+#define L_STATE1_STABLE_OFFSET_FAR                  3
+#define L_STATE1_STABLE_OFFSET_MID                  2
+#define L_STATE1_STABLE_OFFSET_NEAR                 1
+#define L_STATE1_STABLE_DIFF_MAX                    20                  
+
+#define L_STATE2_INFLECTION_V_START_ROW             (LOWEST_ROW - 20)   //寻找左突变点的范围
+#define L_STATE2_INFLECTION_V_END_ROW               10
+
+#define L_STATE3_INFLECTION_V_START_ROW             (LOWEST_ROW - 20)   //寻找左突变点的范围
+#define L_STATE3_INFLECTION_V_END_ROW               10
+#define L_STATE3_LEFT_BOUNDARY_SLOPE                1.8f               //拉线斜率
+#define L_STATE3_INSIDE_V_ROW_MIN                   30                  //左突变点大于多少进入状态4
+
+#define L_STATE4_INFLECTION_V_START_ROW             (LOWEST_ROW - 20)   //寻找左突变点的范围
+#define L_STATE4_INFLECTION_V_END_ROW               10
+#define L_STATE4_RIGHT_INFLECTION_V_START_ROW        LOWEST_ROW          //寻找右突变点的范围
+#define L_STATE4_RIGHT_INFLECTION_V_END_ROW          10
+#define L_STATE4_RIGHT_FIT_ROW                       75                  //右突变点找到后连线的范围
+
+#define L_STATE6_RIGHT_FIT_ROW                       20                  //出环岛时连线的X，Y值（右点找得到的情况）
+#define L_STATE6_RIGHT_FIT_X                         10
+
+#define L_STATE7_RIGHT_FIT_ROW                       70
+#define L_STATE7_RIGHT_FIT_X                         10
+#define L_STATE7_EXIT_V_START_ROW                   (LOWEST_ROW - 20)   //寻找出环V点的范围
+#define L_STATE7_EXIT_V_END_ROW                     10
+
+#define L_STATE8_EXIT_V_START_ROW                   (LOWEST_ROW - 20)   //查找上边界角点的范围
+#define L_STATE8_EXIT_V_END_ROW                     10
+#define L_STATE8_LEFT_END_X                        (TRACK_W - 5)       //出弯连线时的点X，Y值    
+#define L_STATE8_LEFT_END_Y                        (TRACK_H - 5)
 
 using namespace std;
 
@@ -71,35 +107,28 @@ IslandController_t IslandCtrl = {ISLAND_STATE_NONE, NONE_ISLAND};
 
 int curve_width[TRACK_H] = 
     {
-    0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   // 行 000 - 009
-    0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   // 行 010 - 019
-    0,   0,   0,   0,   0,   2,   5,   9,   13,  15,  // 行 020 - 029
-    18,  20,  24,  26,  28,  30,  32,  34,  37,  38,  // 行 030 - 039
-    41,  44,  46,  48,  50,  53,  55,  57,  60,  61,  // 行 040 - 049
-    64,  66,  68,  71,  72,  75,  78,  80,  82,  85,  // 行 050 - 059
-    86,  89,  91,  93,  97,  99,  101, 104, 106, 110, // 行 060 - 069
-    111, 114, 118, 119, 122, 124, 126, 129, 130, 133, // 行 070 - 079
-    136, 138, 140, 142, 144, 147, 149, 151, 153, 155, // 行 080 - 089
-    155, 155, 155, 155, 155, 155, 155, 155, 155, 155, // 行 090 - 099
-    155, 155, 155, 155, 155, 155, 155, 155, 155, 155, // 行 100 - 109
-    155, 155, 155, 155, 155, 155, 155, 155, 155, 155  // 行 110 - 119
-    };
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0,   // 行 000 - 009
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0,   // 行 010 - 019
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 19,  // 行 020 - 029
+    28, 35, 40, 45, 49, 53, 56, 59, 62, 65,  // 行 030 - 039
+    68, 70, 73, 75, 77, 79, 81, 83, 86, 88,  // 行 040 - 049
+    89, 91, 93, 94, 96, 98, 99, 101, 102, 104,  // 行 050 - 059
+    106, 107, 108, 109, 111, 113, 114, 115, 117, 118,  // 行 060 - 069
+    119, 120, 122, 123, 125, 125, 127, 128, 129, 131 // 行 070 - 079
+    };//曲线宽度
 
-int Road_width[TRACK_H] = 
+
+int Road_width[TRACK_H] =
     {
-    11, 12, 12, 13, 15, 16, 16, 18, 20, 20,  // 行 000 - 009
-    22, 22, 24, 25, 26, 28, 28, 30, 31, 32,  // 行 010 - 019
-    34, 34, 36, 37, 38, 39, 40, 42, 43, 44,  // 行 020 - 029
-    46, 46, 47, 49, 50, 51, 53, 53, 55, 55,  // 行 030 - 039
-    57, 59, 60, 61, 62, 64, 65, 66, 68, 68,  // 行 040 - 049
-    70, 71, 72, 74, 74, 76, 78, 79, 80, 82,  // 行 050 - 059
-    82, 84, 85, 86, 88, 89, 90, 92, 93, 95,  // 行 060 - 069
-    95, 97, 99, 99, 101, 102, 103, 105, 105, 107,  // 行 070 - 079
-    109, 110, 111, 112, 113, 115, 116, 117, 118, 120,  // 行 080 - 089
-    121, 122, 124, 124, 126, 126, 128, 130, 130, 132,  // 行 090 - 099
-    132, 134, 135, 136, 137, 138, 139, 141, 141, 143,  // 行 100 - 109
-    143, 145, 145, 147, 147, 149, 149, 151, 151, 153 // 行 110 - 119
-    };
+    8, 9, 10, 11, 12, 13, 14, 17, 19, 20,  // 行 000 - 009
+    23, 24, 26, 28, 30, 31, 33, 35, 37, 39,  // 行 010 - 019
+    41, 43, 45, 46, 48, 50, 53, 55, 57, 58,  // 行 020 - 029
+    60, 62, 64, 65, 67, 70, 72, 74, 75, 77,  // 行 030 - 039
+    79, 81, 82, 84, 86, 88, 90, 92, 94, 96,  // 行 040 - 049
+    98, 99, 101, 103, 105, 107, 109, 111, 113, 115,  // 行 050 - 059
+    117, 118, 120, 122, 124, 126, 128, 130, 132, 134,  // 行 060 - 069
+    136, 137, 139, 141, 143, 145, 147, 149, 151, 153 // 行 070 - 079
+    };//道路宽度
 
 //声明
 bool Check_Lost_L();//检查左突变点是否丢失
@@ -352,7 +381,6 @@ bool Right_Inflection_V(int start, int end)//右突变点垂直判断
         if(abs((int)R_boundary[i] - (int)R_boundary[i-1]) <= 5 &&//角点的阈值可以更改
            abs((int)R_boundary[i-1] - (int)R_boundary[i-2]) <= 5 &&
            abs((int)R_boundary[i-2] - (int)R_boundary[i-3]) <= 5 &&
-            ((int)R_boundary[i] - (int)R_boundary[i+1]) <= -10 &&
             ((int)R_boundary[i] - (int)R_boundary[i+1]) <= -20 ){
             Right_V_Point = i;//存储突变点
             return 1;
@@ -368,8 +396,7 @@ bool Left_Inflection_V(int start, int end)//左突变点垂直判断
         if(abs((int)L_boundary[i] - (int)L_boundary[i-1]) <= 5 &&//角点的阈值可以更改
            abs((int)L_boundary[i-1] - (int)L_boundary[i-2]) <= 5 &&
            abs((int)L_boundary[i-2] - (int)L_boundary[i-3]) <= 5 &&
-            ((int)L_boundary[i] - (int)L_boundary[i+3]) >= 10 &&
-            ((int)L_boundary[i] - (int)L_boundary[i+4]) >= 20 ){
+            ((int)L_boundary[i] - (int)L_boundary[i+1]) >= 20 ){
             Left_V_Point = i;//存储突变点
             return 1;
         }
@@ -576,7 +603,7 @@ void Island_Detect()//岛屿检测
                 }
                 break;
             }
-            case ISLAND_STATE_ENTERING:{//修改longest_white_x*********************
+            case ISLAND_STATE_ENTERING:{
                 if(Right_Inflection_V(R_STATE3_INFLECTION_V_START_ROW, R_STATE3_INFLECTION_V_END_ROW))//右突变点垂直突变判断
                 {
                     float slope, intercept;
@@ -588,22 +615,22 @@ void Island_Detect()//岛屿检测
                         int x = cvRound(slope * i + intercept); //x计算
                         L_boundary[i] = fmin(fmax(x, 0), TRACK_W - 1); //左边界计算
                     }
-                    // track_state.longest_white_len = track_state.white_pixel_count[R_boundary[Right_V_Point]];//最长白线计算
-                    // for(int i = R_boundary[Right_V_Point]; i <= TRACK_W - 1; i++)
-                    // {
-                    //     if(track_state.white_pixel_count[i] > track_state.longest_white_len)//最长白线判断
-                    //     {
-                    //         track_state.longest_white_len = track_state.white_pixel_count[i];//最长白线计算
-                    //         track_state.longest_white_x = i;//最长白线x计算//修改longest_white_x*********************
-                    //     }
-                    // }
+                    track_state.longest_white_len = track_state.white_pixel_count[R_boundary[Right_V_Point]];//最长白线计算
+                    for(int i = R_boundary[Right_V_Point]; i <= TRACK_W - 1; i++)
+                    {
+                        if(track_state.white_pixel_count[i] > track_state.longest_white_len)//最长白线判断
+                        {
+                            track_state.longest_white_len = track_state.white_pixel_count[i];//最长白线计算
+                            track_state.longest_white_x = i;//最长白线x计算
+                        }
+                    }
                     for(int i = 0; i < TRACK_H; i++)
                     {
                         R_boundary[i] = TRACK_W - 1;//右边界计算
                     }
 
                     for(int i = LOWEST_ROW; i >= LOWEST_ROW - track_state.longest_white_len; i--){
-                        for(int j = track_state.longest_white_x; j < TRACK_W - 1; j++){//修改longest_white_x*********************
+                        for(int j = track_state.longest_white_x; j < TRACK_W - 1; j++){
                             if(img_bin[i][j] == 255 && img_bin[i][j + 1] == 0 ){
                                 R_boundary[i] = j + 1;//右边界计算
                                 break;
@@ -649,18 +676,18 @@ void Island_Detect()//岛屿检测
                         if(track_state.white_pixel_count[i] > track_state.longest_white_len)//最长白线判断
                         {
                             track_state.longest_white_len = track_state.white_pixel_count[i];//最长白线计算
-                            track_state.longest_white_x = i;//最长白线x计算//修改longest_white_x*********************
+                            track_state.longest_white_x = i;
                         }
                     }
                     memset(R_boundary, TRACK_W - 1, TRACK_H); //右边界计算
                     for(int i = LOWEST_ROW; i >= LOWEST_ROW - track_state.longest_white_len; i--){ //右边界计算
-                        for(int j = track_state.longest_white_x; j > 0; j--){ //左边界计算//修改longest_white_x*********************
+                        for(int j = track_state.longest_white_x; j > 0; j--){ //左边界计算
                             if(img_bin[i][j] == 255 && img_bin[i][j - 1] == 0 ){ //左边界计算
                                 L_boundary[i] = j - 1;//左边界计算
                                 break;
                             }
                         }
-                        for(int j = track_state.longest_white_x; j < TRACK_W - 1; j++){ //右边界计算//修改longest_white_x*********************
+                        for(int j = track_state.longest_white_x; j < TRACK_W - 1; j++){ //右边界计算
                             if(img_bin[i][j] == 255 && img_bin[i][j + 1] == 0 ){ //右边界计算
                                 R_boundary[i] = j + 1;//右边界计算
                                 break;
@@ -700,8 +727,22 @@ void Island_Detect()//岛屿检测
             case ISLAND_STATE_EXIT_APPROACHING:{
                 if(Right_Island_Left_Inflection())//右突变点水平突变判断
                 {
-                    Left_Point2Point(Right_Island_Left_Inflection_Ponit, L_boundary[Right_Island_Left_Inflection_Ponit],
-                                    R_STATE6_LEFT_FIT_ROW, R_STATE6_LEFT_FIT_X);//左突变点2点拟合
+                    // Left_Point2Point(Right_Island_Left_Inflection_Ponit, L_boundary[Right_Island_Left_Inflection_Ponit],
+                    //                 R_STATE6_LEFT_FIT_ROW, R_STATE6_LEFT_FIT_X);//左突变点2点拟合
+                    // float slope, intercept;
+                    // slope = -2;
+                    // intercept = (float)L_boundary[Right_Island_Left_Inflection_Ponit] - Right_Island_Left_Inflection_Ponit * slope; //斜率，截距计算
+                    // for(int i = Right_Island_Left_Inflection_Ponit; i >= 0; i--)
+                    // {
+                    //     int x = cvRound(slope * i + intercept); //x计算
+                    //     L_boundary[i] = fmin(fmax(x, 0), TRACK_W - 1); //左边界计算
+                    // }
+
+                    for(int i = 0; i < TRACK_H; i++) //左边界计算
+                    {
+                        L_boundary[i] = fmax((int)R_boundary[i] - curve_width[i], 0 );        //左边界计算
+                    }
+
                 }
                 else
                 {
@@ -710,26 +751,41 @@ void Island_Detect()//岛屿检测
                 break;
             }
             case ISLAND_STATE_EXITING:{
-                Left_Point2Point(R_STATE7_LEFT_FIT_ROW, L_boundary[R_STATE7_LEFT_FIT_ROW],
-                                    LOWEST_ROW - track_state.longest_white_len, R_STATE7_LEFT_FIT_X);//左突变点2点拟合
-                
-                if(//track_state.longest_white_x > TRACK_W / 2 &&
-                //track_state.longest_white_len - track_state.white_pixel_count[TRACK_W / 2] > 3
-                    Find_EXIT_V_Point(R_STATE7_EXIT_V_START_ROW, R_STATE7_EXIT_V_END_ROW))//寻找出环时的V点
+                // Left_Point2Point(R_STATE7_LEFT_FIT_ROW, L_boundary[R_STATE7_LEFT_FIT_ROW],
+                //                     LOWEST_ROW - track_state.longest_white_len, R_STATE7_LEFT_FIT_X);//左突变点2点拟合
+
+                // float slope, intercept;
+                // slope = -2;
+                // intercept =  - TRACK_H * slope; //斜率，截距计算
+                // for(int i = LOWEST_ROW; i >= 0; i--)
+                // {
+                //     int x = cvRound(slope * i + intercept); //x计算
+                //     L_boundary[i] = fmin(fmax(x, 0), TRACK_W - 1); //左边界计算
+                // }
+
+                for(int i = 0; i < TRACK_H; i++) //左边界计算
                 {
-                    IslandCtrl.state = ISLAND_STATE_FINDEXIT_V;//右岛屿左突变点水平突变判断
+                    L_boundary[i] = fmax((int)R_boundary[i] - curve_width[i], 0 );        //左边界计算
+                }
+
+                if(track_state.longest_white_x > TRACK_W / 2 &&
+                track_state.longest_white_len - track_state.white_pixel_count[TRACK_W / 2] > 20
+                    // Find_EXIT_V_Point(R_STATE7_EXIT_V_START_ROW, R_STATE7_EXIT_V_END_ROW)
+                )//寻找出环时的V点
+                {
+                    IslandCtrl.state = ISLAND_STATE_ADJUSTING;//右岛屿左突变点水平突变判断
                 }
 
                 break;
             }
-            case ISLAND_STATE_FINDEXIT_V:{
-                if(Find_EXIT_V_Point(R_STATE8_EXIT_V_START_ROW, R_STATE8_EXIT_V_END_ROW)){
-                    Right_Point2Point(Right_exit_V_Point, R_boundary[Right_exit_V_Point], R_STATE8_RIGHT_END_X, R_STATE8_RIGHT_END_Y);
-                }else{
-                    IslandCtrl.state = ISLAND_STATE_ADJUSTING;
-                }
-                break;
-            }
+            // case ISLAND_STATE_FINDEXIT_V:{
+            //     if(Find_EXIT_V_Point(R_STATE8_EXIT_V_START_ROW, R_STATE8_EXIT_V_END_ROW)){
+            //         Right_Point2Point(Right_exit_V_Point, R_boundary[Right_exit_V_Point], R_STATE8_RIGHT_END_X, R_STATE8_RIGHT_END_Y);
+            //     }else{
+            //         IslandCtrl.state = ISLAND_STATE_ADJUSTING;
+            //     }
+            //     break;
+            // }
                 
             case ISLAND_STATE_ADJUSTING:{
                 if(Check_Lost_R())//右突变点水平突变判断
@@ -764,12 +820,12 @@ void Island_Detect()//岛屿检测
         switch(IslandCtrl.state) //岛屿状态
         {
             case ISLAND_STATE_ENTRY_DETECTED:{
-                if(Left_Monotonic_Mutation(LOWEST_ROW, 40) != 0)//左突变点水平突变判断
+                if(Left_Monotonic_Mutation(L_STATE1_MONOTONIC_MUTATION_START_ROW, L_STATE1_MONOTONIC_MUTATION_END_ROW) != 0)//左突变点水平突变判断
                 {
                     if(
-                    fabs((int)L_boundary[Left_Mutation_Point + 3] - (int)L_boundary[Left_Mutation_Point - 3]) < 20 &&
-                    fabs((int)L_boundary[Left_Mutation_Point + 2] - (int)L_boundary[Left_Mutation_Point - 2]) < 20 &&
-                    fabs((int)L_boundary[Left_Mutation_Point + 1] - (int)L_boundary[Left_Mutation_Point - 1]) < 20)
+                    fabs((int)L_boundary[Left_Mutation_Point + L_STATE1_STABLE_OFFSET_FAR] - (int)L_boundary[Left_Mutation_Point - L_STATE1_STABLE_OFFSET_FAR]) < L_STATE1_STABLE_DIFF_MAX &&
+                    fabs((int)L_boundary[Left_Mutation_Point + L_STATE1_STABLE_OFFSET_MID] - (int)L_boundary[Left_Mutation_Point - L_STATE1_STABLE_OFFSET_MID]) < L_STATE1_STABLE_DIFF_MAX &&
+                    fabs((int)L_boundary[Left_Mutation_Point + L_STATE1_STABLE_OFFSET_NEAR] - (int)L_boundary[Left_Mutation_Point - L_STATE1_STABLE_OFFSET_NEAR]) < L_STATE1_STABLE_DIFF_MAX)
                     {
                         IslandCtrl.state = ISLAND_STATE_APPROACHING;//左突变点水平突变判断
                     }
@@ -791,7 +847,7 @@ void Island_Detect()//岛屿检测
                 break;
             }
             case ISLAND_STATE_APPROACHING:{
-                if(Left_Inflection_V(LOWEST_ROW - 20, 10))//左突变点垂直突变判断
+                if(Left_Inflection_V(L_STATE2_INFLECTION_V_START_ROW, L_STATE2_INFLECTION_V_END_ROW))//左突变点垂直突变判断
                 {
                     
                     if(Left_V_Point > Island_Time)//左突变点垂直突变判断
@@ -817,11 +873,11 @@ void Island_Detect()//岛屿检测
                 break;
             }
             case ISLAND_STATE_ENTERING:{
-                if(Left_Inflection_V(LOWEST_ROW - 20, 10))//左突变点垂直突变判断
+                if(Left_Inflection_V(L_STATE3_INFLECTION_V_START_ROW, L_STATE3_INFLECTION_V_END_ROW))//左突变点垂直突变判断
                 {
                     float slope, intercept; //斜率和截距
                     //auto result = Right_Point2Point(Left_V_Point, L_boundary[Left_V_Point], 75, R_boundary[75]);
-                    slope = 2; //计算斜率
+                    slope = L_STATE3_LEFT_BOUNDARY_SLOPE; //计算斜率
                     intercept = (float)L_boundary[Left_V_Point] - Left_V_Point * slope; //计算截距
                     for(int i = LOWEST_ROW; i >= 0; i--)
                     {
@@ -853,7 +909,7 @@ void Island_Detect()//岛屿检测
 
                     check1 = 1; //标记
 
-                    if(Left_V_Point > 30)
+                    if(Left_V_Point > L_STATE3_INSIDE_V_ROW_MIN)
                     {
                         IslandCtrl.state = ISLAND_STATE_INSIDE; //左突变点垂直突变判断
                     }
@@ -882,7 +938,7 @@ void Island_Detect()//岛屿检测
             }
             case ISLAND_STATE_INSIDE:{
                 
-                if(Left_Inflection_V(LOWEST_ROW - 20, 10))
+                if(Left_Inflection_V(L_STATE4_INFLECTION_V_START_ROW, L_STATE4_INFLECTION_V_END_ROW))
                 {
                     track_state.longest_white_len = track_state.white_pixel_count[L_boundary[Left_V_Point]]; //计算最长白列
                     for(int i = L_boundary[Left_V_Point]; i >= 0; i--)
@@ -909,9 +965,9 @@ void Island_Detect()//岛屿检测
                         }
                     }
 
-                    if(Right_Inflection_V(LOWEST_ROW - 20, 10))
+                    if(Right_Inflection_V(L_STATE4_RIGHT_INFLECTION_V_START_ROW, L_STATE4_RIGHT_INFLECTION_V_END_ROW))
                     {
-                        Right_Point2Point(Right_V_Point, R_boundary[Right_V_Point], 75, R_boundary[75]); //计算右边界
+                        Right_Point2Point(Right_V_Point, R_boundary[Right_V_Point], L_STATE4_RIGHT_FIT_ROW, R_boundary[L_STATE4_RIGHT_FIT_ROW]); //计算右边界
                     }
                     else
                     {
@@ -942,8 +998,12 @@ void Island_Detect()//岛屿检测
             case ISLAND_STATE_EXIT_APPROACHING:{
                 if(Left_Island_Right_Inflection())
                 {
-                    Right_Point2Point(Left_Island_Right_Inflection_Ponit, R_boundary[Left_Island_Right_Inflection_Ponit],
-                                    20, 10);//计算右边界
+                    // Right_Point2Point(Left_Island_Right_Inflection_Ponit, R_boundary[Left_Island_Right_Inflection_Ponit],
+                    //                 L_STATE6_RIGHT_FIT_ROW, L_STATE6_RIGHT_FIT_X);//计算右边界
+                    for(int i = 0; i < TRACK_H; i++) //左边界计算
+                    {
+                        R_boundary[i] = fmin((int)L_boundary[i] + curve_width[i], TRACK_W - 1 );        //左边界计算
+                    }
                 }
                 else
                 {
@@ -952,17 +1012,30 @@ void Island_Detect()//岛屿检测
                 break;
             }
             case ISLAND_STATE_EXITING:{
-                Right_Point2Point(70, R_boundary[70],
-                                    LOWEST_ROW - track_state.longest_white_len, 10); //计算右边界
-                
+                // Right_Point2Point(L_STATE7_RIGHT_FIT_ROW, R_boundary[L_STATE7_RIGHT_FIT_ROW],
+                //                     LOWEST_ROW - track_state.longest_white_len, L_STATE7_RIGHT_FIT_X); //计算右边界
+                for(int i = 0; i < TRACK_H; i++) //左边界计算
+                    {
+                        R_boundary[i] = fmin((int)L_boundary[i] + curve_width[i], TRACK_W - 1 );        //左边界计算
+                    }
+
                 if(track_state.longest_white_x < TRACK_W / 2 &&
-                track_state.longest_white_len - track_state.white_pixel_count[TRACK_W / 2] > 3) //左突变点垂直突变判断
+                track_state.longest_white_len - track_state.white_pixel_count[TRACK_W / 2] > 20) //左突变点垂直突变判断
+                //Find_EXIT_V_Point(L_STATE7_EXIT_V_START_ROW, L_STATE7_EXIT_V_END_ROW))//寻找出环时的V点
                 {
                     IslandCtrl.state = ISLAND_STATE_ADJUSTING; //左突变点垂直突变判断
                 }
 
                 break;
             }
+            // case ISLAND_STATE_FINDEXIT_V:{
+            //     if(Find_EXIT_V_Point(L_STATE8_EXIT_V_START_ROW, L_STATE8_EXIT_V_END_ROW)){
+            //         Left_Point2Point(Left_exit_V_Point, L_boundary[Left_exit_V_Point], L_STATE8_LEFT_END_X, L_STATE8_LEFT_END_Y);
+            //     }else{
+            //         IslandCtrl.state = ISLAND_STATE_ADJUSTING;
+            //     }
+            //     break;
+            // }
             case ISLAND_STATE_ADJUSTING:{
                 if(Check_Lost_L()) //左突变点垂直突变判断
                 {
@@ -992,12 +1065,12 @@ void Island_Detect()//岛屿检测
                 break;
         }
     }
-    printf("%d\r\n",IslandCtrl.state);
+   printf("%d， %d， %d\r\n",IslandCtrl.state, track_state.longest_white_x, track_state.longest_white_len);
 }
 
 bool Check_Lost_L()//检查左突变点是否丢失
 {
-    for(int i = LOWEST_ROW - 10; i > LOWEST_ROW - 15 ; i--)
+    for(int i = LOWEST_ROW - 10; i > LOWEST_ROW - 40 ; i--)
     {
         if(L_boundary[i] == 0)return 1;//左突变点丢失
     }
@@ -1006,7 +1079,7 @@ bool Check_Lost_L()//检查左突变点是否丢失
 
 bool Check_Lost_R()//检查右突变点是否丢失
 {
-    for(int i = LOWEST_ROW - 10; i > LOWEST_ROW - 15 ; i--)
+    for(int i = LOWEST_ROW - 10; i > LOWEST_ROW - 40 ; i--)
     {
         if(R_boundary[i] == TRACK_W - 1)return 1;//右突变点丢失
     }
@@ -1015,25 +1088,36 @@ bool Check_Lost_R()//检查右突变点是否丢失
 
 bool Check_Straight_L()//检查左突变点是否为直线
 {
-        float k = (float)(L_boundary[LOWEST_ROW] - L_boundary[15]) / (float)(LOWEST_ROW - 15);
-        float sumErr = 0;
-        for(int i = LOWEST_ROW; i > 15 ; i--)
+    int a = TRACK_H - 1, b = TRACK_H - 1;
+    for(int i = LOWEST_ROW ; i > 20; i--)
+    {
+        if(L_boundary[i] != 0)
         {
-            if(L_boundary[i] == 0)return 0;
-            float predict = L_boundary[LOWEST_ROW] + k * (i - LOWEST_ROW);
-            float error = predict - L_boundary[i];
-            sumErr += error * error;
+            a = i;
+            break;
         }
-        sumErr /= (float)(LOWEST_ROW - 15);
-        if(sumErr < 1)return 1;//左突变点为直线
-        return 0; 
+    }
+    b = fmax(0, a - 20);
+    float k = (float)(L_boundary[a] - L_boundary[b]) / (float)(a - b);
+    float sumErr = 0;
+    for(int i = a; i > b ; i--)
+    {
+        if(L_boundary[i] == 0)return 0;
+        float predict = L_boundary[a] + k * (i - a);
+        float error = predict - L_boundary[i];
+        sumErr += error * error;
+    }
+    sumErr /= (float)(a - b);
+    if(sumErr < 1)return 1;//左突变点为直线
+    return 0; 
 }
 
 bool Check_Straight_R()//检查右突变点是否为直线
-{
+{       
+    
         float k = (float)(R_boundary[LOWEST_ROW] - R_boundary[15]) / (float)(LOWEST_ROW - 15);
         float sumErr = 0;
-        for(int i = LOWEST_ROW; i > 15 ; i--)
+        for(int i = LOWEST_ROW; i > 40 ; i--)
         {
             if(L_boundary[i] == TRACK_W - 1)return 0;//右突变点为直线
             float predict = R_boundary[LOWEST_ROW] + k * (i - LOWEST_ROW);

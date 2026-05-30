@@ -1,4 +1,4 @@
-# Install script for directory: /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V1/project/user
+# Install script for directory: /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V2/project/user
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V1/project/out/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/Xiaomi_SU7_lite_V2/project/out/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

@@ -12,9 +12,9 @@ typedef enum {
     ISLAND_STATE_EXIT_DETECTED,     // 识别到出环拐点 5
     ISLAND_STATE_EXIT_APPROACHING,  // 逼近出环尖角   6
     ISLAND_STATE_EXITING,           // 正在驶出环岛   7
-    ISLAND_STATE_FINDEXIT_V,
-    ISLAND_STATE_ADJUSTING,         // 出环后姿态调整 8
-    ISLAND_STATE_FINISHED           // 环岛结束复位   9
+    ISLAND_STATE_FINDEXIT_V,        // 找V  8
+    ISLAND_STATE_ADJUSTING,         // 出环后姿态调整 9
+    ISLAND_STATE_FINISHED           // 环岛结束复位   10
 } IslandState_e;
 
 typedef enum {
@@ -29,5 +29,6 @@ typedef struct {
 } IslandController_t;
 
 void Island_Detect();
+bool Check_Straight_L();
 
 #endif

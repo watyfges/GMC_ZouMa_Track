@@ -1,22 +1,9 @@
 #include "TCPDebug.h"
 
-//电机PID定义
-extern float Left_Motor_Kp;
-extern float Left_Motor_Ki;
-extern float Left_Motor_Kd;
-extern float Right_Motor_Kp;
-extern float Right_Motor_Ki;
-extern float Right_Motor_Kd;
-
 uint8 current_camera_view = VIEW_TRACK_CAMERA; // 默认显示巡线画面
 uint8 allow_send_image_flag = 0; //允许发送的标志位
 uint16 ai_image_copy[AI_H][AI_W];
-extern vector<pair<uint8_t, uint8_t>> L_boundary_8;
-extern vector<pair<uint8_t, uint8_t>> R_boundary_8;
-uint8_t L_boundary_8_x[TRACK_W];
-uint8_t L_boundary_8_y[TRACK_H];
-uint8_t R_boundary_8_x[TRACK_W];
-uint8_t R_boundary_8_y[TRACK_H];
+
 
 // 根据模式按需实例化 TCP 客户端
 #if CURRENT_DEBUG_MODE != DEBUG_MODE_NONE
@@ -142,11 +129,52 @@ static void Vofa_Receive_Task() {
             printf("Set Right Kd: %f\r\n", Right_Motor_Kd);
         }
 
-        // --------------------------------------------------
-        // 4. 兼容原来的 'T' 和 'A' 摄像头切换
-        // (为了防止 "start" 里面的字母 't'/'a' 触发切换，
-        //  我们限制仅当发过来的字符很短时才触发)
-        // --------------------------------------------------
+        //解析PID参数
+        if ((ptr = strstr(cmd_str, "dis")) != NULL) {
+            Dis = atof(ptr + 3);
+            printf("Set dis: %d\r\n", Dis);
+        }
+        if ((ptr = strstr(cmd_str, "kp1")) != NULL) {
+            kp1 = atof(ptr + 3);
+            printf("Set Kp1: %f\r\n", kp1);
+        }
+        if ((ptr = strstr(cmd_str, "kp2")) != NULL) {
+            kp2 = atof(ptr + 3);
+            printf("Set Kp2: %f\r\n", kp2);
+        }
+        if ((ptr = strstr(cmd_str, "kd")) != NULL) {
+            kd = atof(ptr + 2);
+            printf("Set Kd: %f\r\n", kd);
+        }
+        if ((ptr = strstr(cmd_str, "speed")) != NULL) {
+            Speed = atof(ptr + 5);
+            printf("Set Speed: %f\r\n", Speed);
+        }
+        if ((ptr = strstr(cmd_str, "kz")) != NULL) {
+            kz = atof(ptr + 2);
+            printf("Set kz: %f\r\n", kz);
+        }
+        //测试绕标志牌
+        if ((ptr = strstr(cmd_str, "DIRL")) != NULL) {
+            track_state.special_barrier_dir = DIR_LEFT;
+            track_state.is_special_barrier = true;
+
+            if(track_state.is_special_barrier){
+            track_state.allow_change_special_barrier=false;
+            }
+            printf("LEFT\r\n");
+        }
+        if ((ptr = strstr(cmd_str, "DIRR")) != NULL) {
+            track_state.special_barrier_dir = DIR_RIGHT;
+            track_state.is_special_barrier = true;
+
+            if(track_state.is_special_barrier){
+            track_state.allow_change_special_barrier=false;
+            }
+            printf("RIGHT\r\n");
+        }
+
+        // 4. 'T' 和 'A' 摄像头切换
         if (len <= 3) { // 考虑到串口可能带 \r \n，限制长度
             if (cmd_str[0] == 'T' || cmd_str[0] == 't') {
                 current_camera_view = VIEW_TRACK_CAMERA;
@@ -173,6 +201,7 @@ static void Seekfree_Send_Image_Task() {
         seekfree_assistant_camera_information_config(
             SEEKFREE_ASSISTANT_MT9V03X, 
             img_bin[0], // 请确保这里是160x120的二值化/灰度首地址
+            //img_gray[0],
             TRACK_W, 
             TRACK_H
         );

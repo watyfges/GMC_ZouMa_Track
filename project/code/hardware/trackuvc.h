@@ -2,7 +2,7 @@
 #define _TRACK_UVC_H_
 
 #define TRACK_W 160
-#define TRACK_H 120
+#define TRACK_H 80
 
 #include "zf_common_headfile.hpp"
 

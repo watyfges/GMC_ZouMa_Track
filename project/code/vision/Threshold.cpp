@@ -1,6 +1,6 @@
 #include "head.h"//阈值处理模块，按需调用
 
-int Max_01_value = 130;//大津法最大阈值限制
+int Max_01_value = 100;//大津法最大阈值限制
 
 extern uint8_t img_gray[TRACK_H][TRACK_W];
 extern uint8_t img_bin[TRACK_H][TRACK_W];
@@ -209,27 +209,27 @@ uint8_t Threshold_deal(uint8_t* image,uint16_t col,uint16_t row,uint32_t pixel_t
 }
 
 void Get01change_dajin() {
-  // int Threshold = Threshold_deal(img_gray[0], TRACK_W, TRACK_H, 180);
-  // if (Threshold < Max_01_value)
-  //   Threshold = Max_01_value;
-  // uint8_t i, j = 0;
-  // uint8_t thre;
-  // for (i = 0; i < TRACK_H; i++) {
-  //   for (j = 0; j < TRACK_W; j++) {
-  //     if (j <= 15)
-  //       thre = Threshold - 10;
-  //     else if (j >= TRACK_W - 1 -15)
-  //       thre = Threshold - 10;
-  //     else
-  //       thre = Threshold;
+  int Threshold = Threshold_deal(img_gray[0], TRACK_W, TRACK_H, 180);
+  if (Threshold < Max_01_value)
+    Threshold = Max_01_value;
+  uint8_t i, j = 0;
+  uint8_t thre;
+  for (i = 0; i < TRACK_H; i++) {
+    for (j = 0; j < TRACK_W; j++) {
+      if (j <= 15)
+        thre = Threshold - 10;
+      else if (j >= TRACK_W - 1 -15)
+        thre = Threshold - 10;
+      else
+        thre = Threshold;
 
-  //     if (img_gray[i][j] >(thre))         //数值越大，显示的内容越多，较浅的图像也能显示出来
-  //       img_bin[i][j] = 255;  //白
-  //     else
-  //       img_bin[i][j] = 0;  //黑
-  //   }
-  // }
-  lq_sobelAutoThreshold(img_gray, img_bin);
+      if (img_gray[i][j] >(thre))         //数值越大，显示的内容越多，较浅的图像也能显示出来
+        img_bin[i][j] = 255;  //白
+      else
+        img_bin[i][j] = 0;  //黑
+    }
+  }
+  //lq_sobelAutoThreshold(img_gray, img_bin);
 }
 
 void Pixle_Filter()//像素滤波

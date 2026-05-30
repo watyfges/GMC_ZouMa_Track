@@ -4,6 +4,7 @@ extern int16 imu_acc_x,imu_acc_y,imu_acc_z;
 extern int16 imu_gyro_x,imu_gyro_y,imu_gyro_z;
 extern float roll,pitch,yaw;
 extern float V_Right, encoder_right, Right_Duty;
+extern float V_Left,encoder_left;
 extern volatile int16 dl1x_distance_raw;
 
 zf_driver_pit pit_timer; // 定义定时器设备对象
@@ -13,9 +14,6 @@ zf_driver_pit tof_pit_timer; // 定义定时器设备对象_tof
 
 void HardwareInit ();
 void sigint_handler(int signum);
-
-extern vector<pair<uint8_t, uint8_t>> L_boundary_8;
-extern vector<pair<uint8_t, uint8_t>> R_boundary_8;
 
 extern uint8_t img_bin[TRACK_H][TRACK_W];
 
@@ -40,23 +38,31 @@ int main(int, char**)
             edge_extract(); 
             //ai_extract();
             control_init();
-                Set_Right_Pwm(0);
-    Set_Left_Pwm(0);
+
+            // track_state.is_special_barrier=true;
+            // track_state.special_barrier_dir=DIR_LEFT;
 
             Debug_Task();
-            Vofa_Send_Waveform(roll,pitch,yaw,0);
+            uart_received();
+
+            //Vofa_Send_Waveform(roll,pitch,yaw,0);
             //printf("ax:%d\r\n, ay:%d\r\n, az:%d\r\n, gx:%d\r\n, gy:%d\r\n, gz:%d\r\n, roll:%f\r\n, pitch:%f\r\n, yaw:%f\r\n",imu_acc_x,imu_acc_y,imu_acc_z,imu_gyro_x,imu_gyro_y,imu_gyro_z,roll,pitch,yaw);
         }
-        else if(track_state.stop_flag == 2)//启动，1为预备发车
+        else if(track_state.stop_flag == 2)//2启动，1为预备发车
         {
+            
             edge_extract();
             //ai_extract();
+            uart_received();
 
+            // track_state.is_special_barrier=true;
+            // track_state.special_barrier_dir=DIR_LEFT;
+
+            //Vofa_Send_Waveform(roll,pitch,yaw,0);
+            //Vofa_Send_Waveform(V_Right, encoder_right, V_Left,encoder_left);
             Debug_Task();            
 
         }
-        L_boundary_8.clear();
-        R_boundary_8.clear();
     }
 }
 
@@ -67,6 +73,7 @@ void HardwareInit(void){
     screen_init();
     //ai_uvc_init();
     track_uvc_init();
+    LQ_USART_Init();
 
 
     beep_on();

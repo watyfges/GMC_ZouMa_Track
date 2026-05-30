@@ -20,6 +20,7 @@
 #include "../code/element/cross.h"
 #include "../code/element/island.h"
 #include "../code/communication/TCPDebug.h"
+#include "../code/communication/usart.h"
 
 // #include "ramp.h"
 // 
@@ -45,7 +46,11 @@
 #include <cctype>
 #include <stdlib.h>
 #include <utility>
-
+#include <stdio.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <termios.h>
+#include <errno.h>
 
 
 using namespace cv;
