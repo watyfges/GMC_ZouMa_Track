@@ -14,26 +14,21 @@ static uint8_t filter_index = 0;   // 当前写入数组的索引
 static uint8_t filter_count = 0;   // 记录已存入的数据个数（处理刚启动时数据不满的情况
 
 //电机PID定义
-float Left_Motor_Kp = 16;
-float Left_Motor_Ki = 0.3;
+float Left_Motor_Kp = 7;
+float Left_Motor_Ki = 0.09;
 float Left_Motor_Kd = 0;
 int Left_Motor_Maxduty = 300;
-float Right_Motor_Kp = 16;
-float Right_Motor_Ki = 0.3;
+float Right_Motor_Kp = 7;
+float Right_Motor_Ki = 0.09;
 float Right_Motor_Kd = 0;
 int Right_Motor_Maxduty = 300;
 
-float V_Left, V_Right, Speed=300;//速度，左轮速度，右轮速度
+float V_Left, V_Right, Speed;//速度，左轮速度，右轮速度
 float Right_Duty = 0, Left_Duty = 0; //左右电机占空比
-int Dis = 55;//距离，范围0——74
-float kp1=7.0,kp2=0.001,kd=185,kz = 0;
+int Dis = 0;//距离，范围0——74
 //PID
 IncrementalPID Left_Motor_PID, Right_Motor_PID;//左右电机增量式PID控制器
 Dynamic_PD Servo_PD;    //二次PD控制器
-
-//绕桩持续时间
-int barrier_time=50; //*10ms
-int ptime=0;//供计时器用
 
 //extern
 extern float encoder_left, encoder_right;
@@ -52,18 +47,18 @@ void control_signal_init() {
 void Choice_PID(int num) {
     switch(num){
         case 0://测试
-                //Speed = 200;
-                //Dis = 55;             // 前瞻距离 
+                Speed = 200;
+                Dis = 55;             // 前瞻距离 
                 //Island_Time = 12;
                 // 转向PD控制器 (输出左右轮速度差)
                 Dynamic_PD_Init(&Servo_PD, 
-                    kp1,    // Kp1 一次项
-                    kp2,    // Kp2 二次项
+                    1.0,    // Kp1 一次项
+                    0.18,    // Kp2 二次项
                     1.0,    // 误差敏感度参数σ
-                    kd,   // Kd 微分系数
-                    kz,      // 陀螺仪参数Kz 
-                    600,    // 输出上限 (最大允许的左右轮速度差)
-                    -600,   // 输出下限
+                    1.0,   // Kd 微分系数
+                    0,      // 陀螺仪参数Kz 
+                    300,    // 输出上限 (最大允许的左右轮速度差)
+                    -300,   // 输出下限
                     0       // 死区
                 );
             break;
@@ -135,20 +130,11 @@ void turn_pit_callback() {
     // 3. 差速分配逻辑
     V_Left  = Speed - turn_offset; 
     V_Right = Speed + turn_offset;
-
-    // 4. 绕桩差速补偿
-    if(track_state.is_special_barrier==true&&track_state.special_barrier_dir==DIR_LEFT){
-        V_Left = V_Left - 50;
-    }
-    if(track_state.is_special_barrier==true&&track_state.special_barrier_dir==DIR_RIGHT){
-        V_Right = V_Right - 50;
-    }
-    
 }
 
 void motor_pit_callback() {
-    // V_Right = 200.0f;
-    // V_Left  = 200.0f; 
+    // V_Right = 120.0f;
+    // V_Left  = 120.0f; 
     // 读取编码器,写在encoder.cpp中
 
     // 编码器低通滤波
@@ -201,21 +187,7 @@ void motor_pit_callback() {
 
     //printf("l_enc: %f, r_enc: %f, l_out: %f, r_out: %f\n", encoder_left, encoder_right,Left_Duty,Right_Duty);
     //printf("%f,%f,%f\n", V_Right, encoder_right, Right_Duty);
-    Vofa_Send_Waveform(V_Right, encoder_right, V_Left,encoder_left);
-}
-
-void time_pit_callback(){
-    //开车时才允许运行
-    if(track_state.stop_flag==2){
-        if(track_state.allow_change_special_barrier==false){
-        ptime++;
-     }
-     if(ptime==barrier_time){
-        ptime=0;
-        track_state.allow_change_special_barrier=true;
-        track_state.is_special_barrier=false;
-     }
-     }     
+    //Vofa_Send_Waveform(V_Right, encoder_right, V_Left,encoder_left);
 }
 
 void cleanup() {
@@ -230,5 +202,5 @@ void pit_callback() {
     turn_pit_callback(); 
     motor_pit_callback();
     clear_encoder_pit_callback();
-    time_pit_callback();
+    //time_pit_callback();
 }
