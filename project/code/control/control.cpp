@@ -13,54 +13,142 @@ static float right_enc_buffer[FILTER_WINDOW] = {0};
 static uint8_t filter_index = 0;   // 当前写入数组的索引
 static uint8_t filter_count = 0;   // 记录已存入的数据个数（处理刚启动时数据不满的情况
 
-//电机PID定义
-float Left_Motor_Kp = 7;
-float Left_Motor_Ki = 0.09;
-float Left_Motor_Kd = 0;
-int Left_Motor_Maxduty = 300;
-float Right_Motor_Kp = 7;
-float Right_Motor_Ki = 0.09;
-float Right_Motor_Kd = 0;
-int Right_Motor_Maxduty = 300;
 
-float V_Left, V_Right, Speed;//速度，左轮速度，右轮速度
+float V_Left, V_Right, Speed=300;//左轮速度，右轮速度, 速度
 float Right_Duty = 0, Left_Duty = 0; //左右电机占空比
-int Dis = 0;//距离，范围0——74
+int Dis = 55;//距离，范围0——74
+float kp1=0.0,kp2=0,kd=0,kz = 0;
+
+//PID组别选择
+uint8_t Group=0;
+
+//发车
+bool Departure=false;   //发车后一定时间内置为true
+int Dtime=0,Departure_time=800;//计时器用，发车时间
+
 //PID
-IncrementalPID Left_Motor_PID, Right_Motor_PID;//左右电机增量式PID控制器
-Dynamic_PD Servo_PD;    //二次PD控制器
+// IncrementalPID Left_Motor_PID, Right_Motor_PID;//左右电机增量式PID控制器
+// Dynamic_PD Servo_PD;    //二次PD控制器
+
+//绕桩
+int barrier_time=100; //*10ms
+int ptime=0;//供计时器用
+float barrier_speed=160;
+
+//负压设置
+bool Brush = 0;//1为开负压，0为关负压
+int Brush_num = 0;//负压值
+int brushtime=0;
 
 //extern
 extern float encoder_left, encoder_right;
 extern int16 last_encoder_left, last_encoder_right;//编码器计数
 extern uint8 M_boundary[TRACK_H];//中线边界数组
+extern float GZ;
+extern float L_pidout,R_pidout;
 //extern float roll,pitch,yaw; //姿态角 **外部读取
+
+//差速输出，角度环输出
+extern float outer_dir_out;
+extern float inner_dir_out;
+
+//电机的输出，勿动
+extern float l_speed_ki;
+extern float l_speed_kp;
+extern float r_speed_ki;
+extern float r_speed_kp;
+extern float l_speed_out;
+extern float r_speed_out;
+
+
+//用于上位机修改的
+float lkp=0,lki=0,rkp=0,rki=0;
+float debugspeed=0;
+
+
+extern IslandController_t IslandCtrl;
+extern float inner_dir_kd;
+
+extern uint8_t L_FLAG,R_FLAG,FLAG1,FLAG2;
 
 //变量初始化
 void control_signal_init() {
-    Right_Motor_PID.LastError = 0; Right_Motor_PID.PrevError = 0;
-    Left_Motor_PID.LastError = 0; Left_Motor_PID.PrevError = 0; Servo_PD.prev_error = 0;Right_Duty = 0;
+    // Right_Motor_PID.LastError = 0; Right_Motor_PID.PrevError = 0;
+    // Left_Motor_PID.LastError = 0; Left_Motor_PID.PrevError = 0 ;
+    l_speed_out=0;
+    r_speed_out=0;
+    Right_Duty = 0;
     Left_Duty = 0;
+    l_speed_ki=0;
+    l_speed_kp=0;
+    r_speed_ki=0;
+    r_speed_kp=0;
+    FLAG1=0;
+    L_FLAG=0;
+    R_FLAG=0;
+    Dtime=0;
+    //ptime=0;
+    Departure=false;
+    if(track_state.stop_flag == 0)brushtime=0;
+    if(!track_state.is_special_barrier) {
+        track_state.allow_change_special_barrier=true;
+    }
+    //track_state.allow_change_special_barrier=true;
+    // track_state.is_special_barrier = false;      // 确保标志位被清除
+    // track_state.special_barrier_dir = DIR_NONE;  // 确保方向被归零
 }
 
 //PID选择
 void Choice_PID(int num) {
     switch(num){
-        case 0://测试
-                Speed = 200;
-                Dis = 55;             // 前瞻距离 
+        case 0://测试，电脑debug用
+                //Speed = 200;
+                //Dis = 55;             // 前瞻距离 
                 //Island_Time = 12;
                 // 转向PD控制器 (输出左右轮速度差)
-                Dynamic_PD_Init(&Servo_PD, 
-                    1.0,    // Kp1 一次项
-                    0.18,    // Kp2 二次项
-                    1.0,    // 误差敏感度参数σ
-                    1.0,   // Kd 微分系数
-                    0,      // 陀螺仪参数Kz 
-                    300,    // 输出上限 (最大允许的左右轮速度差)
-                    -300,   // 输出下限
-                    0       // 死区
-                );
+                //Dynamic_PD_Init(&Servo_PD, 
+                    // kp1,    // Kp1 一次项
+                    // kp2,    // Kp2 二次项
+                    // 1.0,    // 误差敏感度参数σ
+                    // kd,   // Kd 微分系数
+                    // kz,      // 陀螺仪参数Kz 
+                    // 600,    // 输出上限 (最大允许的左右轮速度差)
+                    // -600,   // 输出下限
+                    // 0       // 死区
+                //);
+                l_speed_kp=lkp;
+                l_speed_ki=lki;
+                r_speed_kp=rkp;
+                r_speed_ki=rki;
+            break;
+        case 1:// 2.5m/s
+                kp1=0.008;
+                kp2=0.00015;
+                kd=4;
+                Speed = 120;
+                Dis = 45;             // 前瞻距离 
+                l_speed_kp=0.75;//电机PID
+                l_speed_ki=0.01;
+                r_speed_kp=0.72;
+                r_speed_ki=0.011;
+                barrier_time=300; //绕桩时间
+                //barrier_speed=120;
+                Brush=1;//开负压
+                Brush_num=850;//负压大小
+                
+                //Island_Time = 12;
+                // 转向PD控制器 (输出左右轮速度差)
+                //Dynamic_PD_Init(&Servo_PD, 
+                    // kp1,    // Kp1 一次项
+                    // kp2,    // Kp2 二次项
+                    // 1.0,    // 误差敏感度参数σ
+                    // kd,   // Kd 微分系数
+                    // kz,      // 陀螺仪参数Kz 
+                    // 600,    // 输出上限 (最大允许的左右轮速度差)
+                    // -600,   // 输出下限
+                    // 0       // 死区
+                //);
+                
             break;
         default:
             break;
@@ -69,13 +157,14 @@ void Choice_PID(int num) {
 
 //初始化控制程序所有项目，变量，电机PID，选择PID参数
 void control_init() {
+    atexit(cleanup);
     control_signal_init();
     // 电机速度闭环 PID (这部分决定了车轮跟调速指令有多紧)
     // PID_Init(&Right_Motor_PID, 19, 2.7, 0, 300);
     // PID_Init(&Left_Motor_PID,  19, 2.7, 0, 300);
-    PID_Init(&Right_Motor_PID, Right_Motor_Kp, Right_Motor_Ki, Right_Motor_Kd, Right_Motor_Maxduty); //kp,ki,kd,maxduty
-    PID_Init(&Left_Motor_PID, Left_Motor_Kp, Left_Motor_Ki, Left_Motor_Kd, Left_Motor_Maxduty);
-    Choice_PID(0);
+    // PID_Init(&Right_Motor_PID, Right_Motor_Kp, Right_Motor_Ki, Right_Motor_Kd, Right_Motor_Maxduty); //kp,ki,kd,maxduty
+    // PID_Init(&Left_Motor_PID, Left_Motor_Kp, Left_Motor_Ki, Left_Motor_Kd, Left_Motor_Maxduty);
+    Choice_PID(Group);
 }
 
 // 视觉误差计算
@@ -83,25 +172,31 @@ int last_error;
 float Weighting[10] = {0.96, 0.92, 0.88, 0.83, 0.77, 0.71, 0.65, 0.59, 0.53, 0.47};
 float Err_Sum() {
     float error = 0, weight_count = 0, now_mid = 0;
-    if(Dis - 10 > LOWEST_ROW - track_state.longest_white_len) {
-        for(int i = Dis; i > Dis - 10; i--) {
-            now_mid += (float)M_boundary[i] * Weighting[Dis - i];
-            weight_count += Weighting[Dis - i];
-        }
-    } else {
-        int start_idx = LOWEST_ROW - track_state.longest_white_len + 9;
-        if (start_idx > LOWEST_ROW) {
-            start_idx = LOWEST_ROW;
-        }
-        int end_idx = start_idx - 10;
-        if (end_idx < 0) {
-            end_idx = -1; // 这样 i > end_idx 最小到 0
-        }
+    // if(Dis - 10 > LOWEST_ROW - track_state.longest_white_len) {
+    //     for(int i = Dis; i > Dis - 10; i--) {
+    //         now_mid += (float)M_boundary[i] * Weighting[Dis - i];
+    //         weight_count += Weighting[Dis - i];
+    //     }
+    // } else {
+    //     int start_idx = LOWEST_ROW - track_state.longest_white_len + 9;
+    //     if (start_idx > LOWEST_ROW) {
+    //         start_idx = LOWEST_ROW;
+    //     }
+    //     int end_idx = start_idx - 10;
+    //     if (end_idx < 0) {
+    //         end_idx = -1; // 这样 i > end_idx 最小到 0
+    //     }
 
-        for(int i = start_idx; i > end_idx; i--) {
-            now_mid += (float)M_boundary[i] * Weighting[start_idx - i];
-            weight_count += Weighting[start_idx - i];
-        }
+    //     for(int i = start_idx; i > end_idx; i--) {
+    //         now_mid += (float)M_boundary[i] * Weighting[start_idx - i];
+    //         weight_count += Weighting[start_idx - i];
+    //     }
+    // }
+
+
+    for(int i = Dis; i > Dis - 10; i--) {
+        now_mid += (float)M_boundary[i] * Weighting[Dis - i];
+        weight_count += Weighting[Dis - i];
     }
 
     now_mid = (now_mid + TRACK_W / 2.0f) / (weight_count + 1.0f);
@@ -111,6 +206,39 @@ float Err_Sum() {
         error = last_error;
     }
     last_error = error;
+
+    // if(IslandCtrl.state == ISLAND_STATE_EXIT_APPROACHING)
+    // {
+    //     printf("E:%f\r\n",error);
+    // }
+    //error = 44.9;
+    //printf("error:%f\r\nweight_count:%f\r\nnow_mid:%f\r\n", error, weight_count, now_mid);
+
+    // if(L_FLAG==1){
+    //     if(error>-30){
+    //         //error=100;
+    //     }else{
+    //         L_FLAG=0;
+    //     }
+    //     Speed=0;
+    //     inner_dir_out=0;
+    // }
+    // if(R_FLAG==1){
+    //     if(error<30){
+    //         //error=-100;
+    //     }else{
+    //         R_FLAG=0;
+    //     }
+    //     Speed=0;
+    //     inner_dir_out=0;
+    // }
+    // printf("%f\r\n",error);
+
+    if(track_state.is_ramp == true )
+    {
+        error = 0;
+    }
+
     return error;
 }
 
@@ -122,19 +250,68 @@ float Err_Sum() {
 void turn_pit_callback() {
     // 1. 获取视觉误差
     float error = Err_Sum();
-    
+    //outer_dir_pid(error);
+    //inner_dir_pid(GZ);
+
+    Dynamic_PD_Compute(kp1, kp2, kd, inner_dir_kd, error, GZ);
+
+    //printf("GZ:%f\r\n",GZ);
+
     // 2. 计算速度补偿值 (Turn Offset)
     // 此时 Dynamic_PD 的输出代表：为了纠正偏差，左右轮需要产生多大的速度差
-    float turn_offset = Dynamic_PD_Compute(&Servo_PD, 0, error);
+    // float L_turn_offset = Dynamic_PD_Compute(&Servo_PD, 0, error);
+    // float R_turn_offset = Dynamic_PD_Compute(&Servo_PD, 0, error);
 
     // 3. 差速分配逻辑
-    V_Left  = Speed - turn_offset; 
-    V_Right = Speed + turn_offset;
+    // V_Left  = Speed - outer_dir_out-inner_dir_out; 
+    // V_Right = Speed + outer_dir_out+inner_dir_out;
+    // V_Left  = Speed - outer_dir_out; 
+    // V_Right = Speed + outer_dir_out;
+    
+    // 目标速度全扔给PID处理了，直接给我输出电机速度
+
+    //float target_speed = track_state.is_special_barrier ? barrier_speed : Speed;
+    //float target_speed = barrier_speed;
+    // V_Left  = target_speed; 
+    // V_Right = target_speed;
+
+
+    V_Left  = Speed; 
+    V_Right = Speed;
+
+    if(L_FLAG==1&&FLAG2==1){
+        if(M_boundary[70]<80){
+            V_Left=0;
+            //V_Right = target_speed;
+        }else{
+            L_FLAG=0;
+        }
+        
+    }
+    if(R_FLAG==1&&FLAG2==1){
+        if(M_boundary[70]>80){
+            V_Right=0;
+            //V_Left  = target_speed;
+        }else{
+            R_FLAG=0;
+        }
+        // Speed=0;
+        // inner_dir_out=0;
+    }
+    //printf("L:%d,R:%d,Speed:%f,VL:%f,VR:%f,error:%f,FLAG1:%d,FLAG2:%d，SP:%d\r\n",L_FLAG,R_FLAG,Speed,V_Left,V_Right,error,FLAG1,FLAG2,track_state.special_barrier_dir);
+    // 4. 绕桩差速补偿
+    // if(track_state.is_special_barrier==true&&track_state.special_barrier_dir==DIR_LEFT){
+    //     V_Left = V_Left - 50;
+    // }
+    // if(track_state.is_special_barrier==true&&track_state.special_barrier_dir==DIR_RIGHT){
+    //     V_Right = V_Right - 50;
+    // }
+    
 }
 
 void motor_pit_callback() {
-    // V_Right = 120.0f;
-    // V_Left  = 120.0f; 
+    // V_Right = debugspeed;
+    // V_Left  = debugspeed; 
     // 读取编码器,写在encoder.cpp中
 
     // 编码器低通滤波
@@ -168,17 +345,23 @@ void motor_pit_callback() {
     encoder_right = sum_right / filter_count;
     // ------------------- 滑动均值滤波结束 -------------------
 
-    // 增量式 PID 计算PWM输出
-    Right_Duty += IncPIDCal(&Right_Motor_PID, V_Right, (int32_t)encoder_right);
-    Left_Duty  += IncPIDCal(&Left_Motor_PID,  V_Left,  (int32_t)encoder_left);
+    // PID输出电机速度
+    r_speed_pid(V_Right,encoder_right);
+    l_speed_pid(V_Left,encoder_left);
+    //printf("%.f\r\n",l_speed_out);
+    Right_Duty = r_speed_out;
+    Left_Duty  = l_speed_out;
+
+    // printf("l_speed_out:%f\r\n",l_speed_out);
+    // printf("DUTY_L:%f\r\n",Left_Duty);
 
     // PWM 限幅保护
     if(fabs(Right_Duty) >= MAX_DUTY) Right_Duty = (Right_Duty / fabs(Right_Duty)) * MAX_DUTY;
     if(fabs(Left_Duty)  >= MAX_DUTY) Left_Duty  = (Left_Duty  / fabs(Left_Duty))  * MAX_DUTY;
     
     if(track_state.stop_flag==2){
-        Set_Right_Pwm(Right_Duty);
-        Set_Left_Pwm(Left_Duty);
+        Set_Right_Pwm(-Right_Duty);
+        Set_Left_Pwm(-Left_Duty);
     }else{
         Set_Right_Pwm(0);
         Set_Left_Pwm(0);
@@ -187,11 +370,111 @@ void motor_pit_callback() {
 
     //printf("l_enc: %f, r_enc: %f, l_out: %f, r_out: %f\n", encoder_left, encoder_right,Left_Duty,Right_Duty);
     //printf("%f,%f,%f\n", V_Right, encoder_right, Right_Duty);
-    //Vofa_Send_Waveform(V_Right, encoder_right, V_Left,encoder_left);
+    //Vofa_Send_Waveform(Right_Duty, encoder_right, Left_Duty,encoder_left);
+}
+
+//计时函数
+void time_pit_callback(){
+    //发车计时
+    if(Departure==false&&track_state.stop_flag==2)
+    {
+        Dtime++;
+        if(Dtime>=Departure_time){
+            Departure=true;
+            track_state.is_zebra=false;
+        }
+    }
+    //绕弯
+    //开车时才允许运行
+    //if(track_state.stop_flag==2){
+        // if(track_state.allow_change_special_barrier==false){
+        //     ptime++;
+        // }
+        // if(ptime==barrier_time){
+        //     ptime=0;
+        //     track_state.allow_change_special_barrier=true;
+        //     track_state.is_special_barrier=false;
+        //     track_state.special_barrier_dir=DIR_NONE;
+        // }
+
+    if(track_state.is_special_barrier==true)
+    {   
+        ptime++;
+        if(ptime >= barrier_time)
+        {   
+            track_state.allow_change_special_barrier=true;
+            track_state.special_barrier_dir = DIR_NONE;
+            track_state.is_special_barrier=false;
+            FLAG1=0;
+            FLAG2=0;
+            //printf("flag1");
+        }
+    }
+    else
+    {
+        ptime = 0;
+        // if (ptime > 0) {
+        //     // 障碍物动作刚刚结束，进入冷却期，继续计时
+        //     ptime++;
+        //     if (ptime >= barrier_time + 100) { // 冷却 100 次中断 (约 200ms，可按需调大)
+        //         track_state.allow_change_special_barrier = true; // 车子彻底开过了，彻底解锁
+        //         ptime = 0; // 计时器归零，准备迎接下一个障碍物
+        //     }
+        // } else {
+        //     ptime = 0; // 平时保持为 0
+        // }
+    }
+    //printf("%d\r\n",track_state.allow_change_special_barrier);
+    //}
+    
+    // if(track_state.stop_flag==0){
+    //     track_state.allow_change_special_barrier=true;
+    //     track_state.is_special_barrier=false;
+    //     track_state.special_barrier_dir=DIR_NONE;
+    // }
+    //GPIO_received();
+    //printf("%f\r\n",Speed);
+    //uart_received();
+    //printf("flag2");
+    //printf("issp:%d,spd:%d,all:%d\r\n",track_state.is_special_barrier,track_state.special_barrier_dir,track_state.allow_change_special_barrier);
+}
+
+void brushless_pit_callback(){
+    //printf("%d\r\n",Brush_num);
+    // if(track_state.stop_flag==0){
+    //     set_brushless_pwm(0);
+    //     return;//停止时不运行
+    // }
+    // if(Brush==1)//开启负压
+    // {
+    //     set_brushless_pwm(Brush_num);
+
+    // }
+    // else//关闭负压
+    // {
+    //     set_brushless_pwm(0);
+    // }
+    //printf("%d\r\n",Brush_num);
+    if(track_state.stop_flag==1&&Brush==1){
+        brushtime++;
+        if(Brush)set_brushless_pwm(brushtime);
+        if(brushtime==Brush_num){
+            track_state.stop_flag=2;
+        }
+     }
+     if(track_state.stop_flag==1&&Brush==0){
+        track_state.stop_flag=2;
+     }
+
+     if(track_state.stop_flag==0||Brush==0){
+        set_brushless_pwm(0);
+     }
+     //printf("%d\r\n",track_state.stop_flag);
 }
 
 void cleanup() {
     Motor_Cleanup();
+    cleanup_brushless();
     beep_off();
 }
 
@@ -202,5 +485,5 @@ void pit_callback() {
     turn_pit_callback(); 
     motor_pit_callback();
     clear_encoder_pit_callback();
-    //time_pit_callback();
+    time_pit_callback();
 }

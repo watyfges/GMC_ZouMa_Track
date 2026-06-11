@@ -1,66 +1,77 @@
-#include "ramp.h"
+#include "ramp.h"//坡道检测模块
+//这里只使用了陀螺仪，如果想更准确可以使用距离传感器和陀螺仪结合使用
 
-/*
- * @brief 赛道连续性检测 (辅助函数)
- * @return true: 连续; false: 断裂(可能是十字/断路)
- */
-static bool check_line_continuity(int start_y, int end_y) 
-{
-    for (int i = start_y; i >= end_y; i--) {
-        // 如果相邻两行横坐标跳变超过 5 个像素，认为断线
-        if (abs(L_boundary[i] - L_boundary[i+1]) > 5 || 
-            abs(R_boundary[i] - R_boundary[i+1]) > 5) {
-            return false;
-        }
+extern uint8_t L_boundary[TRACK_H], R_boundary[TRACK_H],M_boundary[TRACK_H];
+extern float roll,pitch,yaw; //姿态角
+int ramp_up=130,ramp_down=115,ramp_leave=130;
+//extern int Longest_White_Column;//最长白列长度 
+
+int Ramp_State = 0;//坡道状态机
+extern volatile int16 dl1x_distance_raw;
+
+// 最小二乘法计算斜率
+float Ramp_calculateSlope(int begin, int end, uint8 border[TRACK_W]) {//计算斜率
+    float sumX = 0, sumY = 0, sumXY = 0, sumXX = 0; // 求和变量
+    static float lastValidSlope = 0; // 保留上次有效斜率
+
+    for (int y = begin; y <= end; ++y) {//统计区间数据
+        sumX += y;
+        sumY += border[y];
+        sumXY += y * border[y];
+        sumXX += y * y;
     }
-    return true;
+
+    int numPoints = end - begin + 1; // 计算点数
+    float denominator = numPoints * sumXX - sumX * sumX;//计算分母
+
+    // 防止除以零
+    if (fabs(denominator) < 1e-5) return lastValidSlope;
+
+    float slope = (numPoints * sumXY - sumX * sumY) / denominator;//计算斜率
+    lastValidSlope = slope; // 更新保留值
+    return slope; // 返回斜率
 }
 
-/*
- * @brief 流水线调用的坡道视觉检测
- * @note  利用坡道底部的透视畸变（赛道收缩率突变）来判定
- * @return true: 前方有坡道; false: 无坡道
- */
-bool Ramp_Detect(void)
-{
-    // 1. 基础条件筛查
-    // 确保近端有足够宽的赛道 (排除噪点或极窄弯道)
-    int near_y = LOWEST_ROW - 10;
-    if (R_boundary[near_y] - L_boundary[near_y] < 60) {
-        return false;
-    }
-
-    // 确保视野前方有一定的通透度
-    if (track_state.longest_white_len < 50) {
-        return false;
-    }
-
-    // 检查赛道边线是否连续 (坡道边线是不会断的)
-    if (!check_line_continuity(LOWEST_ROW - 10, LOWEST_ROW - 40)) {
-        return false;
-    }
-
-    // 2. 透视畸变特征提取 (替代原版复杂的最小二乘法)
-    // 坡道的视觉特征：底部的线收缩极快(宽变窄)，上方的线收缩变缓
+bool Ramp_check()
+{     
     
-    // 我们取三层采样点计算宽度
-    int y_bottom = LOWEST_ROW - 10; // 近端
-    int y_mid    = LOWEST_ROW - 30; // 中端
-    int y_top    = LOWEST_ROW - 50; // 远端
-
-    int width_bottom = R_boundary[y_bottom] - L_boundary[y_bottom];
-    int width_mid    = R_boundary[y_mid] - L_boundary[y_mid];
-    int width_top    = R_boundary[y_top] - L_boundary[y_top];
-
-    // 计算两段的收缩量
-    int shrink_down = width_bottom - width_mid; // 下段收缩量
-    int shrink_up   = width_mid - width_top;    // 上段收缩量
-
-    // 核心判据：如果下段收缩量远大于上段收缩量，说明出现了“折角透视”，即坡道底端
-    // 具体比例阈值可根据实际摄像头高度微调 (这里设下段收缩是上段的1.5倍以上)
-    if (shrink_down > 15 && shrink_up > 0 && shrink_down > (shrink_up * 1.5f)) {
-        return true; 
+    if(dl1x_distance_raw > 115){
+        return 0;
     }
+    return 1;
+    
 
-    return false;
+}
+
+
+void Ramp_Detect()//坡道检测函数
+{   
+    if(track_state.is_ramp==false){//无坡道状态
+        if(Ramp_check()){//检测到坡道
+            Ramp_State = 1;//进入坡道状态机初始状态
+            track_state.is_ramp = true;//置坡道标志位
+        }
+    }
+    switch(Ramp_State)
+    {
+        case 1:
+            if(dl1x_distance_raw > 130)//容错区间，需要测距离，上坡道时
+            {
+                Ramp_State = 2;
+            }
+            break;
+        case 2:
+            if(dl1x_distance_raw < 115)//需要测距离，下坡道时
+            {
+                Ramp_State = 3;
+            }
+            break;
+        case 3:
+            if(dl1x_distance_raw > 130)//需要测距离，离开坡道
+            {
+                Ramp_State = 0;
+                track_state.is_ramp = false;
+            }
+            break;
+    }
 }

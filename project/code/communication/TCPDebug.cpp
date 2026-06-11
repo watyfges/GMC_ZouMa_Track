@@ -89,8 +89,8 @@ static void Vofa_Receive_Task() {
         // 1. 处理 start / stop 控制指令
         // --------------------------------------------------
         if (strstr(cmd_str, "start") != NULL) {
-            track_state.stop_flag = 2;
-            printf("Command: start, stop_flag set to 2\r\n");
+            track_state.stop_flag = 1;
+            printf("Command: start, stop_flag set to 1\r\n");
         } 
         else if (strstr(cmd_str, "stop") != NULL) {
             track_state.stop_flag = 0;
@@ -101,32 +101,24 @@ static void Vofa_Receive_Task() {
         // 2. 解析 左电机 PID 参数 (例如 "LDJKp3.0")
         // --------------------------------------------------
         if ((ptr = strstr(cmd_str, "LDJKp")) != NULL) {
-            Left_Motor_Kp = atof(ptr + 5); // "+5" 是跳过 "LDJKp" 前 5 个字符，直接解析后面的数字
-            printf("Set Left Kp: %f\r\n", Left_Motor_Kp);
+            lkp = atof(ptr + 5); // "+5" 是跳过 "LDJKp" 前 5 个字符，直接解析后面的数字
+            printf("Set Left Kp: %f\r\n", lkp);
         }
         if ((ptr = strstr(cmd_str, "LDJKi")) != NULL) {
-            Left_Motor_Ki = atof(ptr + 5);
-            printf("Set Left Ki: %f\r\n", Left_Motor_Ki);
-        }
-        if ((ptr = strstr(cmd_str, "LDJKd")) != NULL) {
-            Left_Motor_Kd = atof(ptr + 5);
-            printf("Set Left Kd: %f\r\n", Left_Motor_Kd);
+            lki = atof(ptr + 5);
+            printf("Set Left Ki: %f\r\n", lki);
         }
 
         // --------------------------------------------------
         // 3. 解析 右电机 PID 参数 (例如 "RDJKp3.0")
         // --------------------------------------------------
         if ((ptr = strstr(cmd_str, "RDJKp")) != NULL) {
-            Right_Motor_Kp = atof(ptr + 5);
-            printf("Set Right Kp: %f\r\n", Right_Motor_Kp);
+            rkp = atof(ptr + 5);
+            printf("Set Right Kp: %f\r\n", rkp);
         }
         if ((ptr = strstr(cmd_str, "RDJKi")) != NULL) {
-            Right_Motor_Ki = atof(ptr + 5);
-            printf("Set Right Ki: %f\r\n", Right_Motor_Ki);
-        }
-        if ((ptr = strstr(cmd_str, "RDJKd")) != NULL) {
-            Right_Motor_Kd = atof(ptr + 5);
-            printf("Set Right Kd: %f\r\n", Right_Motor_Kd);
+            rki = atof(ptr + 5);
+            printf("Set Right Ki: %f\r\n", rki);
         }
 
         //解析PID参数
@@ -150,27 +142,57 @@ static void Vofa_Receive_Task() {
             Speed = atof(ptr + 5);
             printf("Set Speed: %f\r\n", Speed);
         }
-        if ((ptr = strstr(cmd_str, "kz")) != NULL) {
-            kz = atof(ptr + 2);
-            printf("Set kz: %f\r\n", kz);
+        if ((ptr = strstr(cmd_str, "ikp")) != NULL) {
+            inner_dir_kp = atof(ptr + 3);
+            printf("Set iKp: %f\r\n", inner_dir_kp);
         }
+        if ((ptr = strstr(cmd_str, "ikd")) != NULL) {
+            inner_dir_kd = atof(ptr + 3);
+            printf("Set ikd: %f\r\n", inner_dir_kd);
+        }
+        if ((ptr = strstr(cmd_str, "debugs")) != NULL) {
+            debugspeed = atof(ptr + 6);
+            printf("Set debugspeed: %f\r\n", debugspeed);
+        }
+        if ((ptr = strstr(cmd_str, "brushnum")) != NULL) {
+            Brush_num = atof(ptr + 8);
+            printf("Set Brush_num: %d\r\n", Brush_num);
+        }
+        if ((ptr = strstr(cmd_str, "brushon")) != NULL) {
+            Brush = 1;
+            printf("BrushON\r\n");
+        }
+        if ((ptr = strstr(cmd_str, "brushoff")) != NULL) {
+            Brush = 0;
+            printf("BrushOFF\r\n");
+        }
+        if ((ptr = strstr(cmd_str, "barriertime")) != NULL) {
+            barrier_time = atof(ptr + 11);
+            printf("Set barrier_time: %d\r\n", barrier_time);
+        }
+        if ((ptr = strstr(cmd_str, "baoguang")) != NULL) {
+            exposure_value = atof(ptr + 8);
+            printf("Set baoguang: %d\r\n", exposure_value);
+        }
+
         //测试绕标志牌
         if ((ptr = strstr(cmd_str, "DIRL")) != NULL) {
             track_state.special_barrier_dir = DIR_LEFT;
             track_state.is_special_barrier = true;
 
-            if(track_state.is_special_barrier){
+            //if(track_state.is_special_barrier){
             track_state.allow_change_special_barrier=false;
-            }
+            //}
             printf("LEFT\r\n");
         }
         if ((ptr = strstr(cmd_str, "DIRR")) != NULL) {
             track_state.special_barrier_dir = DIR_RIGHT;
             track_state.is_special_barrier = true;
 
-            if(track_state.is_special_barrier){
+            //if(track_state.is_special_barrier){
             track_state.allow_change_special_barrier=false;
-            }
+            //}
+            
             printf("RIGHT\r\n");
         }
 
@@ -200,8 +222,8 @@ static void Seekfree_Send_Image_Task() {
         // 1. 巡线模式 (带边界的灰度图)
         seekfree_assistant_camera_information_config(
             SEEKFREE_ASSISTANT_MT9V03X, 
-            img_bin[0], // 请确保这里是160x120的二值化/灰度首地址
-            //img_gray[0],
+            //img_bin[0], // 请确保这里是160x120的二值化/灰度首地址
+            img_gray[0],
             TRACK_W, 
             TRACK_H
         );

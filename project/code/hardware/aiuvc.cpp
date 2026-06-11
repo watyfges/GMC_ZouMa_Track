@@ -17,7 +17,7 @@ static void ai_thread_func()
             // 获取原始图像帧，检查它的尺寸
             cv::Mat frame = ai_cam.get_frame_mjpg();
             
-            // 只有当长宽完完全全等于 640x480 (AI_S_W x AI_S_H) 时，才允许处理
+            // 只有当长宽完完全全等于 (AI_S_W x AI_S_H) 时，才允许处理
             if (!frame.empty() && frame.cols == AI_S_W && frame.rows == AI_S_H) 
             {
                 uint16_t* raw_rgb = ai_cam.get_rgb_image_ptr();

@@ -10,29 +10,33 @@
 #include "../code/hardware/trackuvc.h"
 #include "../code/hardware/aiuvc.h"
 #include "../code/hardware/tof.h"
+#include "../code/hardware/brushless.h"
 #include "../code/vision/edge_extract.h"
 #include "../code/vision/Threshold.h"
 #include "../code/control/control.h"
 #include "../code/control/PID.h"
-#include "../code/control/Fuzzy.h"
+#include "../code/control/menu.h"
 #include "../code/tflite/aitask.h"
 #include "../code/global_state.h"
 #include "../code/element/cross.h"
 #include "../code/element/island.h"
+#include "../code/element/zebra.h"
+#include "../code/element/barrier.h"
+#include "../code/element/redblock.h"
+#include "../code/element/ramp.h"
 #include "../code/communication/TCPDebug.h"
 #include "../code/communication/usart.h"
 
-// #include "ramp.h"
 // 
 // #include "servo.h"
-// 
-// #include "brushless.h" 
-// #include "barrier.h"
+
 
 
 #include <opencv2/imgproc.hpp>
 #include <opencv2/core.hpp>
 #include <opencv2/opencv.hpp>
+#include <linux/videodev2.h>
+#include <sys/ioctl.h>
 #include <vector>
 #include <algorithm>
 #include <map>
@@ -51,7 +55,7 @@
 #include <fcntl.h>
 #include <termios.h>
 #include <errno.h>
-
+#include <cstring>
 
 using namespace cv;
 using namespace std;

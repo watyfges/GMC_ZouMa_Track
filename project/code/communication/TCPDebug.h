@@ -9,7 +9,7 @@
 #define DEBUG_MODE_BOTH     3  // 模式3：同时开启 Vofa (波形/调参) 和 逐飞助手 (传图像)
 
 // ★ 在这里修改当前的调试模式 ★
-#define CURRENT_DEBUG_MODE  DEBUG_MODE_BOTH  
+#define CURRENT_DEBUG_MODE  DEBUG_MODE_BOTH
 
 // ======================= 摄像头视图定义 =======================
 #define VIEW_TRACK_CAMERA   0  // 巡线摄像头
@@ -19,26 +19,43 @@ extern uint8 current_camera_view;
 
 // ======================= 外部变量声明 =======================
 // (如果这些变量已经在 head.h 声明过，这里可省略，确保能访问到即可)
-extern uint8_t img_bin[TRACK_H][TRACK_W];  // 巡线二值化图像 (根据你实际的名字修改)
+extern uint8_t img_bin[TRACK_H][TRACK_W];  // 巡线二值化图像
 extern uint8 L_boundary[];
 extern uint8 M_boundary[];
 extern uint8 R_boundary[];
 extern uint16 img_ai[AI_H][AI_W]; // AI摄像头图像
 
 //电机PID定义
-extern float Left_Motor_Kp;
-extern float Left_Motor_Ki;
-extern float Left_Motor_Kd;
-extern float Right_Motor_Kp;
-extern float Right_Motor_Ki;
-extern float Right_Motor_Kd;
+// extern float Left_Motor_Kp;
+// extern float Left_Motor_Ki;
+// extern float Left_Motor_Kd;
+// extern float Right_Motor_Kp;
+// extern float Right_Motor_Ki;
+// extern float Right_Motor_Kd;
+
+
+extern float lki;
+extern float lkp;
+
+extern float rki;
+extern float rkp;
+
+extern float inner_dir_kp;
+extern float inner_dir_kd;
 
 //小车pid定义
 extern int Dis;
 extern float kp1,kp2,kd;
 extern float Speed;
 extern float kz;
+extern float debugspeed;
 
+extern bool Brush;
+extern int Brush_num;
+
+extern int barrier_time;
+
+extern int exposure_value;
 // ======================= 接口声明 =======================
 // 初始化调试模块 (传入服务器IP，以及两个不同的端口)
 void Debug_Init(const char* ip, uint32 vofa_port, uint32 seekfree_port);

@@ -19,8 +19,8 @@ typedef struct {
     bool is_zebra;         // 斑马线/起跑线标志
     bool is_straight;      // 直道标志 ok
     bool is_barrier;       // 障碍物标志
-    bool allow_change_special_barrier;  //允许修改标志 
     bool is_special_barrier;   
+    bool allow_change_special_barrier;  //允许修改标志 
     BypassDir_e special_barrier_dir;
 
     // 视野前瞻与安全参数
@@ -38,11 +38,11 @@ extern TrackState_t track_state; // 赛道状态结构体
 #endif
 
 //定义TCP服务器地址
-#define SERVER_IP "192.168.1.109" 
+#define SERVER_IP "192.168.10.132" 
 #define PORT_VOFA 1347
 #define PORT_SEEKFREE 8086
 
-#define MAX_DUTY  (80 )   // 最大 MAX_DUTY% 占空比
+#define MAX_DUTY  (90 )   // 最大 MAX_DUTY% 占空比
 
 //定义巡线摄像头参数
 #define TRACK_W 160
