@@ -38,7 +38,7 @@ extern TrackState_t track_state; // 赛道状态结构体
 #endif
 
 //定义TCP服务器地址
-#define SERVER_IP "192.168.1.109" 
+#define SERVER_IP "192.168.1.132" 
 #define PORT_VOFA 1347
 #define PORT_SEEKFREE 8086
 

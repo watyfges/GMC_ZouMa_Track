@@ -111,48 +111,6 @@ int fetch_new_frame(void) {
     return 1;
 }
 
-static void push_external_black_pixel(int y, int x, int *tail) {
-    if (x < 0 || x >= TRACK_W || y < 0 || y >= TRACK_H) return;
-    if (img_bin[y][x] != 0) return;
-
-    img_bin[y][x] = 64;
-    fill_queue[(*tail)++] = (y << 8) | x;
-}
-
-static void fill_internal_black_holes(void) {
-    const int dx[] = {0, 0, -1, 1, -1, -1, 1, 1};
-    const int dy[] = {-1, 1, 0, 0, -1, 1, -1, 1};
-    int head = 0;
-    int tail = 0;
-
-    // Mark black areas connected to the image border, then fill the remaining inner holes.
-    for (int x = 0; x < TRACK_W; x++) {
-        push_external_black_pixel(0, x, &tail);
-        push_external_black_pixel(TRACK_H - 1, x, &tail);
-    }
-    for (int y = 0; y < TRACK_H; y++) {
-        push_external_black_pixel(y, 0, &tail);
-        push_external_black_pixel(y, TRACK_W - 1, &tail);
-    }
-
-    while (head < tail) {
-        uint16_t node = fill_queue[head++];
-        int y = node >> 8;
-        int x = node & 0xFF;
-
-        for (int d = 0; d < 8; d++) {
-            push_external_black_pixel(y + dy[d], x + dx[d], &tail);
-        }
-    }
-
-    for (int y = 0; y < TRACK_H; y++) {
-        for (int x = 0; x < TRACK_W; x++) {
-            if (img_bin[y][x] == 0) img_bin[y][x] = 255;
-            else if (img_bin[y][x] == 64) img_bin[y][x] = 0;
-        }
-    }
-}
-
 void extract_track_region(void) {
     int check = 0;
     
@@ -483,7 +441,6 @@ void edge_extract(void) {
     if (fetch_new_frame() == 0) return; 
     Get01change_dajin();
     extract_track_region();
-    fill_internal_black_holes();
     find_track_boundaries();
     detect_track_elements();
     
