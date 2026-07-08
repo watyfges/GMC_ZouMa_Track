@@ -168,25 +168,6 @@ int8 zf_device_uvc::set_auto_exposure(int32_t auto_exposure_mode)
             std::cerr << "set auto exposure mode failed!" << std::endl;
             return -1;
         }
-
-        std::cout << "AUTO_EXPOSURE = "
-          << cap.get(cv::CAP_PROP_AUTO_EXPOSURE) << std::endl;
-
-    std::cout << "EXPOSURE = "
-          << cap.get(cv::CAP_PROP_EXPOSURE) << std::endl;
-
-    std::cout << "GAIN = "
-          << cap.get(cv::CAP_PROP_GAIN) << std::endl;
-
-    std::cout << "BRIGHTNESS = "
-          << cap.get(cv::CAP_PROP_BRIGHTNESS) << std::endl;
-
-    std::cout << "CONTRAST = "
-          << cap.get(cv::CAP_PROP_CONTRAST) << std::endl;
-
-    std::cout << "FPS = "
-          << cap.get(cv::CAP_PROP_FPS) << std::endl;
-
     }
     catch(const cv::Exception& e)
     {
@@ -223,61 +204,13 @@ int8 zf_device_uvc::set_exposure_value(int32_t exposure_value)
 
     try
     {
-        //设置手动曝光值
+        // 设置手动曝光值
         bool set_result = cap.set(cv::CAP_PROP_EXPOSURE, static_cast<double>(exposure_value));
         if(!set_result)
         {
             std::cerr << "set exposure value failed!" << std::endl;
             return -1;
         }
-        bool ret = cap.set(cv::CAP_PROP_EXPOSURE, exposure_value);
-
-        //变化时才设置
-//         static int32_t last_exposure = -1;
-// if(exposure_value != last_exposure)
-// {
-//     bool set_result = cap.set(cv::CAP_PROP_EXPOSURE, static_cast<double>(exposure_value));
-
-//         if(!set_result)
-//         {
-//             std::cerr << "set exposure value failed!" << std::endl;
-//             return -1;
-//         }
-//         bool ret = cap.set(cv::CAP_PROP_EXPOSURE, exposure_value);
-
-//     last_exposure = exposure_value;
-// }
-
-//debug1
-// double actual_exposure =
-//     cap.get(cv::CAP_PROP_EXPOSURE);
-
-// double actual_gain =
-//     cap.get(cv::CAP_PROP_GAIN);
-
-// std::cout
-//     << "set exposure = " << exposure_value
-//     << ", ret = " << ret
-//     << ", actual exposure = " << actual_exposure
-//     << ", gain = " << actual_gain
-//     << std::endl;
-
-    //debug2
-// for(int value = 1; value <= 250; value += 5)
-// {
-//     bool ret = cap.set(cv::CAP_PROP_EXPOSURE, value);
-
-//     usleep(100000);
-
-//     double actual = cap.get(cv::CAP_PROP_EXPOSURE);
-
-//     std::cout
-//         << "SET=" << value
-//         << "  ACTUAL=" << actual
-//         << "  RET=" << ret
-//         << std::endl;
-// }
-
     }
     catch(const cv::Exception& e)
     {

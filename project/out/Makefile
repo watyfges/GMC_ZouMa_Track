@@ -777,30 +777,6 @@ home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/co
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/control/menu.cpp.s
 .PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/control/menu.cpp.s
 
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/barrier.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/barrier.cpp.o
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/barrier.o
-
-# target to build an object file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/barrier.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/barrier.cpp.o
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/barrier.cpp.o
-
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/barrier.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/barrier.cpp.i
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/barrier.i
-
-# target to preprocess a source file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/barrier.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/barrier.cpp.i
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/barrier.cpp.i
-
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/barrier.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/barrier.cpp.s
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/barrier.s
-
-# target to generate assembly for a file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/barrier.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/barrier.cpp.s
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/barrier.cpp.s
-
 home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/cross.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/cross.cpp.o
 .PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/cross.o
 
@@ -872,54 +848,6 @@ home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/el
 home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/ramp.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/ramp.cpp.s
 .PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/ramp.cpp.s
-
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/redblock.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/redblock.cpp.o
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/redblock.o
-
-# target to build an object file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/redblock.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/redblock.cpp.o
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/redblock.cpp.o
-
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/redblock.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/redblock.cpp.i
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/redblock.i
-
-# target to preprocess a source file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/redblock.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/redblock.cpp.i
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/redblock.cpp.i
-
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/redblock.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/redblock.cpp.s
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/redblock.s
-
-# target to generate assembly for a file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/redblock.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/redblock.cpp.s
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/redblock.cpp.s
-
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/zebra.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/zebra.cpp.o
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/zebra.o
-
-# target to build an object file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/zebra.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/zebra.cpp.o
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/zebra.cpp.o
-
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/zebra.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/zebra.cpp.i
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/zebra.i
-
-# target to preprocess a source file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/zebra.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/zebra.cpp.i
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/zebra.cpp.i
-
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/zebra.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/zebra.cpp.s
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/zebra.s
-
-# target to generate assembly for a file
-home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/zebra.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/zebra.cpp.s
-.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/zebra.cpp.s
 
 home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/hardware/aiuvc.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/hardware/aiuvc.cpp.o
 .PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/hardware/aiuvc.o
@@ -1347,9 +1275,6 @@ help:
 	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/control/menu.o"
 	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/control/menu.i"
 	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/control/menu.s"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/barrier.o"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/barrier.i"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/barrier.s"
 	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/cross.o"
 	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/cross.i"
 	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/cross.s"
@@ -1359,12 +1284,6 @@ help:
 	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/ramp.o"
 	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/ramp.i"
 	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/ramp.s"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/redblock.o"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/redblock.i"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/redblock.s"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/zebra.o"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/zebra.i"
-	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/zebra.s"
 	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/hardware/aiuvc.o"
 	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/hardware/aiuvc.i"
 	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/hardware/aiuvc.s"

@@ -1,8 +1,8 @@
-#ifndef RAMP_H
-#define RAMP_H
+#ifndef _RAMP_H_
+#define _RAMP_H_
 
 #include "head.h"
 
-void Ramp_Detect();
+//bool Cross_Detect(void);
 
-#endif 
+#endif

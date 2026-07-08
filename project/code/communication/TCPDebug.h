@@ -9,7 +9,7 @@
 #define DEBUG_MODE_BOTH     3  // 模式3：同时开启 Vofa (波形/调参) 和 逐飞助手 (传图像)
 
 // ★ 在这里修改当前的调试模式 ★
-#define CURRENT_DEBUG_MODE  DEBUG_MODE_BOTH
+#define CURRENT_DEBUG_MODE  DEBUG_MODE_BOTH 
 
 // ======================= 摄像头视图定义 =======================
 #define VIEW_TRACK_CAMERA   0  // 巡线摄像头
@@ -54,8 +54,6 @@ extern bool Brush;
 extern int Brush_num;
 
 extern int barrier_time;
-
-extern int exposure_value;
 // ======================= 接口声明 =======================
 // 初始化调试模块 (传入服务器IP，以及两个不同的端口)
 void Debug_Init(const char* ip, uint32 vofa_port, uint32 seekfree_port);

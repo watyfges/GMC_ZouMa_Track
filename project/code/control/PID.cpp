@@ -120,13 +120,3 @@ void r_speed_pid(float aim_speed, float now_speed)
 
     r_speed_out = r_speed_out * filter + r_speed_last_out * (1.0f - filter);
 }
-
-void Dynamic_PD_Compute(float kp1, float kp2, float kd, float kz, float error, float GZ_error) {
-
-    volatile float prev_error = 0;
-
-    inner_dir_out = (error * error * kp2 + kp1) * error + (error - prev_error) * kd + GZ_error * kz;
-
-    // 状态更新
-    prev_error = error;
-}

@@ -19,8 +19,6 @@ void track_uvc_get_image(uint8_t *out_buffer);
 
 #ifdef __cplusplus
 }
-
-bool track_uvc_get_bgr_frame(cv::Mat &out_frame);
 #endif
 
 #endif // _TRACK_UVC_H_

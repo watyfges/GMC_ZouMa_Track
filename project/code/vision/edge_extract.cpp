@@ -1,5 +1,4 @@
 #include "edge_extract.h"
-#include <chrono>
 
 TrackState_t track_state = {0}; 
 
@@ -12,17 +11,13 @@ uint8_t L_boundary[TRACK_H] = {0};
 uint8_t R_boundary[TRACK_H] = {0};
 uint8_t M_boundary[TRACK_H] = {0};
 
-
-extern  volatile int16 dl1x_distance_raw;
-int endFC=0;
-
 //漫水填充队列 (扩大以防8连通爆队列)
 static uint16_t fill_queue[TRACK_W * TRACK_H];
 
 extern void Cross_Detect();
 extern void Island_Detect();
 extern void Get01change_dajin(); 
-extern std::chrono::time_point<std::chrono::high_resolution_clock> ua_start,ua_end;
+
 //元素检测
 // extern bool detect_zebra_crossing(void); // 斑马线
 // extern bool Special_Barrier_Detect(void); 
@@ -34,12 +29,6 @@ extern std::chrono::time_point<std::chrono::high_resolution_clock> ua_start,ua_e
 extern void beep_on(void);          
 extern void beep_off(void);
 
-
-extern IslandController_t IslandCtrl;
-extern int Road_width[TRACK_H];
-int fill_point_x = TRACK_W / 2;
-
-uint8_t L_FLAG=0,R_FLAG=0,FLAG1=0,FLAG2=0;
 
 // 两点连线的最小二乘法斜率
 static float Mid_calculateSlopeConnect(int first_y, int second_y, int first_x, int second_x) {
@@ -166,20 +155,13 @@ static void fill_internal_black_holes(void) {
 
 void extract_track_region(void) {
     int check = 0;
-
-    if(track_state.special_barrier_dir==DIR_LEFT){
-        fill_point_x = TRACK_W - 1;
-    }
-    if(track_state.special_barrier_dir==DIR_RIGHT){
-        fill_point_x = 0;
-    }
     
     // 从底层两边分别寻点发散，使用 8连通 漫水填充
     const int dx[] = {0, 0, -1, 1, -1, -1, 1, 1};
     const int dy[] = {-1, 1, 0, 0, -1, 1, -1, 1};
 
     // 从中心向右寻点填充
-    for(int i = fill_point_x; i < TRACK_W; ++i){
+    for(int i = TRACK_W/2; i < TRACK_W; ++i){
         if(check) break;
         if(img_bin[LOWEST_ROW][i] == 255) {
             int head = 0, tail = 0;
@@ -205,7 +187,7 @@ void extract_track_region(void) {
     }
 
     // 从中心向左寻点填充
-    for(int i = fill_point_x; i >= 0; --i){
+    for(int i = TRACK_W/2 - 1; i >= 0; --i){
         if(check) break;
         if(img_bin[LOWEST_ROW][i] == 255) {
             int head = 0, tail = 0;
@@ -330,20 +312,11 @@ bool R_Straight_Judge() {
 }
 
 void detect_track_elements(void) {
-
-    if(!track_state.is_island && !track_state.is_special_barrier && !track_state.is_barrier && !track_state.is_cross){
-        Ramp_Detect();
-    }
-    
-     // if(!track_state.is_ramp && !track_state.is_island && !track_state.is_special_barrier && !track_state.is_barrier && !track_state.is_cross){
-    //      Zebra_Check();
-    // }
-
     // ==========================================================
     // 优先级 1：发车斑马线/停止线 (最高级，全局生效)
     // ==========================================================
     // track_state.is_zebra = detect_zebra_crossing();
-   
+
     // ==========================================================
     // 优先级 2：特殊障碍物 (叠加态 Overlay State)
     // ==========================================================
@@ -354,7 +327,7 @@ void detect_track_elements(void) {
     //     track_state.is_special_barrier = false;
     //     track_state.special_barrier_dir = DIR_NONE;
     // }
-    //Red_Block_Detect();
+    
     // ==========================================================
     // 优先级 3：标准赛道地形 (基础态 Base State，互斥排他)
     // ==========================================================
@@ -377,39 +350,17 @@ void detect_track_elements(void) {
         //     track_state.is_island = true;
         // }
    //}
-
-    //十字路口    
-    if (!track_state.is_island && !track_state.is_barrier && !track_state.is_ramp){
+    if (!track_state.is_island){
         Cross_Detect();
     }
-
-    //环岛
-    if (!track_state.is_cross && !track_state.is_barrier && !track_state.is_ramp && !track_state.is_special_barrier){
+    if (!track_state.is_cross){
         Island_Detect();
     }
 
-    //坡道
-
-    // if(!track_state.is_island && !track_state.is_cross && !track_state.is_barrier){
-    //     //Ramp_Detect();//检测坡道
-    //     if(track_state.is_ramp)printf("R\r\n");//如果检测到坡道，则输出R
-    // }
-
-    //障碍
-    // if(!track_state.is_special_barrier && !track_state.is_cross && !track_state.is_island ){
-    //     Barrier_Detect();
-    // }
-    
-    if(endFC==1){
-        GPIO_received();
-    }
-    
-
-    //printf("%d",dl1x_distance_raw);
-    
     //如果找到元素蜂鸣器就响
     if (track_state.is_island || track_state.is_cross || 
-        track_state.is_ramp || track_state.is_barrier || track_state.is_special_barrier) 
+        track_state.is_ramp || track_state.is_barrier || 
+        track_state.is_zebra || track_state.is_special_barrier) 
     {
         beep_on();
     } else {
@@ -467,55 +418,9 @@ void calculate_centerline(void) {
             }
         }
 
-        float M_K = 0, M_B = 0; 
-        // if(track_state.longest_white_len)
-        // {
-        //     M_K = ((float)R_boundary[TRACK_H - 1 - track_state.longest_white_len] - 
-        //             (float)(Road_width[TRACK_H - 1 - track_state.longest_white_len] / 2) - (float)(TRACK_W - 1) / 2) / 
-        //                 ((float)(TRACK_H - 1 - track_state.longest_white_len) - (float)(TRACK_H - 1)) ;
-        //     M_B = (float)(TRACK_W - 1) / 2 - M_K * (float)(TRACK_H - 1);
-            
-        //     if(IslandCtrl.state == ISLAND_STATE_FINDEXIT_V || IslandCtrl.state == ISLAND_STATE_EXITING)
-        //     {
-        //         for (int i = LOWEST_ROW - track_state.longest_white_len; i < TRACK_H; ++i) {
-        //             int x = (int)(M_K * i + M_B + 0.5f);
-        //             if (x < 0) x = 0;
-        //             if (x > TRACK_W - 1) x = TRACK_W - 1;
-        //             M_boundary[i] = x;
-        //         }
-        //         printf("%f,%f\r\n",(float)R_boundary[TRACK_H - 1 - track_state.longest_white_len] - (float)(Road_width[TRACK_H - 1 - track_state.longest_white_len] / 2), TRACK_H - 1 - track_state.longest_white_len);
-        //         printf("L_W:%d, R:%d\r\n",track_state.longest_white_len, R_boundary[TRACK_H - 1 - track_state.longest_white_len]);
-        //     }
-        // }
-        
-        //fill_point_x = TRACK_W / 2;
-
-        if(track_state.special_barrier_dir==DIR_LEFT){
-            for (int i = LOWEST_ROW - track_state.longest_white_len - 1; i < TRACK_H; i++) {
-                M_boundary[i] = (L_boundary[i] - 5) > 0 ? L_boundary[i] - 5 : 0;
-            }
-            //ua_end = std::chrono::high_resolution_clock::now();
-            //auto infer_time_us = std::chrono::duration_cast<std::chrono::microseconds>(ua_end - ua_start).count();
-            //printf("%f\r\n",infer_time_us / 1000.0f);
-            if(!FLAG1){
-                L_FLAG=1;
-                FLAG1=1;
-            }
-        }
-        if(track_state.special_barrier_dir==DIR_RIGHT){
-            for (int i = LOWEST_ROW - track_state.longest_white_len - 1; i < TRACK_H; i++) {
-                M_boundary[i] = (R_boundary[i] + 5) > 0 ? R_boundary[i] + 5 : TRACK_W - 1;
-            }
-            if(!FLAG1){
-                R_FLAG=1;
-                FLAG1=1;
-            }
-        }
-
         // 远端盲区最小二乘法前瞻延伸
-        M_K = 0;
-        M_B = 0; 
-        M_calculateSlopeIntercept(LOWEST_ROW - track_state.longest_white_len, LOWEST_ROW, M_boundary, &M_K, &M_B); 
+        float M_K = 0, M_B = 0; 
+        M_calculateSlopeIntercept(LOWEST_ROW - track_state.longest_white_len, LOWEST_ROW-20, M_boundary, &M_K, &M_B); 
         
         for (int i = LOWEST_ROW - track_state.longest_white_len - 1; i >= 0; --i) {
             int x = (int)(M_K * i + M_B + 0.5f);
@@ -526,19 +431,27 @@ void calculate_centerline(void) {
     //}
 
     //绕标志牌
+    if(track_state.special_barrier_dir==DIR_LEFT&&track_state.is_special_barrier){
+        for (int i = 0; i < TRACK_H; i++) {
+            M_boundary[i] = M_boundary[i]-30;
+        }
+    }
+    if(track_state.special_barrier_dir==DIR_RIGHT&&track_state.is_special_barrier){
+        for (int i = 0; i < TRACK_H; i++) {
+            M_boundary[i] = M_boundary[i]+30;
+        }
+    }
+    //test
     // if(track_state.special_barrier_dir==DIR_LEFT&&track_state.is_special_barrier){
     //     for (int i = 0; i < TRACK_H; i++) {
-    //         M_boundary[i] = M_boundary[i]-30;
+    //         M_boundary[i] = L_boundary[i];
     //     }
     // }
     // if(track_state.special_barrier_dir==DIR_RIGHT&&track_state.is_special_barrier){
     //     for (int i = 0; i < TRACK_H; i++) {
-    //         M_boundary[i] = M_boundary[i]+30;
+    //         M_boundary[i] = R_boundary[i];
     //     }
     // }
-    //test
-
-    
 
 }
 
@@ -570,17 +483,11 @@ void edge_extract(void) {
     if (fetch_new_frame() == 0) return; 
     Get01change_dajin();
     extract_track_region();
-    if(track_state.is_special_barrier==true){
-        fill_internal_black_holes();
-    }
+    //fill_internal_black_holes();
     find_track_boundaries();
     detect_track_elements();
     
     calculate_centerline();
     //check_failsafe(); // Failsafe是基础巡线保底，启用执行
-    if(FLAG1==1){
-        FLAG2=1;
-    }
 
 }
-

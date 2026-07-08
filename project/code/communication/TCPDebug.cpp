@@ -130,10 +130,6 @@ static void Vofa_Receive_Task() {
             kp1 = atof(ptr + 3);
             printf("Set Kp1: %f\r\n", kp1);
         }
-        if ((ptr = strstr(cmd_str, "kp2")) != NULL) {
-            kp2 = atof(ptr + 3);
-            printf("Set Kp2: %f\r\n", kp2);
-        }
         if ((ptr = strstr(cmd_str, "kd")) != NULL) {
             kd = atof(ptr + 2);
             printf("Set Kd: %f\r\n", kd);
@@ -170,10 +166,6 @@ static void Vofa_Receive_Task() {
             barrier_time = atof(ptr + 11);
             printf("Set barrier_time: %d\r\n", barrier_time);
         }
-        if ((ptr = strstr(cmd_str, "baoguang")) != NULL) {
-            exposure_value = atof(ptr + 8);
-            printf("Set baoguang: %d\r\n", exposure_value);
-        }
 
         //测试绕标志牌
         if ((ptr = strstr(cmd_str, "DIRL")) != NULL) {
@@ -192,7 +184,6 @@ static void Vofa_Receive_Task() {
             //if(track_state.is_special_barrier){
             track_state.allow_change_special_barrier=false;
             //}
-            
             printf("RIGHT\r\n");
         }
 
@@ -222,8 +213,8 @@ static void Seekfree_Send_Image_Task() {
         // 1. 巡线模式 (带边界的灰度图)
         seekfree_assistant_camera_information_config(
             SEEKFREE_ASSISTANT_MT9V03X, 
-            //img_bin[0], // 请确保这里是160x120的二值化/灰度首地址
-            img_gray[0],
+            img_bin[0], // 请确保这里是160x120的二值化/灰度首地址
+            //img_gray[0],
             TRACK_W, 
             TRACK_H
         );

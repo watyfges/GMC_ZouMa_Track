@@ -626,35 +626,4 @@ CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPI
  /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../../libraries/zf_components/tflm/tensorflow/lite/micro/arena_allocator/recording_single_arena_buffer_allocator.h \
  /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../../libraries/zf_components/tflm/tensorflow/lite/micro/system_setup.h \
  /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../../libraries/zf_components/tflm/tensorflow/lite/micro/cortex_m_generic/debug_log_callback.h \
- /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../model/loong_cnn_model_simple.h \
- /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../user/head.h \
- /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../user/../code/hardware/motor.h \
- /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../user/../code/hardware/imu.h \
- /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../user/../code/hardware/button.h \
- /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../user/../code/hardware/beep.h \
- /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../user/../code/hardware/encoder.h \
- /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../user/../code/hardware/ips200.h \
- /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../user/../code/hardware/trackuvc.h \
- /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../user/../code/hardware/aiuvc.h \
- /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../user/../code/hardware/tof.h \
- /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../user/../code/hardware/brushless.h \
- /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../user/../code/vision/edge_extract.h \
- /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../user/../code/vision/Threshold.h \
- /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../user/../code/control/control.h \
- /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../user/../code/control/PID.h \
- /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../user/../code/control/menu.h \
- /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../user/../code/tflite/aitask.h \
- /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../user/../code/global_state.h \
- /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../user/../code/element/cross.h \
- /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../user/../code/element/island.h \
- /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../user/../code/element/zebra.h \
- /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../user/../code/element/barrier.h \
- /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../user/../code/element/redblock.h \
- /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../user/../code/element/ramp.h \
- /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../user/../code/communication/TCPDebug.h \
- /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../user/../code/communication/usart.h \
- /opt/loongarch-toolchain/loongarch64-linux-gnu/sysroot/usr/include/linux/videodev2.h \
- /opt/loongarch-toolchain/loongarch64-linux-gnu/sysroot/usr/include/linux/v4l2-common.h \
- /opt/loongarch-toolchain/loongarch64-linux-gnu/sysroot/usr/include/linux/v4l2-controls.h \
- /opt/loongarch-toolchain/loongarch64-linux-gnu/sysroot/usr/include/termios.h \
- /opt/loongarch-toolchain/loongarch64-linux-gnu/sysroot/usr/include/bits/termios.h
+ /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../model/loong_cnn_model_simple.h

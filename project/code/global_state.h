@@ -19,8 +19,8 @@ typedef struct {
     bool is_zebra;         // 斑马线/起跑线标志
     bool is_straight;      // 直道标志 ok
     bool is_barrier;       // 障碍物标志
-    bool is_special_barrier;   
     bool allow_change_special_barrier;  //允许修改标志 
+    bool is_special_barrier;   
     BypassDir_e special_barrier_dir;
 
     // 视野前瞻与安全参数
@@ -38,7 +38,7 @@ extern TrackState_t track_state; // 赛道状态结构体
 #endif
 
 //定义TCP服务器地址
-#define SERVER_IP "192.168.10.132" 
+#define SERVER_IP "192.168.1.132" 
 #define PORT_VOFA 1347
 #define PORT_SEEKFREE 8086
 

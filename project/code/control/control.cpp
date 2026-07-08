@@ -17,23 +17,18 @@ static uint8_t filter_count = 0;   // 记录已存入的数据个数（处理刚
 float V_Left, V_Right, Speed=300;//左轮速度，右轮速度, 速度
 float Right_Duty = 0, Left_Duty = 0; //左右电机占空比
 int Dis = 55;//距离，范围0——74
-float kp1=0.0,kp2=0,kd=0,kz = 0;
+float kp1=7.0,kp2=0,kd=185,kz = 0;
 
 //PID组别选择
 uint8_t Group=0;
-
-//发车
-bool Departure=false;   //发车后一定时间内置为true
-int Dtime=0,Departure_time=800;//计时器用，发车时间
 
 //PID
 // IncrementalPID Left_Motor_PID, Right_Motor_PID;//左右电机增量式PID控制器
 // Dynamic_PD Servo_PD;    //二次PD控制器
 
-//绕桩
-int barrier_time=100; //*10ms
+//绕桩持续时间
+int barrier_time=50; //*10ms
 int ptime=0;//供计时器用
-float barrier_speed=160;
 
 //负压设置
 bool Brush = 0;//1为开负压，0为关负压
@@ -65,12 +60,6 @@ extern float r_speed_out;
 float lkp=0,lki=0,rkp=0,rki=0;
 float debugspeed=0;
 
-
-extern IslandController_t IslandCtrl;
-extern float inner_dir_kd;
-
-extern uint8_t L_FLAG,R_FLAG,FLAG1,FLAG2;
-
 //变量初始化
 void control_signal_init() {
     // Right_Motor_PID.LastError = 0; Right_Motor_PID.PrevError = 0;
@@ -83,25 +72,13 @@ void control_signal_init() {
     l_speed_kp=0;
     r_speed_ki=0;
     r_speed_kp=0;
-    FLAG1=0;
-    L_FLAG=0;
-    R_FLAG=0;
-    Dtime=0;
-    //ptime=0;
-    Departure=false;
     if(track_state.stop_flag == 0)brushtime=0;
-    if(!track_state.is_special_barrier) {
-        track_state.allow_change_special_barrier=true;
-    }
-    //track_state.allow_change_special_barrier=true;
-    // track_state.is_special_barrier = false;      // 确保标志位被清除
-    // track_state.special_barrier_dir = DIR_NONE;  // 确保方向被归零
 }
 
 //PID选择
 void Choice_PID(int num) {
     switch(num){
-        case 0://测试，电脑debug用
+        case 0://测试
                 //Speed = 200;
                 //Dis = 55;             // 前瞻距离 
                 //Island_Time = 12;
@@ -120,35 +97,6 @@ void Choice_PID(int num) {
                 l_speed_ki=lki;
                 r_speed_kp=rkp;
                 r_speed_ki=rki;
-            break;
-        case 1:// 2.5m/s
-                kp1=0.008;
-                kp2=0.00015;
-                kd=4;
-                Speed = 120;
-                Dis = 45;             // 前瞻距离 
-                l_speed_kp=0.75;//电机PID
-                l_speed_ki=0.01;
-                r_speed_kp=0.72;
-                r_speed_ki=0.011;
-                barrier_time=300; //绕桩时间
-                //barrier_speed=120;
-                Brush=1;//开负压
-                Brush_num=850;//负压大小
-                
-                //Island_Time = 12;
-                // 转向PD控制器 (输出左右轮速度差)
-                //Dynamic_PD_Init(&Servo_PD, 
-                    // kp1,    // Kp1 一次项
-                    // kp2,    // Kp2 二次项
-                    // 1.0,    // 误差敏感度参数σ
-                    // kd,   // Kd 微分系数
-                    // kz,      // 陀螺仪参数Kz 
-                    // 600,    // 输出上限 (最大允许的左右轮速度差)
-                    // -600,   // 输出下限
-                    // 0       // 死区
-                //);
-                
             break;
         default:
             break;
@@ -207,37 +155,7 @@ float Err_Sum() {
     }
     last_error = error;
 
-    // if(IslandCtrl.state == ISLAND_STATE_EXIT_APPROACHING)
-    // {
-    //     printf("E:%f\r\n",error);
-    // }
-    //error = 44.9;
     //printf("error:%f\r\nweight_count:%f\r\nnow_mid:%f\r\n", error, weight_count, now_mid);
-
-    // if(L_FLAG==1){
-    //     if(error>-30){
-    //         //error=100;
-    //     }else{
-    //         L_FLAG=0;
-    //     }
-    //     Speed=0;
-    //     inner_dir_out=0;
-    // }
-    // if(R_FLAG==1){
-    //     if(error<30){
-    //         //error=-100;
-    //     }else{
-    //         R_FLAG=0;
-    //     }
-    //     Speed=0;
-    //     inner_dir_out=0;
-    // }
-    // printf("%f\r\n",error);
-
-    if(track_state.is_ramp == true )
-    {
-        error = 0;
-    }
 
     return error;
 }
@@ -250,13 +168,8 @@ float Err_Sum() {
 void turn_pit_callback() {
     // 1. 获取视觉误差
     float error = Err_Sum();
-    //outer_dir_pid(error);
-    //inner_dir_pid(GZ);
-
-    Dynamic_PD_Compute(kp1, kp2, kd, inner_dir_kd, error, GZ);
-
-    //printf("GZ:%f\r\n",GZ);
-
+    outer_dir_pid(error);
+    inner_dir_pid(GZ);
     // 2. 计算速度补偿值 (Turn Offset)
     // 此时 Dynamic_PD 的输出代表：为了纠正偏差，左右轮需要产生多大的速度差
     // float L_turn_offset = Dynamic_PD_Compute(&Servo_PD, 0, error);
@@ -269,43 +182,16 @@ void turn_pit_callback() {
     // V_Right = Speed + outer_dir_out;
     
     // 目标速度全扔给PID处理了，直接给我输出电机速度
-
-    //float target_speed = track_state.is_special_barrier ? barrier_speed : Speed;
-    //float target_speed = barrier_speed;
-    // V_Left  = target_speed; 
-    // V_Right = target_speed;
-
-
     V_Left  = Speed; 
     V_Right = Speed;
 
-    if(L_FLAG==1&&FLAG2==1){
-        if(M_boundary[70]<80){
-            V_Left=0;
-            //V_Right = target_speed;
-        }else{
-            L_FLAG=0;
-        }
-        
-    }
-    if(R_FLAG==1&&FLAG2==1){
-        if(M_boundary[70]>80){
-            V_Right=0;
-            //V_Left  = target_speed;
-        }else{
-            R_FLAG=0;
-        }
-        // Speed=0;
-        // inner_dir_out=0;
-    }
-    //printf("L:%d,R:%d,Speed:%f,VL:%f,VR:%f,error:%f,FLAG1:%d,FLAG2:%d，SP:%d\r\n",L_FLAG,R_FLAG,Speed,V_Left,V_Right,error,FLAG1,FLAG2,track_state.special_barrier_dir);
     // 4. 绕桩差速补偿
-    // if(track_state.is_special_barrier==true&&track_state.special_barrier_dir==DIR_LEFT){
-    //     V_Left = V_Left - 50;
-    // }
-    // if(track_state.is_special_barrier==true&&track_state.special_barrier_dir==DIR_RIGHT){
-    //     V_Right = V_Right - 50;
-    // }
+    if(track_state.is_special_barrier==true&&track_state.special_barrier_dir==DIR_LEFT){
+        V_Left = V_Left - 50;
+    }
+    if(track_state.is_special_barrier==true&&track_state.special_barrier_dir==DIR_RIGHT){
+        V_Right = V_Right - 50;
+    }
     
 }
 
@@ -345,7 +231,7 @@ void motor_pit_callback() {
     encoder_right = sum_right / filter_count;
     // ------------------- 滑动均值滤波结束 -------------------
 
-    // PID输出电机速度
+    // PID输出电机速度，已经做好三串
     r_speed_pid(V_Right,encoder_right);
     l_speed_pid(V_Left,encoder_left);
     //printf("%.f\r\n",l_speed_out);
@@ -370,61 +256,24 @@ void motor_pit_callback() {
 
     //printf("l_enc: %f, r_enc: %f, l_out: %f, r_out: %f\n", encoder_left, encoder_right,Left_Duty,Right_Duty);
     //printf("%f,%f,%f\n", V_Right, encoder_right, Right_Duty);
-    //Vofa_Send_Waveform(Right_Duty, encoder_right, Left_Duty,encoder_left);
+    Vofa_Send_Waveform(Right_Duty, encoder_right, Left_Duty,encoder_left);
 }
 
 //计时函数
 void time_pit_callback(){
-    //发车计时
-    if(Departure==false&&track_state.stop_flag==2)
-    {
-        Dtime++;
-        if(Dtime>=Departure_time){
-            Departure=true;
-            track_state.is_zebra=false;
-        }
-    }
+    
     //绕弯
     //开车时才允许运行
     //if(track_state.stop_flag==2){
-        // if(track_state.allow_change_special_barrier==false){
-        //     ptime++;
-        // }
-        // if(ptime==barrier_time){
-        //     ptime=0;
-        //     track_state.allow_change_special_barrier=true;
-        //     track_state.is_special_barrier=false;
-        //     track_state.special_barrier_dir=DIR_NONE;
-        // }
-
-    if(track_state.is_special_barrier==true)
-    {   
-        ptime++;
-        if(ptime >= barrier_time)
-        {   
-            track_state.allow_change_special_barrier=true;
-            track_state.special_barrier_dir = DIR_NONE;
-            track_state.is_special_barrier=false;
-            FLAG1=0;
-            FLAG2=0;
-            //printf("flag1");
+        if(track_state.allow_change_special_barrier==false){
+            ptime++;
         }
-    }
-    else
-    {
-        ptime = 0;
-        // if (ptime > 0) {
-        //     // 障碍物动作刚刚结束，进入冷却期，继续计时
-        //     ptime++;
-        //     if (ptime >= barrier_time + 100) { // 冷却 100 次中断 (约 200ms，可按需调大)
-        //         track_state.allow_change_special_barrier = true; // 车子彻底开过了，彻底解锁
-        //         ptime = 0; // 计时器归零，准备迎接下一个障碍物
-        //     }
-        // } else {
-        //     ptime = 0; // 平时保持为 0
-        // }
-    }
-    //printf("%d\r\n",track_state.allow_change_special_barrier);
+        if(ptime==barrier_time){
+            ptime=0;
+            track_state.allow_change_special_barrier=true;
+            track_state.is_special_barrier=false;
+            track_state.special_barrier_dir=DIR_NONE;
+        }
     //}
     
     // if(track_state.stop_flag==0){
@@ -432,11 +281,7 @@ void time_pit_callback(){
     //     track_state.is_special_barrier=false;
     //     track_state.special_barrier_dir=DIR_NONE;
     // }
-    //GPIO_received();
-    //printf("%f\r\n",Speed);
-    //uart_received();
-    //printf("flag2");
-    //printf("issp:%d,spd:%d,all:%d\r\n",track_state.is_special_barrier,track_state.special_barrier_dir,track_state.allow_change_special_barrier);
+     
 }
 
 void brushless_pit_callback(){

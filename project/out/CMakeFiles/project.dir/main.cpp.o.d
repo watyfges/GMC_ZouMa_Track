@@ -658,15 +658,8 @@ CMakeFiles/project.dir/main.cpp.o: \
  /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../user/../code/global_state.h \
  /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../user/../code/element/cross.h \
  /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../user/../code/element/island.h \
- /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../user/../code/element/zebra.h \
- /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../user/../code/element/barrier.h \
- /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../user/../code/element/redblock.h \
- /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../user/../code/element/ramp.h \
  /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../user/../code/communication/TCPDebug.h \
  /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../user/../code/communication/usart.h \
- /opt/loongarch-toolchain/loongarch64-linux-gnu/sysroot/usr/include/linux/videodev2.h \
- /opt/loongarch-toolchain/loongarch64-linux-gnu/sysroot/usr/include/linux/v4l2-common.h \
- /opt/loongarch-toolchain/loongarch64-linux-gnu/sysroot/usr/include/linux/v4l2-controls.h \
  /opt/loongarch-toolchain/loongarch64-linux-gnu/sysroot/usr/include/termios.h \
  /opt/loongarch-toolchain/loongarch64-linux-gnu/sysroot/usr/include/bits/termios.h \
  /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../code/vision/Threshold.h \
@@ -677,9 +670,5 @@ CMakeFiles/project.dir/main.cpp.o: \
  /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../code/global_state.h \
  /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../code/element/cross.h \
  /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../code/element/island.h \
- /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../code/element/zebra.h \
- /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../code/element/barrier.h \
- /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../code/element/redblock.h \
- /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../code/element/ramp.h \
  /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../code/communication/TCPDebug.h \
  /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../code/communication/usart.h

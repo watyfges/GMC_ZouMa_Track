@@ -4,7 +4,6 @@
 #include "head.h"
 
 void ips_draw();
-void menu_task();
 
 
 #endif

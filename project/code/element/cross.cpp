@@ -282,14 +282,6 @@ void Cross_Detect()
         }
         else
         {
-            if(Left_Up_Find)
-            {
-                Lengthen_Left_Boundry (Left_Up_Find);//左边界延长
-            }
-            if(Right_Up_Find)
-            {
-                Lengthen_Right_Boundry(Right_Up_Find);//右边界延长
-            }
             track_state.is_cross = false;//没找到两个上点，就认为没找到十字
         }
     //}
