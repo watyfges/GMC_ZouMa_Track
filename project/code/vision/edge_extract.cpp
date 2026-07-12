@@ -386,7 +386,7 @@ void calculate_centerline(void) {
     }
 
     // 若无干扰元素，执行高级中线修复与预测
-    //if (!track_state.is_island && !track_state.is_barrier) {
+    if (!track_state.is_island && !track_state.is_barrier) {
         int M_start = 0, M_end = 0, P_M = 0, P_S = 0;
 
         // 入弯单边丢线的断点桥接预测状态机
@@ -428,30 +428,30 @@ void calculate_centerline(void) {
             if (x > TRACK_W - 1) x = TRACK_W - 1;
             M_boundary[i] = x;
         }
-    //}
+    }
 
     //绕标志牌
-    if(track_state.special_barrier_dir==DIR_LEFT&&track_state.is_special_barrier){
-        for (int i = 0; i < TRACK_H; i++) {
-            M_boundary[i] = M_boundary[i]-30;
-        }
-    }
-    if(track_state.special_barrier_dir==DIR_RIGHT&&track_state.is_special_barrier){
-        for (int i = 0; i < TRACK_H; i++) {
-            M_boundary[i] = M_boundary[i]+30;
-        }
-    }
-    //test
     // if(track_state.special_barrier_dir==DIR_LEFT&&track_state.is_special_barrier){
     //     for (int i = 0; i < TRACK_H; i++) {
-    //         M_boundary[i] = L_boundary[i];
+    //         M_boundary[i] = M_boundary[i]-30;
     //     }
     // }
     // if(track_state.special_barrier_dir==DIR_RIGHT&&track_state.is_special_barrier){
     //     for (int i = 0; i < TRACK_H; i++) {
-    //         M_boundary[i] = R_boundary[i];
+    //         M_boundary[i] = M_boundary[i]+30;
     //     }
     // }
+    //test
+    if(track_state.special_barrier_dir==DIR_LEFT&&track_state.is_special_barrier){
+        for (int i = 0; i < TRACK_H; i++) {
+            M_boundary[i] = L_boundary[i];
+        }
+    }
+    if(track_state.special_barrier_dir==DIR_RIGHT&&track_state.is_special_barrier){
+        for (int i = 0; i < TRACK_H; i++) {
+            M_boundary[i] = R_boundary[i];
+        }
+    }
 
 }
 
@@ -483,7 +483,7 @@ void edge_extract(void) {
     if (fetch_new_frame() == 0) return; 
     Get01change_dajin();
     extract_track_region();
-    //fill_internal_black_holes();
+    fill_internal_black_holes();
     find_track_boundaries();
     detect_track_elements();
     

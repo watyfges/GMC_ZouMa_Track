@@ -637,12 +637,10 @@ CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPI
  /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../user/../code/hardware/trackuvc.h \
  /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../user/../code/hardware/aiuvc.h \
  /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../user/../code/hardware/tof.h \
- /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../user/../code/hardware/brushless.h \
  /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../user/../code/vision/edge_extract.h \
  /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../user/../code/vision/Threshold.h \
  /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../user/../code/control/control.h \
  /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../user/../code/control/PID.h \
- /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../user/../code/control/menu.h \
  /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../user/../code/tflite/aitask.h \
  /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../user/../code/global_state.h \
  /home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/user/../user/../code/element/cross.h \

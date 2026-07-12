@@ -14,13 +14,10 @@ static uint8_t filter_index = 0;   // 当前写入数组的索引
 static uint8_t filter_count = 0;   // 记录已存入的数据个数（处理刚启动时数据不满的情况
 
 
-float V_Left, V_Right, Speed=300;//左轮速度，右轮速度, 速度
+float V_Left, V_Right, Speed=300;//速度，左轮速度，右轮速度
 float Right_Duty = 0, Left_Duty = 0; //左右电机占空比
 int Dis = 55;//距离，范围0——74
 float kp1=7.0,kp2=0,kd=185,kz = 0;
-
-//PID组别选择
-uint8_t Group=0;
 
 //PID
 // IncrementalPID Left_Motor_PID, Right_Motor_PID;//左右电机增量式PID控制器
@@ -30,17 +27,11 @@ uint8_t Group=0;
 int barrier_time=50; //*10ms
 int ptime=0;//供计时器用
 
-//负压设置
-bool Brush = 0;//1为开负压，0为关负压
-int Brush_num = 0;//负压值
-int brushtime=0;
-
 //extern
 extern float encoder_left, encoder_right;
 extern int16 last_encoder_left, last_encoder_right;//编码器计数
 extern uint8 M_boundary[TRACK_H];//中线边界数组
 extern float GZ;
-extern float L_pidout,R_pidout;
 //extern float roll,pitch,yaw; //姿态角 **外部读取
 
 //差速输出，角度环输出
@@ -72,7 +63,6 @@ void control_signal_init() {
     l_speed_kp=0;
     r_speed_ki=0;
     r_speed_kp=0;
-    if(track_state.stop_flag == 0)brushtime=0;
 }
 
 //PID选择
@@ -112,7 +102,7 @@ void control_init() {
     // PID_Init(&Left_Motor_PID,  19, 2.7, 0, 300);
     // PID_Init(&Right_Motor_PID, Right_Motor_Kp, Right_Motor_Ki, Right_Motor_Kd, Right_Motor_Maxduty); //kp,ki,kd,maxduty
     // PID_Init(&Left_Motor_PID, Left_Motor_Kp, Left_Motor_Ki, Left_Motor_Kd, Left_Motor_Maxduty);
-    Choice_PID(Group);
+    Choice_PID(0);
 }
 
 // 视觉误差计算
@@ -120,31 +110,25 @@ int last_error;
 float Weighting[10] = {0.96, 0.92, 0.88, 0.83, 0.77, 0.71, 0.65, 0.59, 0.53, 0.47};
 float Err_Sum() {
     float error = 0, weight_count = 0, now_mid = 0;
-    // if(Dis - 10 > LOWEST_ROW - track_state.longest_white_len) {
-    //     for(int i = Dis; i > Dis - 10; i--) {
-    //         now_mid += (float)M_boundary[i] * Weighting[Dis - i];
-    //         weight_count += Weighting[Dis - i];
-    //     }
-    // } else {
-    //     int start_idx = LOWEST_ROW - track_state.longest_white_len + 9;
-    //     if (start_idx > LOWEST_ROW) {
-    //         start_idx = LOWEST_ROW;
-    //     }
-    //     int end_idx = start_idx - 10;
-    //     if (end_idx < 0) {
-    //         end_idx = -1; // 这样 i > end_idx 最小到 0
-    //     }
+    if(Dis - 10 > LOWEST_ROW - track_state.longest_white_len) {
+        for(int i = Dis; i > Dis - 10; i--) {
+            now_mid += (float)M_boundary[i] * Weighting[Dis - i];
+            weight_count += Weighting[Dis - i];
+        }
+    } else {
+        int start_idx = LOWEST_ROW - track_state.longest_white_len + 9;
+        if (start_idx > LOWEST_ROW) {
+            start_idx = LOWEST_ROW;
+        }
+        int end_idx = start_idx - 10;
+        if (end_idx < 0) {
+            end_idx = -1; // 这样 i > end_idx 最小到 0
+        }
 
-    //     for(int i = start_idx; i > end_idx; i--) {
-    //         now_mid += (float)M_boundary[i] * Weighting[start_idx - i];
-    //         weight_count += Weighting[start_idx - i];
-    //     }
-    // }
-
-
-    for(int i = Dis; i > Dis - 10; i--) {
-        now_mid += (float)M_boundary[i] * Weighting[Dis - i];
-        weight_count += Weighting[Dis - i];
+        for(int i = start_idx; i > end_idx; i--) {
+            now_mid += (float)M_boundary[i] * Weighting[start_idx - i];
+            weight_count += Weighting[start_idx - i];
+        }
     }
 
     now_mid = (now_mid + TRACK_W / 2.0f) / (weight_count + 1.0f);
@@ -154,9 +138,6 @@ float Err_Sum() {
         error = last_error;
     }
     last_error = error;
-
-    //printf("error:%f\r\nweight_count:%f\r\nnow_mid:%f\r\n", error, weight_count, now_mid);
-
     return error;
 }
 
@@ -238,16 +219,13 @@ void motor_pit_callback() {
     Right_Duty = r_speed_out;
     Left_Duty  = l_speed_out;
 
-    // printf("l_speed_out:%f\r\n",l_speed_out);
-    // printf("DUTY_L:%f\r\n",Left_Duty);
-
     // PWM 限幅保护
     if(fabs(Right_Duty) >= MAX_DUTY) Right_Duty = (Right_Duty / fabs(Right_Duty)) * MAX_DUTY;
     if(fabs(Left_Duty)  >= MAX_DUTY) Left_Duty  = (Left_Duty  / fabs(Left_Duty))  * MAX_DUTY;
     
     if(track_state.stop_flag==2){
-        Set_Right_Pwm(-Right_Duty);
-        Set_Left_Pwm(-Left_Duty);
+        Set_Right_Pwm(Right_Duty);
+        Set_Left_Pwm(Left_Duty);
     }else{
         Set_Right_Pwm(0);
         Set_Left_Pwm(0);
@@ -256,70 +234,33 @@ void motor_pit_callback() {
 
     //printf("l_enc: %f, r_enc: %f, l_out: %f, r_out: %f\n", encoder_left, encoder_right,Left_Duty,Right_Duty);
     //printf("%f,%f,%f\n", V_Right, encoder_right, Right_Duty);
-    Vofa_Send_Waveform(Right_Duty, encoder_right, Left_Duty,encoder_left);
+    Vofa_Send_Waveform(Right_Duty, outer_dir_out, Left_Duty,inner_dir_out);
 }
 
 //计时函数
 void time_pit_callback(){
-    
     //绕弯
     //开车时才允许运行
-    //if(track_state.stop_flag==2){
+    if(track_state.stop_flag==2){
         if(track_state.allow_change_special_barrier==false){
-            ptime++;
-        }
-        if(ptime==barrier_time){
-            ptime=0;
-            track_state.allow_change_special_barrier=true;
-            track_state.is_special_barrier=false;
-            track_state.special_barrier_dir=DIR_NONE;
-        }
-    //}
-    
-    // if(track_state.stop_flag==0){
-    //     track_state.allow_change_special_barrier=true;
-    //     track_state.is_special_barrier=false;
-    //     track_state.special_barrier_dir=DIR_NONE;
-    // }
-     
+        ptime++;
+     }
+     if(ptime==barrier_time){
+        ptime=0;
+        track_state.allow_change_special_barrier=true;
+        track_state.is_special_barrier=false;
+     }
+     }     
 }
 
 void brushless_pit_callback(){
-    //printf("%d\r\n",Brush_num);
-    // if(track_state.stop_flag==0){
-    //     set_brushless_pwm(0);
-    //     return;//停止时不运行
-    // }
-    // if(Brush==1)//开启负压
-    // {
-    //     set_brushless_pwm(Brush_num);
-
-    // }
-    // else//关闭负压
-    // {
-    //     set_brushless_pwm(0);
-    // }
-    //printf("%d\r\n",Brush_num);
-    if(track_state.stop_flag==1&&Brush==1){
-        brushtime++;
-        if(Brush)set_brushless_pwm(brushtime);
-        if(brushtime==Brush_num){
-            track_state.stop_flag=2;
-        }
-     }
-     if(track_state.stop_flag==1&&Brush==0){
-        track_state.stop_flag=2;
-     }
-
-     if(track_state.stop_flag==0||Brush==0){
-        set_brushless_pwm(0);
-     }
-     //printf("%d\r\n",track_state.stop_flag);
+    if(track_state.stop_flag==2){
+        
+    }
 }
 
 void cleanup() {
     Motor_Cleanup();
-    cleanup_brushless();
     beep_off();
 }
 

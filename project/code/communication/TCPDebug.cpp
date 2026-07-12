@@ -89,8 +89,8 @@ static void Vofa_Receive_Task() {
         // 1. 处理 start / stop 控制指令
         // --------------------------------------------------
         if (strstr(cmd_str, "start") != NULL) {
-            track_state.stop_flag = 1;
-            printf("Command: start, stop_flag set to 1\r\n");
+            track_state.stop_flag = 2;
+            printf("Command: start, stop_flag set to 2\r\n");
         } 
         else if (strstr(cmd_str, "stop") != NULL) {
             track_state.stop_flag = 0;
@@ -150,40 +150,23 @@ static void Vofa_Receive_Task() {
             debugspeed = atof(ptr + 6);
             printf("Set debugspeed: %f\r\n", debugspeed);
         }
-        if ((ptr = strstr(cmd_str, "brushnum")) != NULL) {
-            Brush_num = atof(ptr + 8);
-            printf("Set Brush_num: %d\r\n", Brush_num);
-        }
-        if ((ptr = strstr(cmd_str, "brushon")) != NULL) {
-            Brush = 1;
-            printf("BrushON\r\n");
-        }
-        if ((ptr = strstr(cmd_str, "brushoff")) != NULL) {
-            Brush = 0;
-            printf("BrushOFF\r\n");
-        }
-        if ((ptr = strstr(cmd_str, "barriertime")) != NULL) {
-            barrier_time = atof(ptr + 11);
-            printf("Set barrier_time: %d\r\n", barrier_time);
-        }
-
         //测试绕标志牌
         if ((ptr = strstr(cmd_str, "DIRL")) != NULL) {
             track_state.special_barrier_dir = DIR_LEFT;
             track_state.is_special_barrier = true;
 
-            //if(track_state.is_special_barrier){
+            if(track_state.is_special_barrier){
             track_state.allow_change_special_barrier=false;
-            //}
+            }
             printf("LEFT\r\n");
         }
         if ((ptr = strstr(cmd_str, "DIRR")) != NULL) {
             track_state.special_barrier_dir = DIR_RIGHT;
             track_state.is_special_barrier = true;
 
-            //if(track_state.is_special_barrier){
+            if(track_state.is_special_barrier){
             track_state.allow_change_special_barrier=false;
-            //}
+            }
             printf("RIGHT\r\n");
         }
 

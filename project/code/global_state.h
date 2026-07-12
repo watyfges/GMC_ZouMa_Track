@@ -38,11 +38,11 @@ extern TrackState_t track_state; // 赛道状态结构体
 #endif
 
 //定义TCP服务器地址
-#define SERVER_IP "192.168.1.132" 
+#define SERVER_IP "192.168.1.110" 
 #define PORT_VOFA 1347
 #define PORT_SEEKFREE 8086
 
-#define MAX_DUTY  (90 )   // 最大 MAX_DUTY% 占空比
+#define MAX_DUTY  (80 )   // 最大 MAX_DUTY% 占空比
 
 //定义巡线摄像头参数
 #define TRACK_W 160
