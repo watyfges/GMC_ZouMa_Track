@@ -17,7 +17,7 @@ static bool check_line_continuity(int start_y, int end_y)
 }
 
 /*
- * @brief 流水线调用的坡道视觉检测
+ * @brief 坡道视觉检测
  * @note  利用坡道底部的透视畸变（赛道收缩率突变）来判定
  * @return true: 前方有坡道; false: 无坡道
  */

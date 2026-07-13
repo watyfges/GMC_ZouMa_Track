@@ -9,16 +9,19 @@ static void uart_handle_special_barrier_frame(uint8_t frame_type) {
         case 0x00:
             track_state.special_barrier_dir = DIR_LEFT;
             track_state.is_special_barrier = true;
+            track_state.allow_change_special_barrier=false;
             dir_name = "LEFT";
             break;
         case 0x01:
             track_state.special_barrier_dir = DIR_NONE;
             track_state.is_special_barrier = true;
+            track_state.allow_change_special_barrier=false;
             dir_name = "NONE";
             break;
         case 0x02:
             track_state.special_barrier_dir = DIR_RIGHT;
             track_state.is_special_barrier = true;
+            track_state.allow_change_special_barrier=false;
             dir_name = "RIGHT";
             break;
         default:
@@ -26,9 +29,9 @@ static void uart_handle_special_barrier_frame(uint8_t frame_type) {
     }
 
      //锁定标志
-    if(track_state.is_special_barrier){
-        track_state.allow_change_special_barrier=false;
-    }
+    // if(track_state.is_special_barrier){
+    //     track_state.allow_change_special_barrier=false;
+    // }
 
     printf("uart special barrier dir: %s\n", dir_name);
     fflush(stdout);
@@ -125,9 +128,11 @@ void uart_received(void) {
                     }
                     break;
                 case 2:
-                if(track_state.allow_change_special_barrier){
+                if(track_state.allow_change_special_barrier==true){
                     uart_handle_special_barrier_frame(byte);
-                }
+                    
+                }   
+                    // uart_send("hello\r\n");
                     parse_state = (byte == 0xAA) ? 1 : 0;
                     break;
                 default:
@@ -140,11 +145,11 @@ void uart_received(void) {
             perror("读取错误");
         }
     }
-
+    //printf("%d\r\n",parse_state);
 }
 
 void LQ_USART_Init(void){
-    const char *dev = "/dev/ttyUSB0";
+    const char *dev = "/dev/ttyS1";
     int baud = 115200; // 必须和另一块板子保持一致
     uart_fd = uart_init(dev, baud);
     if (uart_fd < 0) {

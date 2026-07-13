@@ -753,6 +753,30 @@ home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/co
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/control/control.cpp.s
 .PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/control/control.cpp.s
 
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/control/menu.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/control/menu.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/control/menu.o
+
+# target to build an object file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/control/menu.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/control/menu.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/control/menu.cpp.o
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/control/menu.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/control/menu.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/control/menu.i
+
+# target to preprocess a source file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/control/menu.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/control/menu.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/control/menu.cpp.i
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/control/menu.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/control/menu.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/control/menu.s
+
+# target to generate assembly for a file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/control/menu.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/control/menu.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/control/menu.cpp.s
+
 home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/cross.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/cross.cpp.o
 .PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/cross.o
 
@@ -872,6 +896,30 @@ home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/ha
 home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/hardware/beep.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/hardware/beep.cpp.s
 .PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/hardware/beep.cpp.s
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/hardware/brushless.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/hardware/brushless.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/hardware/brushless.o
+
+# target to build an object file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/hardware/brushless.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/hardware/brushless.cpp.o
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/hardware/brushless.cpp.o
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/hardware/brushless.i: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/hardware/brushless.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/hardware/brushless.i
+
+# target to preprocess a source file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/hardware/brushless.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/hardware/brushless.cpp.i
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/hardware/brushless.cpp.i
+
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/hardware/brushless.s: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/hardware/brushless.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/hardware/brushless.s
+
+# target to generate assembly for a file
+home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/hardware/brushless.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/hardware/brushless.cpp.s
+.PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/hardware/brushless.cpp.s
 
 home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/hardware/button.o: home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/hardware/button.cpp.o
 .PHONY : home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/hardware/button.o
@@ -1224,6 +1272,9 @@ help:
 	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/control/control.o"
 	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/control/control.i"
 	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/control/control.s"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/control/menu.o"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/control/menu.i"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/control/menu.s"
 	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/cross.o"
 	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/cross.i"
 	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/element/cross.s"
@@ -1239,6 +1290,9 @@ help:
 	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/hardware/beep.o"
 	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/hardware/beep.i"
 	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/hardware/beep.s"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/hardware/brushless.o"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/hardware/brushless.i"
+	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/hardware/brushless.s"
 	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/hardware/button.o"
 	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/hardware/button.i"
 	@echo "... home/watyfges/LA/LS2k0300_Library/LS2K300_Library/DebugPID/2cPID/project/code/hardware/button.s"

@@ -10,6 +10,6 @@ void outer_dir_pid(float error);
 void inner_dir_pid(float gyro_z);
 void l_speed_pid(float aim_speed, float now_speed);
 void r_speed_pid(float aim_speed, float now_speed);
-
+void Dynamic_PD_Compute(float kp1, float kp2, float kd, float kz, float error, float GZ_error);
 
 #endif

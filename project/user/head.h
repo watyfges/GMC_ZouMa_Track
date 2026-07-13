@@ -15,18 +15,17 @@
 #include "../code/vision/Threshold.h"
 #include "../code/control/control.h"
 #include "../code/control/PID.h"
+#include "../code/control/menu.h"
 #include "../code/tflite/aitask.h"
 #include "../code/global_state.h"
 #include "../code/element/cross.h"
 #include "../code/element/island.h"
 #include "../code/communication/TCPDebug.h"
 #include "../code/communication/usart.h"
-
 // #include "ramp.h"
 // 
 // #include "servo.h"
 // 
-// #include "brushless.h" 
 // #include "barrier.h"
 
 

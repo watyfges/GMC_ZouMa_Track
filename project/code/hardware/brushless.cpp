@@ -2,6 +2,8 @@
 
 
 #define ESC_PATH        ZF_PWM_ESC_1
+#define BRUSHLESS_MIN_DUTY 500
+#define BRUSHLESS_MAX_DUTY 1000
 struct pwm_info esc_info;
 
 zf_driver_pwm   esc_pwm(ESC_PATH);
@@ -12,7 +14,7 @@ void brushless_init()//初始化无刷电调
     esc_pwm.get_dev_info(&esc_info);
 }
 
-void set_brushless_pwm(uint16 duty)//设置左侧无刷电调占空比
+void set_brushless_pwm(uint16 duty)//设置无刷电调占空比
 {
     // 计算无刷电调转速   （1ms - 2ms）/20ms * 10000（10000是PWM的满占空比时候的值）
     // 无刷电调转速 0%   为 500
@@ -23,7 +25,9 @@ void set_brushless_pwm(uint16 duty)//设置左侧无刷电调占空比
     // 无刷电调转速 100% 为 1000
 
     // 修改duty的值，可以修改无刷电调转速
-    esc_pwm.set_duty(duty);
+    if (duty < BRUSHLESS_MIN_DUTY) duty = BRUSHLESS_MIN_DUTY;
+    if (duty > BRUSHLESS_MAX_DUTY) duty = BRUSHLESS_MAX_DUTY;
+    esc_pwm.set_duty((uint16)duty);
 }
 
 
