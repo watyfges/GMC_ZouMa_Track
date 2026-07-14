@@ -17,7 +17,7 @@ static uint8_t filter_count = 0;   // 记录已存入的数据个数（处理刚
 float V_Left, V_Right, Speed=300;//左轮速度，右轮速度, 速度
 float Right_Duty = 0, Left_Duty = 0; //左右电机占空比
 int Dis = 55;//距离，范围0——74
-float kp1=7.0,kp2=0,kd=185,kz = 0;
+float kp1=0.0,kp2=0,kd=0,kz = 0;
 
 //PID组别选择
 uint8_t Group=0;
@@ -26,9 +26,10 @@ uint8_t Group=0;
 // IncrementalPID Left_Motor_PID, Right_Motor_PID;//左右电机增量式PID控制器
 // Dynamic_PD Servo_PD;    //二次PD控制器
 
-//绕桩持续时间
+//绕桩
 int barrier_time=50; //*10ms
 int ptime=0;//供计时器用
+float barrier_speed=100;
 
 //负压设置
 bool Brush = 0;//1为开负压，0为关负压
@@ -77,7 +78,9 @@ void control_signal_init() {
     r_speed_ki=0;
     r_speed_kp=0;
     if(track_state.stop_flag == 0)brushtime=0;
-    track_state.allow_change_special_barrier=true;
+    if(!track_state.is_special_barrier) {
+        track_state.allow_change_special_barrier=true;
+    }
 }
 
 //PID选择
@@ -102,6 +105,35 @@ void Choice_PID(int num) {
                 l_speed_ki=lki;
                 r_speed_kp=rkp;
                 r_speed_ki=rki;
+            break;
+        case 1:// 2.5m/s
+                kp1=0.008;
+                kp2=0.00015;
+                kd=4;
+                Speed = 120;
+                Dis = 45;             // 前瞻距离 
+                l_speed_kp=0.75;//电机PID
+                l_speed_ki=0.01;
+                r_speed_kp=0.72;
+                r_speed_ki=0.011;
+                barrier_time=320; //绕桩时间
+                barrier_speed=80;
+                Brush=1;//开负压
+                Brush_num=850;//负压大小
+                
+                //Island_Time = 12;
+                // 转向PD控制器 (输出左右轮速度差)
+                //Dynamic_PD_Init(&Servo_PD, 
+                    // kp1,    // Kp1 一次项
+                    // kp2,    // Kp2 二次项
+                    // 1.0,    // 误差敏感度参数σ
+                    // kd,   // Kd 微分系数
+                    // kz,      // 陀螺仪参数Kz 
+                    // 600,    // 输出上限 (最大允许的左右轮速度差)
+                    // -600,   // 输出下限
+                    // 0       // 死区
+                //);
+                
             break;
         default:
             break;
@@ -197,8 +229,9 @@ void turn_pit_callback() {
     // V_Right = Speed + outer_dir_out;
     
     // 目标速度全扔给PID处理了，直接给我输出电机速度
-    V_Left  = Speed; 
-    V_Right = Speed;
+    float target_speed = track_state.is_special_barrier ? barrier_speed : Speed;
+    V_Left  = target_speed; 
+    V_Right = target_speed;
 
     // 4. 绕桩差速补偿
     // if(track_state.is_special_barrier==true&&track_state.special_barrier_dir==DIR_LEFT){
@@ -246,7 +279,7 @@ void motor_pit_callback() {
     encoder_right = sum_right / filter_count;
     // ------------------- 滑动均值滤波结束 -------------------
 
-    // PID输出电机速度，已经做好三串
+    // PID输出电机速度
     r_speed_pid(V_Right,encoder_right);
     l_speed_pid(V_Left,encoder_left);
     //printf("%.f\r\n",l_speed_out);
@@ -291,13 +324,13 @@ void time_pit_callback(){
         // }
 
     if(track_state.is_special_barrier==true)
-    {
+    {   
         ptime++;
-        if(ptime == barrier_time)
+        if(ptime >= barrier_time)
         {   
+            track_state.allow_change_special_barrier=true;
             track_state.special_barrier_dir = DIR_NONE;
             track_state.is_special_barrier=false;
-            track_state.allow_change_special_barrier=true;
         }
     }
     else
@@ -312,7 +345,8 @@ void time_pit_callback(){
     //     track_state.is_special_barrier=false;
     //     track_state.special_barrier_dir=DIR_NONE;
     // }
-     
+    //GPIO_received();
+    //printf("%f\r\n",Speed);
 }
 
 void brushless_pit_callback(){

@@ -1,10 +1,11 @@
 #include "usart.h"
-
+#include <chrono>
+std::chrono::time_point<std::chrono::high_resolution_clock> rao_start;
+std::chrono::time_point<std::chrono::high_resolution_clock> rao_end;
 static int uart_fd = -1;
 
 static void uart_handle_special_barrier_frame(uint8_t frame_type) {
     const char *dir_name = NULL;
-
     switch (frame_type) {
         case 0x00:
             track_state.special_barrier_dir = DIR_LEFT;
@@ -97,6 +98,7 @@ int uart_init(const char *device, int baudrate) {
 }
 
 void uart_received(void) {
+    //ua_start = std::chrono::high_resolution_clock::now();
     uint8_t rx_buf[256];
     static uint8_t parse_state = 0; // 0: wait AA, 1: wait BB, 2: wait type
 
@@ -132,7 +134,7 @@ void uart_received(void) {
                     uart_handle_special_barrier_frame(byte);
                     
                 }   
-                    // uart_send("hello\r\n");
+                    uart_send("hello\r\n");
                     parse_state = (byte == 0xAA) ? 1 : 0;
                     break;
                 default:
@@ -194,3 +196,67 @@ int uart_send_bytes(const uint8_t *data, int len)
 }
 //uint8_t data[4] = {0xAA, 0x55, 0x01, 0xFE};
 //uart_send_bytes(data, 4);
+
+// 1. 定义为全局变量，方便初始化和读取函数都能访问
+static int fd_42 = -1;
+static int fd_43 = -1;
+char value42, value43;
+
+// 2. 将返回值改为 int，这样外部可以判断初始化是否成功
+int LQ_GPIO_Init(void) {
+    // 打开设备树中定义的节点设备（只读模式）
+    fd_42 = open("/dev/zf_gpio_in_42", O_RDONLY);
+    if (fd_42 < 0) {
+        perror("无法打开 GPIO42 设备节点，请检查设备树");
+        return -1; // 现在返回 -1 就合法了
+    }
+    
+    fd_43 = open("/dev/zf_gpio_in_43", O_RDONLY);
+    if (fd_43 < 0) {
+        perror("无法打开 GPIO43 设备节点，请检查设备树");
+        return -1;
+    }
+     printf("%d\r\n",fd_43);
+    printf("GPIO 42/43 初始化成功\n");
+    return 0;
+}
+
+void GPIO_received(void) {
+    const char *dir_name = "NONE"; // 补充缺失的变量定义
+    
+    // 如果设备节点没打开，直接退出防止崩溃
+    if (fd_42 < 0 || fd_43 < 0) return;
+
+    // 如果不允许更改，则直接退出不读取
+    if (track_state.allow_change_special_barrier == false) {
+        return; 
+    }
+    // ua_start = std::chrono::high_resolution_clock::now();
+    lseek(fd_42, 0, SEEK_SET);
+    lseek(fd_43, 0, SEEK_SET);
+    // read(fd_43, &value43, 1);
+    // printf("%d\r\n",value43);
+    // 读取 42 引脚 (LEFT)
+    if (read(fd_42, &value42, 1) >= 0) {
+        //printf("%d\r\n",value42);
+        if (value42 == '1' || value42 == 1) {
+            track_state.special_barrier_dir = DIR_LEFT;
+            track_state.is_special_barrier = true;
+            //track_state.allow_change_special_barrier = false; // 触发后锁定
+            dir_name = "LEFT";
+            printf("PIN42 high, DIR = %s\n", dir_name);
+            return; // 已经识别到左侧，直接返回，没必要再读右侧
+        }
+    }
+    
+    // 读取 43 引脚 (RIGHT)
+    if (read(fd_43, &value43, 1) >= 0) {
+        if (value43 == '1' || value43 == 1) {
+            track_state.special_barrier_dir = DIR_RIGHT;
+            track_state.is_special_barrier = true;
+            //track_state.allow_change_special_barrier = false; // 触发后锁定
+            dir_name = "RIGHT";
+            printf("PIN43 high, DIR = %s\n", dir_name);
+        }
+    }
+}

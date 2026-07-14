@@ -16,7 +16,7 @@
 #include "../code/control/control.h"
 #include "../code/control/PID.h"
 #include "../code/control/menu.h"
-#include "../code/tflite/aitask.h"
+#include "../code/ai/aitask.h"
 #include "../code/global_state.h"
 #include "../code/element/cross.h"
 #include "../code/element/island.h"

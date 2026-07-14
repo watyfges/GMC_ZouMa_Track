@@ -1,4 +1,5 @@
 #include "edge_extract.h"
+#include <chrono>
 
 TrackState_t track_state = {0}; 
 
@@ -17,7 +18,7 @@ static uint16_t fill_queue[TRACK_W * TRACK_H];
 extern void Cross_Detect();
 extern void Island_Detect();
 extern void Get01change_dajin(); 
-
+extern std::chrono::time_point<std::chrono::high_resolution_clock> rao_start,rao_end;
 //元素检测
 // extern bool detect_zebra_crossing(void); // 斑马线
 // extern bool Special_Barrier_Detect(void); 
@@ -457,6 +458,9 @@ void calculate_centerline(void) {
             for (int i = LOWEST_ROW - track_state.longest_white_len - 1; i < TRACK_H; i++) {
                 M_boundary[i] = L_boundary[i];
             }
+            rao_end = std::chrono::high_resolution_clock::now();
+            auto infer_time_us = std::chrono::duration_cast<std::chrono::microseconds>(rao_end - rao_start).count();
+            printf("全局时间：%f\r\n",infer_time_us / 1000.0f);
         }
         if(track_state.special_barrier_dir==DIR_RIGHT){
             for (int i = LOWEST_ROW - track_state.longest_white_len - 1; i < TRACK_H; i++) {
@@ -522,7 +526,7 @@ void edge_extract(void) {
     if (fetch_new_frame() == 0) return; 
     Get01change_dajin();
     extract_track_region();
-    //fill_internal_black_holes();
+    fill_internal_black_holes();
     find_track_boundaries();
     detect_track_elements();
     
