@@ -1,0 +1,319 @@
+#include "control.h"//控制模块
+
+#define PI 3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679
+
+using namespace std;
+
+// 均值滤波
+// 定义滑动窗口的大小，可以根据实际噪声情况调整（通常取 5~10）
+#define FILTER_WINDOW 7 
+// 定义静态数组作为历史数据缓冲区，保留在回调函数外部或作为静态变量
+static float left_enc_buffer[FILTER_WINDOW] = {0};
+static float right_enc_buffer[FILTER_WINDOW] = {0};
+static uint8_t filter_index = 0;   // 当前写入数组的索引
+static uint8_t filter_count = 0;   // 记录已存入的数据个数（处理刚启动时数据不满的情况
+
+
+float V_Left, V_Right, Speed=300;//左轮速度，右轮速度, 速度
+float Right_Duty = 0, Left_Duty = 0; //左右电机占空比
+int Dis = 55;//距离，范围0——74
+float kp1=7.0,kp2=0,kd=185,kz = 0;
+
+//PID组别选择
+uint8_t Group=0;
+
+//PID
+// IncrementalPID Left_Motor_PID, Right_Motor_PID;//左右电机增量式PID控制器
+// Dynamic_PD Servo_PD;    //二次PD控制器
+
+//绕桩持续时间
+uint8_t barrier_time=50; //*10ms
+uint8_t ptime=0;//供计时器用
+
+//负压设置
+bool Brush = 0;//1为开负压，0为关负压
+int Brush_num = 0;//负压值
+int brushtime=0;
+
+//extern
+extern float encoder_left, encoder_right;
+extern int16 last_encoder_left, last_encoder_right;//编码器计数
+extern uint8 M_boundary[TRACK_H];//中线边界数组
+extern float GZ;
+extern float L_pidout,R_pidout;
+//extern float roll,pitch,yaw; //姿态角 **外部读取
+
+//差速输出，角度环输出
+extern float outer_dir_out;
+extern float inner_dir_out;
+
+//电机的输出，勿动
+extern float l_speed_ki;
+extern float l_speed_kp;
+extern float r_speed_ki;
+extern float r_speed_kp;
+extern float l_speed_out;
+extern float r_speed_out;
+
+
+//用于上位机修改的
+float lkp=0,lki=0,rkp=0,rki=0;
+float debugspeed=0;
+
+//变量初始化
+void control_signal_init() {
+    // Right_Motor_PID.LastError = 0; Right_Motor_PID.PrevError = 0;
+    // Left_Motor_PID.LastError = 0; Left_Motor_PID.PrevError = 0 ;
+    l_speed_out=0;
+    r_speed_out=0;
+    Right_Duty = 0;
+    Left_Duty = 0;
+    l_speed_ki=0;
+    l_speed_kp=0;
+    r_speed_ki=0;
+    r_speed_kp=0;
+    if(track_state.stop_flag == 0)brushtime=0;
+}
+
+//PID选择
+void Choice_PID(int num) {
+    switch(num){
+        case 0://测试
+                //Speed = 200;
+                //Dis = 55;             // 前瞻距离 
+                //Island_Time = 12;
+                // 转向PD控制器 (输出左右轮速度差)
+                //Dynamic_PD_Init(&Servo_PD, 
+                    // kp1,    // Kp1 一次项
+                    // kp2,    // Kp2 二次项
+                    // 1.0,    // 误差敏感度参数σ
+                    // kd,   // Kd 微分系数
+                    // kz,      // 陀螺仪参数Kz 
+                    // 600,    // 输出上限 (最大允许的左右轮速度差)
+                    // -600,   // 输出下限
+                    // 0       // 死区
+                //);
+                l_speed_kp=lkp;
+                l_speed_ki=lki;
+                r_speed_kp=rkp;
+                r_speed_ki=rki;
+            break;
+        default:
+            break;
+            }
+} 
+
+//初始化控制程序所有项目，变量，电机PID，选择PID参数
+void control_init() {
+    atexit(cleanup);
+    control_signal_init();
+    // 电机速度闭环 PID (这部分决定了车轮跟调速指令有多紧)
+    // PID_Init(&Right_Motor_PID, 19, 2.7, 0, 300);
+    // PID_Init(&Left_Motor_PID,  19, 2.7, 0, 300);
+    // PID_Init(&Right_Motor_PID, Right_Motor_Kp, Right_Motor_Ki, Right_Motor_Kd, Right_Motor_Maxduty); //kp,ki,kd,maxduty
+    // PID_Init(&Left_Motor_PID, Left_Motor_Kp, Left_Motor_Ki, Left_Motor_Kd, Left_Motor_Maxduty);
+    Choice_PID(Group);
+}
+
+// 视觉误差计算
+int last_error;
+float Weighting[10] = {0.96, 0.92, 0.88, 0.83, 0.77, 0.71, 0.65, 0.59, 0.53, 0.47};
+float Err_Sum() {
+    float error = 0, weight_count = 0, now_mid = 0;
+    if(Dis - 10 > LOWEST_ROW - track_state.longest_white_len) {
+        for(int i = Dis; i > Dis - 10; i--) {
+            now_mid += (float)M_boundary[i] * Weighting[Dis - i];
+            weight_count += Weighting[Dis - i];
+        }
+    } else {
+        int start_idx = LOWEST_ROW - track_state.longest_white_len + 9;
+        if (start_idx > LOWEST_ROW) {
+            start_idx = LOWEST_ROW;
+        }
+        int end_idx = start_idx - 10;
+        if (end_idx < 0) {
+            end_idx = -1; // 这样 i > end_idx 最小到 0
+        }
+
+        for(int i = start_idx; i > end_idx; i--) {
+            now_mid += (float)M_boundary[i] * Weighting[start_idx - i];
+            weight_count += Weighting[start_idx - i];
+        }
+    }
+
+    now_mid = (now_mid + TRACK_W / 2.0f) / (weight_count + 1.0f);
+    error = TRACK_W / 2.0f - now_mid;
+
+    if(track_state.longest_white_len == 0) {
+        error = last_error;
+    }
+    last_error = error;
+    return error;
+}
+
+
+//void time_pit_callback() {}
+
+
+//差速转向计算
+void turn_pit_callback() {
+    // 1. 获取视觉误差
+    float error = Err_Sum();
+    outer_dir_pid(error);
+    inner_dir_pid(GZ);
+    // 2. 计算速度补偿值 (Turn Offset)
+    // 此时 Dynamic_PD 的输出代表：为了纠正偏差，左右轮需要产生多大的速度差
+    // float L_turn_offset = Dynamic_PD_Compute(&Servo_PD, 0, error);
+    // float R_turn_offset = Dynamic_PD_Compute(&Servo_PD, 0, error);
+
+    // 3. 差速分配逻辑
+    // V_Left  = Speed - outer_dir_out-inner_dir_out; 
+    // V_Right = Speed + outer_dir_out+inner_dir_out;
+    // V_Left  = Speed - outer_dir_out; 
+    // V_Right = Speed + outer_dir_out;
+    
+    // 目标速度全扔给PID处理了，直接给我输出电机速度
+    V_Left  = Speed; 
+    V_Right = Speed;
+
+    // 4. 绕桩差速补偿
+    if(track_state.is_special_barrier==true&&track_state.special_barrier_dir==DIR_LEFT){
+        V_Left = V_Left - 50;
+    }
+    if(track_state.is_special_barrier==true&&track_state.special_barrier_dir==DIR_RIGHT){
+        V_Right = V_Right - 50;
+    }
+    
+}
+
+void motor_pit_callback() {
+    // V_Right = debugspeed;
+    // V_Left  = debugspeed; 
+    // 读取编码器,写在encoder.cpp中
+
+    // 编码器低通滤波
+    encoder_left = last_encoder_left * 0.2f + encoder_left * 0.8f;
+    encoder_right = last_encoder_right * 0.2f + encoder_right * 0.8f;
+
+    // 编码器均值滤波
+    // 1. 将最新数据存入缓冲区
+    left_enc_buffer[filter_index] = encoder_left;
+    right_enc_buffer[filter_index] = encoder_right;
+    
+    // 2. 更新索引和计数器
+    filter_index++;
+    if (filter_index >= FILTER_WINDOW) {
+        filter_index = 0; // 索引回环，覆盖最老的数据
+    }
+    if (filter_count < FILTER_WINDOW) {
+        filter_count++;   // 启动初期，记录当前缓冲区的有效数据量
+    }
+
+    // 3. 计算求和
+    float sum_left = 0.0f;
+    float sum_right = 0.0f;
+    for (uint8_t i = 0; i < filter_count; i++) {
+        sum_left += left_enc_buffer[i];
+        sum_right += right_enc_buffer[i];
+    }
+
+    // 4. 计算均值，并覆盖原本的变量供给PID使用
+    encoder_left = sum_left / filter_count;
+    encoder_right = sum_right / filter_count;
+    // ------------------- 滑动均值滤波结束 -------------------
+
+    // PID输出电机速度，已经做好三串
+    r_speed_pid(V_Right,encoder_right);
+    l_speed_pid(V_Left,encoder_left);
+    //printf("%.f\r\n",l_speed_out);
+    Right_Duty = r_speed_out;
+    Left_Duty  = l_speed_out;
+
+    printf("l_speed_out:%f\r\n",l_speed_out);
+    printf("DUTY_L:%f\r\n",Left_Duty);
+
+    // PWM 限幅保护
+    if(fabs(Right_Duty) >= MAX_DUTY) Right_Duty = (Right_Duty / fabs(Right_Duty)) * MAX_DUTY;
+    if(fabs(Left_Duty)  >= MAX_DUTY) Left_Duty  = (Left_Duty  / fabs(Left_Duty))  * MAX_DUTY;
+    
+    if(track_state.stop_flag==2){
+        Set_Right_Pwm(-Right_Duty);
+        Set_Left_Pwm(-Left_Duty);
+    }else{
+        Set_Right_Pwm(0);
+        Set_Left_Pwm(0);
+    }
+    
+
+    //printf("l_enc: %f, r_enc: %f, l_out: %f, r_out: %f\n", encoder_left, encoder_right,Left_Duty,Right_Duty);
+    //printf("%f,%f,%f\n", V_Right, encoder_right, Right_Duty);
+    Vofa_Send_Waveform(Right_Duty, encoder_right, Left_Duty,encoder_left);
+}
+
+//计时函数
+void time_pit_callback(){
+    
+    //绕弯
+    //开车时才允许运行
+    if(track_state.stop_flag==2){
+        if(track_state.allow_change_special_barrier==false){
+        ptime++;
+     }
+     if(ptime==barrier_time){
+        ptime=0;
+        track_state.allow_change_special_barrier=true;
+        track_state.is_special_barrier=false;
+     }
+    }
+     
+     
+}
+
+void brushless_pit_callback(){
+    //printf("%d\r\n",Brush_num);
+    // if(track_state.stop_flag==0){
+    //     set_brushless_pwm(0);
+    //     return;//停止时不运行
+    // }
+    // if(Brush==1)//开启负压
+    // {
+    //     set_brushless_pwm(Brush_num);
+
+    // }
+    // else//关闭负压
+    // {
+    //     set_brushless_pwm(0);
+    // }
+    //printf("%d\r\n",Brush_num);
+    if(track_state.stop_flag==1&&Brush==1){
+        brushtime++;
+        if(Brush)set_brushless_pwm(brushtime);
+        if(brushtime==Brush_num){
+            track_state.stop_flag=2;
+        }
+     }
+     if(track_state.stop_flag==1&&Brush==0){
+        track_state.stop_flag=2;
+     }
+
+     if(track_state.stop_flag==0||Brush==0){
+        set_brushless_pwm(0);
+     }
+     //printf("%d\r\n",track_state.stop_flag);
+}
+
+void cleanup() {
+    Motor_Cleanup();
+    cleanup_brushless();
+    beep_off();
+}
+
+// 中断总回调函数
+// imu的写在imu.cpp里
+void pit_callback() {
+    encoder_pit_callback();
+    turn_pit_callback(); 
+    motor_pit_callback();
+    clear_encoder_pit_callback();
+    time_pit_callback();
+}
