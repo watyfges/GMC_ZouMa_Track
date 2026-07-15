@@ -20,7 +20,7 @@ extern std::chrono::time_point<std::chrono::high_resolution_clock> rao_start,rao
 
 static constexpr int MODEL_INPUT_WIDTH = 40;
 static constexpr int MODEL_INPUT_HEIGHT = 40;
-static constexpr float AI_CONFIDENCE_THRESHOLD = 0.90f;
+static constexpr float AI_CONFIDENCE_THRESHOLD = 0.50f; //置信度修改
 static constexpr int AI_IDLE_SLEEP_MS = 1;
 
 static const char *MODEL_PARAM_CANDIDATES[] = {
@@ -52,7 +52,7 @@ static const std::vector<std::string> MODEL_LABELS = {
 #define RED_S_MAX                      255
 #define RED_V_MAX                      255
 #define RED_MORPH_KERNEL_SIZE          5
-#define RED_MIN_AREA_RATIO             0.0010
+#define RED_MIN_AREA_RATIO             0.0001
 #define RED_MAX_AREA_RATIO             0.0800
 #define RED_MARKER_ASPECT_MIN          0.20f
 #define RED_MARKER_ASPECT_MAX          7.00f
@@ -630,10 +630,10 @@ static bool crop_target_image(const cv::Mat &frame, cv::Mat &target_image)
 
 static BypassDir_e recognition_result_to_dir(const std::string &result)
 {
-    if (result == "hand_boom" || result == "hand_gun" || result == "gun") {
+    if (result == "hand_boom" || result == "gun") {
         return DIR_LEFT;
     }
-    if (result == "ambulance" || result == "armoured_car") {
+    if (result == "binoculars" || result == "ment") {
         return DIR_RIGHT;
     }
     return DIR_NONE;

@@ -526,7 +526,7 @@ void edge_extract(void) {
     if (fetch_new_frame() == 0) return; 
     Get01change_dajin();
     extract_track_region();
-    fill_internal_black_holes();
+    //fill_internal_black_holes();
     find_track_boundaries();
     detect_track_elements();
     

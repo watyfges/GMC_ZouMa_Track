@@ -107,7 +107,6 @@ void HardwareInit(void){
     IMU_init();
     tof_init();
     screen_init();
-    ai_uvc_init();
     track_uvc_init();
     brushless_init();
     //LQ_USART_Init();

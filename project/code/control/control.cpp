@@ -229,9 +229,12 @@ void turn_pit_callback() {
     // V_Right = Speed + outer_dir_out;
     
     // 目标速度全扔给PID处理了，直接给我输出电机速度
-    float target_speed = track_state.is_special_barrier ? barrier_speed : Speed;
-    V_Left  = target_speed; 
-    V_Right = target_speed;
+    // float target_speed = track_state.is_special_barrier ? barrier_speed : Speed;
+    // V_Left  = target_speed; 
+    // V_Right = target_speed;
+
+    V_Left  = Speed; 
+    V_Right = Speed;
 
     // 4. 绕桩差速补偿
     // if(track_state.is_special_barrier==true&&track_state.special_barrier_dir==DIR_LEFT){

@@ -48,6 +48,6 @@ extern TrackState_t track_state; // 赛道状态结构体
 #define TRACK_W 160
 #define TRACK_H 80
 
-//定义识别摄像头参数，与 NCNN3 当前摄像头配置一致
-#define AI_W 320
-#define AI_H 240
+//定义识别图像参数，共用巡线摄像头
+#define AI_W 160
+#define AI_H 80
