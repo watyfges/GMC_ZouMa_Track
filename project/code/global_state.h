@@ -48,6 +48,6 @@ extern TrackState_t track_state; // 赛道状态结构体
 #define TRACK_W 160
 #define TRACK_H 80
 
-//定义识别图像参数，共用巡线摄像头
-#define AI_W 160
-#define AI_H 80
+//定义识别代码识别的参数，摄像头的在aiuvc里，这里逆时针翻转180度
+#define AI_W 480
+#define AI_H 640

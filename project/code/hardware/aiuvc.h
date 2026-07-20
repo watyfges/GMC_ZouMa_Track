@@ -1,14 +1,14 @@
 #ifndef _AI_UVC_H_
 #define _AI_UVC_H_
 
-// AI识别共用巡线摄像头帧，尺寸必须与 TRACK_W/TRACK_H 保持一致
-#define AI_S_W 160
-#define AI_S_H 80
-#define AI_W 160
-#define AI_H 80
+//获取到的原始画面宽高
+#define AI_S_W 640 
+#define AI_S_H 480
+
+#define AI_W 480
+#define AI_H 640
 
 #include "zf_common_headfile.hpp"
-#include <opencv2/core.hpp>
 
 #ifdef __cplusplus
 extern "C" {
@@ -21,8 +21,6 @@ void ai_uvc_get_rgb_image(uint16_t *out_buffer);
 
 #ifdef __cplusplus
 }
-
-bool ai_uvc_get_bgr_frame(cv::Mat &out_frame);
 #endif
 
 #endif // _AI_UVC_H_

@@ -1,7 +1,7 @@
 #include "usart.h"
 #include <chrono>
-std::chrono::time_point<std::chrono::high_resolution_clock> rao_start;
-std::chrono::time_point<std::chrono::high_resolution_clock> rao_end;
+std::chrono::time_point<std::chrono::high_resolution_clock> ua_start;
+std::chrono::time_point<std::chrono::high_resolution_clock> ua_end;
 static int uart_fd = -1;
 
 static void uart_handle_special_barrier_frame(uint8_t frame_type) {
@@ -109,7 +109,12 @@ void uart_received(void) {
     memset(rx_buf, 0, sizeof(rx_buf));
         
     int rx_bytes = read(uart_fd, rx_buf, sizeof(rx_buf));
-        
+    
+    // 如果不允许更改，则直接退出不读取
+    // if (track_state.allow_change_special_barrier == false) {
+    //     return; 
+    // }
+
     if (rx_bytes > 0) {
         for (int i = 0; i < rx_bytes; i++) {
             uint8_t byte = rx_buf[i];
@@ -134,7 +139,7 @@ void uart_received(void) {
                     uart_handle_special_barrier_frame(byte);
                     
                 }   
-                    uart_send("hello\r\n");
+                    //uart_send("hello\r\n");
                     parse_state = (byte == 0xAA) ? 1 : 0;
                     break;
                 default:
@@ -151,7 +156,7 @@ void uart_received(void) {
 }
 
 void LQ_USART_Init(void){
-    const char *dev = "/dev/ttyS1";
+    const char *dev = "/dev/ttyUSB0";
     int baud = 115200; // 必须和另一块板子保持一致
     uart_fd = uart_init(dev, baud);
     if (uart_fd < 0) {
@@ -221,6 +226,68 @@ int LQ_GPIO_Init(void) {
     return 0;
 }
 
+// void GPIO_received(void) {
+//     if (fd_42 < 0 || fd_43 < 0) return;
+
+//     if (track_state.allow_change_special_barrier == false) {
+//         return;
+//     }
+//     if (track_state.is_island == true) {
+//         return;
+//     }
+
+//     lseek(fd_42, 0, SEEK_SET);
+//     lseek(fd_43, 0, SEEK_SET);
+
+//     int r42 = read(fd_42, &value42, 1);
+//     int r43 = read(fd_43, &value43, 1);
+//     if (r42 < 0 || r43 < 0) return; // 读取失败，跳过本次
+
+//     bool pin42_high = (value42 == '1' || value42 == 1);
+//     bool pin43_high = (value43 == '1' || value43 == 1);
+
+//     // 1. 计算本次采样的"原始方向"
+//     BypassDir_e raw_dir;
+//     if (pin42_high && pin43_high) {
+//         raw_dir = DIR_STRAIGHT;   // 两个都高，视为 NONE
+//     } else if (pin42_high) {
+//         raw_dir = DIR_LEFT;
+//     } else if (pin43_high) {
+//         raw_dir = DIR_RIGHT;
+//     } else {
+//         return; // 两个都低，不参与消抖统计
+//     }
+
+//     // 2. 计数消抖
+//     static BypassDir_e candidate_dir = DIR_STRAIGHT; // 当前候选方向
+//     static int stable_count = 0;                 // 连续相同次数
+//     const int DEBOUNCE_THRESHOLD = 3;             // 连续5次采样一致才确认，可按采样频率调整
+
+//     if (raw_dir == candidate_dir) {
+//         if (stable_count < DEBOUNCE_THRESHOLD) {
+//             stable_count++;
+//         }
+//     } else {
+//         candidate_dir = raw_dir;
+//         stable_count = 1;
+//     }
+
+//     // 3. 只有达到阈值才真正生效，且避免重复触发同一个稳定状态
+//     static BypassDir_e last_confirmed_dir = DIR_STRAIGHT;
+//     if (stable_count >= DEBOUNCE_THRESHOLD && candidate_dir != last_confirmed_dir) {
+//         last_confirmed_dir = candidate_dir;
+//         track_state.special_barrier_dir = candidate_dir;
+//         track_state.is_special_barrier = true;
+//         track_state.allow_change_special_barrier = false;
+
+//         // const char *dir_name =
+//         //     (candidate_dir == DIR_LEFT)  ? "LEFT"  :
+//         //     (candidate_dir == DIR_RIGHT) ? "RIGHT" : "NONE";
+//         //printf("PIN42=%d PIN43=%d, DIR = %s\n", pin42_high, pin43_high, dir_name);
+//     }
+// }
+
+
 void GPIO_received(void) {
     const char *dir_name = "NONE"; // 补充缺失的变量定义
     
@@ -230,6 +297,9 @@ void GPIO_received(void) {
     // 如果不允许更改，则直接退出不读取
     if (track_state.allow_change_special_barrier == false) {
         return; 
+    }
+    if (track_state.is_island==true||track_state.is_barrier==true){
+        return;
     }
     // ua_start = std::chrono::high_resolution_clock::now();
     lseek(fd_42, 0, SEEK_SET);
@@ -242,7 +312,7 @@ void GPIO_received(void) {
         if (value42 == '1' || value42 == 1) {
             track_state.special_barrier_dir = DIR_LEFT;
             track_state.is_special_barrier = true;
-            //track_state.allow_change_special_barrier = false; // 触发后锁定
+            track_state.allow_change_special_barrier = false; // 触发后锁定
             dir_name = "LEFT";
             printf("PIN42 high, DIR = %s\n", dir_name);
             return; // 已经识别到左侧，直接返回，没必要再读右侧
@@ -254,7 +324,7 @@ void GPIO_received(void) {
         if (value43 == '1' || value43 == 1) {
             track_state.special_barrier_dir = DIR_RIGHT;
             track_state.is_special_barrier = true;
-            //track_state.allow_change_special_barrier = false; // 触发后锁定
+            track_state.allow_change_special_barrier = false; // 触发后锁定
             dir_name = "RIGHT";
             printf("PIN43 high, DIR = %s\n", dir_name);
         }

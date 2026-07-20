@@ -10,7 +10,7 @@ static bool track_has_bgr_frame = false;
 static void track_thread_func() 
 {
     // 初始化 video2
-    if (track_cam.init("/dev/video_track", TRACK_W, TRACK_H, TRACK_CAMERA_FPS) != 0) {
+    if (track_cam.init("/dev/video_track", TRACK_W, TRACK_H, 180) != 0) {
         std::cerr << "Track Cam Init Failed!" << std::endl;
         return;
     }
@@ -20,9 +20,7 @@ static void track_thread_func()
             // 获取灰度图指针（库内部已经做好了 BGR2GRAY 转换）
             uint8_t* raw_gray = track_cam.get_gray_image_ptr();
             
-            cv::Mat raw_bgr = track_cam.get_frame_mjpg();
-            
-            if (raw_gray != nullptr && !raw_bgr.empty()) {
+            if (raw_gray != nullptr) {
                 // 加锁，将底层更新的图像拷贝到安全缓存区
                 std::lock_guard<std::mutex> lock(track_mutex);
                 std::memcpy(track_gray_buffer, raw_gray, TRACK_W * TRACK_H);

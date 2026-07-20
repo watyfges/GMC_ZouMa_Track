@@ -17,13 +17,14 @@ static uint16_t fill_queue[TRACK_W * TRACK_H];
 
 extern void Cross_Detect();
 extern void Island_Detect();
+extern void Barrier_Detect(void);
+extern void Red_Block_Detect(void);
 extern void Get01change_dajin(); 
-extern std::chrono::time_point<std::chrono::high_resolution_clock> rao_start,rao_end;
+extern std::chrono::time_point<std::chrono::high_resolution_clock> ua_start,ua_end;
 //元素检测
 // extern bool detect_zebra_crossing(void); // 斑马线
 // extern bool Special_Barrier_Detect(void); 
 // extern BypassDir_e Get_Special_Barrier_Dir(void); // 获取特殊障碍物绕行方向
-// extern bool Barrier_Detect(void);   // 标准障碍物
 // extern bool Ramp_Detect(void);      // 坡道
 
 // 蜂鸣器
@@ -35,6 +36,7 @@ extern IslandController_t IslandCtrl;
 extern int Road_width[TRACK_H];
 int fill_point_x = TRACK_W / 2;
 
+uint8_t L_FLAG=0,R_FLAG=0,FLAG1=0,FLAG2=0;
 
 // 两点连线的最小二乘法斜率
 static float Mid_calculateSlopeConnect(int first_y, int second_y, int first_x, int second_x) {
@@ -329,51 +331,39 @@ void detect_track_elements(void) {
     // 优先级 1：发车斑马线/停止线 (最高级，全局生效)
     // ==========================================================
     // track_state.is_zebra = detect_zebra_crossing();
+    Zebra_Check();
+    // ==========================================================
+    // 优先级 2：红块检测 → 判断是否为特殊障碍物
+    // ==========================================================
+    // 红块在赛道中间 → 特殊障碍（设 is_barrier，等 GPIO/串口确定方向）
+    // 红块在赛道边缘 → 普通障碍（由 Barrier_Detect 处理）
+    Red_Block_Detect();
+
+    // GPIO/串口接收特殊障碍物绕行方向（由另一块开发板发送）
+    GPIO_received();
 
     // ==========================================================
-    // 优先级 2：特殊障碍物 (叠加态 Overlay State)
+    // 优先级 3：标准赛道地形 (基础态 Base State)
     // ==========================================================
-    // if (Special_Barrier_Detect()) {
-    //     track_state.is_special_barrier = true;
-    //     track_state.special_barrier_dir = Get_Special_Barrier_Dir();
-    // } else {
-    //     track_state.is_special_barrier = false;
-    //     track_state.special_barrier_dir = DIR_NONE;
-    // }
-    
-    // ==========================================================
-    // 优先级 3：标准赛道地形 (基础态 Base State，互斥排他)
-    // ==========================================================
-    // bool is_base_locked = track_state.is_island || 
-    //                       track_state.is_cross || 
-    //                       track_state.is_ramp || 
-    //                       track_state.is_barrier; 
 
-    //if (!is_base_locked) {
-        // if (Barrier_Detect()) {
-        //     track_state.is_barrier = true;
-        // } 
-        // else if (Ramp_Detect()) {
-        //     track_state.is_ramp = true;
-        // } 
-        // else if (Cross_Detect()) {
-        //     track_state.is_cross = true;
-        // } 
-        // else if (Island_Detect()) {
-        //     track_state.is_island = true;
-        // }
-   //}
-    if (!track_state.is_island){
+    //普通障碍物检测（仅在非特殊障碍时执行，避免冲突）
+    if (!track_state.is_special_barrier && !track_state.is_island) {
+        Barrier_Detect();
+    }
+
+    //十字路口    
+    if (!track_state.is_island && !track_state.is_special_barrier && !track_state.is_barrier){
         Cross_Detect();
     }
-    if (!track_state.is_cross){
+
+    //环岛
+    if (!track_state.is_cross && !track_state.is_barrier ){
         Island_Detect();
     }
 
     //如果找到元素蜂鸣器就响
     if (track_state.is_island || track_state.is_cross || 
-        track_state.is_ramp || track_state.is_barrier || 
-        track_state.is_zebra || track_state.is_special_barrier) 
+        track_state.is_ramp || track_state.is_barrier || track_state.is_special_barrier) 
     {
         beep_on();
     } else {
@@ -456,15 +446,23 @@ void calculate_centerline(void) {
 
         if(track_state.special_barrier_dir==DIR_LEFT){
             for (int i = LOWEST_ROW - track_state.longest_white_len - 1; i < TRACK_H; i++) {
-                M_boundary[i] = L_boundary[i];
+                M_boundary[i] = (L_boundary[i] - 5) > 0 ? L_boundary[i] - 5 : 0;
             }
-            rao_end = std::chrono::high_resolution_clock::now();
-            auto infer_time_us = std::chrono::duration_cast<std::chrono::microseconds>(rao_end - rao_start).count();
-            printf("全局时间：%f\r\n",infer_time_us / 1000.0f);
+            //ua_end = std::chrono::high_resolution_clock::now();
+            //auto infer_time_us = std::chrono::duration_cast<std::chrono::microseconds>(ua_end - ua_start).count();
+            //printf("%f\r\n",infer_time_us / 1000.0f);
+            if(!FLAG1){
+                L_FLAG=1;
+                FLAG1=1;
+            }
         }
         if(track_state.special_barrier_dir==DIR_RIGHT){
             for (int i = LOWEST_ROW - track_state.longest_white_len - 1; i < TRACK_H; i++) {
-                M_boundary[i] = R_boundary[i];
+                M_boundary[i] = (R_boundary[i] + 5) > 0 ? R_boundary[i] + 5 : TRACK_W - 1;
+            }
+            if(!FLAG1){
+                R_FLAG=1;
+                FLAG1=1;
             }
         }
 
@@ -526,11 +524,17 @@ void edge_extract(void) {
     if (fetch_new_frame() == 0) return; 
     Get01change_dajin();
     extract_track_region();
-    //fill_internal_black_holes();
+    if(track_state.is_special_barrier==true){
+        fill_internal_black_holes();
+    }
     find_track_boundaries();
     detect_track_elements();
     
     calculate_centerline();
     //check_failsafe(); // Failsafe是基础巡线保底，启用执行
+    if(FLAG1==1){
+        FLAG2=1;
+    }
 
 }
+
