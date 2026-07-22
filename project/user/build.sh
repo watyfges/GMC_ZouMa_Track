@@ -6,8 +6,6 @@
 WORK_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"  # 脚本所在绝对路径（关键修复）
 OUT_DIR="${WORK_DIR}/../out"                              # out目录绝对路径
 USER_DIR="${WORK_DIR}/../user"                            # user目录绝对路径
-MODEL_DIR="${WORK_DIR}/../model"                          # NCNN模型文件目录
-MODEL_FILES=("tiny_classifier_v5_fp32.ncnn.param" "tiny_classifier_v5_fp32.ncnn.bin")
 REMOTE_IP="192.168.1.130"                                  # 远程设备IP
 REMOTE_USER="root"                                        # 远程登录用户
 REMOTE_PATH="/home/root/"                                 # 远程上传路径
@@ -51,17 +49,6 @@ info_echo "待上传文件/目录：${parent_dir_name}"
 info_echo "开始上传文件到 ${REMOTE_USER}@${REMOTE_IP}:${REMOTE_PATH}"
 scp -O "${parent_dir_name}" "${REMOTE_USER}@${REMOTE_IP}:${REMOTE_PATH}" || error_exit "文件上传失败，请检查网络/远程权限/文件是否存在！"
 
-# 7. 上传NCNN模型文件；缺失时不阻断主程序上传，方便先验证编译链路
-# for model_file in "${MODEL_FILES[@]}"; do
-#     model_path="${MODEL_DIR}/${model_file}"
-#     if [ -f "${model_path}" ]; then
-#         info_echo "上传模型文件: ${model_file}"
-#         scp -O "${model_path}" "${REMOTE_USER}@${REMOTE_IP}:${REMOTE_PATH}" || error_exit "模型文件 ${model_file} 上传失败！"
-#     else
-#         info_echo "跳过模型文件上传，未找到: ${model_path}"
-#     fi
-# done
-
-# 8. 全部执行完成
+# 7. 全部执行完成
 info_echo "✅ 所有操作执行完成：清理目录 → cmake编译 → make编译 → 文件上传 均成功！"
 exit 0

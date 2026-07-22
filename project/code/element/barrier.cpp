@@ -1,11 +1,7 @@
 #include "barrier.h"
-
 extern uint8 L_boundary[TRACK_H], M_boundary[TRACK_H], R_boundary[TRACK_H]; //左右边界
-
 extern int Road_width[TRACK_H];
-
 char Barrier_Dir = 'N';//L:左侧障碍物 R:右侧障碍物 N:无障碍物
-
 bool Barrier_check()//检测障碍物
 {
         //逻辑：检测道路中线连续性，如果存在断点使得中线上下偏差过大，再判断左右边线的连续性，判断障碍物在左侧还是右侧，并返回标志位
@@ -13,7 +9,6 @@ bool Barrier_check()//检测障碍物
         {
             M_boundary[i] = (R_boundary[i] + L_boundary[i]) / 2;
         }  
-
         for(int i = LOWEST_ROW; i >= LOWEST_ROW - 40; i--)
         {
             int error = fabs((int)M_boundary[i] - (int)M_boundary[i - 2]);
@@ -53,7 +48,6 @@ bool Barrier_check()//检测障碍物
         }
     return 0;
 }
-
 bool EX_Barrier(char Dir)//检测障碍物是否通过
 {
     //逻辑：检测障碍物侧边线的连续性，如果侧边线恢复正常则认为障碍物通过
@@ -81,12 +75,10 @@ bool EX_Barrier(char Dir)//检测障碍物是否通过
     }
     return 1;
 }
-
 void Barrier_Detect(void)//检测障碍物
 {
     // 特殊障碍物生效时不做普通障碍检测，避免冲突
-    if(track_state.is_special_barrier) return;
-
+    //if(track_state.is_special_barrier) return;
     if(!track_state.is_barrier){//无障碍物状态
         if(Barrier_check()){
             track_state.is_barrier = true;
@@ -109,6 +101,5 @@ void Barrier_Detect(void)//检测障碍物
                 L_boundary[i] = R_boundary[i] - Road_width[i] / 2;
             }
         }
-
     }
 }

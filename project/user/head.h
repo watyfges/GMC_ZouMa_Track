@@ -16,17 +16,20 @@
 #include "../code/control/control.h"
 #include "../code/control/PID.h"
 #include "../code/control/menu.h"
-#include "../code/ai/aitask.h"
+#include "../code/tflite/aitask.h"
 #include "../code/global_state.h"
 #include "../code/element/cross.h"
 #include "../code/element/island.h"
+#include "../code/element/zebra.h"
+#include "../code/element/barrier.h"
+#include "../code/element/redblock.h"
+#include "../code/element/ramp.h"
 #include "../code/communication/TCPDebug.h"
 #include "../code/communication/usart.h"
-// #include "ramp.h"
+
 // 
 // #include "servo.h"
-// 
-// #include "barrier.h"
+
 
 
 #include <opencv2/imgproc.hpp>

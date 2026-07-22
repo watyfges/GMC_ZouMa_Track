@@ -31,7 +31,7 @@ int Dtime=0,Departure_time=800;//计时器用，发车时间
 // Dynamic_PD Servo_PD;    //二次PD控制器
 
 //绕桩
-int barrier_time=50; //*10ms
+int barrier_time=100; //*10ms
 int ptime=0;//供计时器用
 float barrier_speed=160;
 
@@ -87,10 +87,13 @@ void control_signal_init() {
     L_FLAG=0;
     R_FLAG=0;
     Dtime=0;
-    ptime=0;
+    //ptime=0;
     Departure=false;
     if(track_state.stop_flag == 0)brushtime=0;
-    track_state.allow_change_special_barrier=true;
+    if(!track_state.is_special_barrier) {
+        track_state.allow_change_special_barrier=true;
+    }
+    //track_state.allow_change_special_barrier=true;
     // track_state.is_special_barrier = false;      // 确保标志位被清除
     // track_state.special_barrier_dir = DIR_NONE;  // 确保方向被归零
 }
@@ -230,6 +233,11 @@ float Err_Sum() {
     //     inner_dir_out=0;
     // }
     // printf("%f\r\n",error);
+
+    if(track_state.is_ramp == true )
+    {
+        error = 0;
+    }
 
     return error;
 }
@@ -399,6 +407,7 @@ void time_pit_callback(){
             track_state.is_special_barrier=false;
             FLAG1=0;
             FLAG2=0;
+            //printf("flag1");
         }
     }
     else
@@ -426,6 +435,7 @@ void time_pit_callback(){
     //GPIO_received();
     //printf("%f\r\n",Speed);
     //uart_received();
+    //printf("flag2");
     //printf("issp:%d,spd:%d,all:%d\r\n",track_state.is_special_barrier,track_state.special_barrier_dir,track_state.allow_change_special_barrier);
 }
 

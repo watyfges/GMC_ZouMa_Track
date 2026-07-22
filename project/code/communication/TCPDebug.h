@@ -9,7 +9,7 @@
 #define DEBUG_MODE_BOTH     3  // 模式3：同时开启 Vofa (波形/调参) 和 逐飞助手 (传图像)
 
 // ★ 在这里修改当前的调试模式 ★
-#define CURRENT_DEBUG_MODE  DEBUG_MODE_NONE 
+#define CURRENT_DEBUG_MODE  DEBUG_MODE_BOTH 
 
 // ======================= 摄像头视图定义 =======================
 #define VIEW_TRACK_CAMERA   0  // 巡线摄像头

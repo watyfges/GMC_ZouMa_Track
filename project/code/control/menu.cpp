@@ -1,15 +1,21 @@
 #include "menu.h"
 extern uint8_t img_bin[TRACK_H][TRACK_W];  // 巡线二值化图像
+extern uint8_t img_gray[TRACK_H][TRACK_W];
 extern uint8_t Group;
 extern float Speed;
 extern int Max_01_value;
+extern  volatile int16 dl1x_distance_raw;
+extern int Ramp_State;//坡道状态机
+extern int endFC;
+
+extern int32_t exposure_value;
 
 namespace {
 
 // 按键为低电平按下；如果实车读出来刚好相反，只需要把这里改成 1。
 constexpr int KEY_PRESSED_LEVEL = 0;
 // 菜单项数量要和 MenuItem 枚举保持一致，后续新增菜单项时一起加。
-constexpr int MENU_ITEM_COUNT = 3;
+constexpr int MENU_ITEM_COUNT = 5;
 // 每个可调参数的上下限集中放在这里，防止按键把参数调到危险范围外。
 constexpr int GROUP_MIN = 0;
 constexpr int GROUP_MAX = 1;
@@ -17,6 +23,10 @@ constexpr int SPEED_MIN = 0;
 constexpr int SPEED_MAX = 600;
 constexpr int VALUE_MIN = 0;
 constexpr int VALUE_MAX = 255;
+constexpr int BG_MIN = 0;
+constexpr int BG_MAX = 2500;
+constexpr int ENDFC_MIN = 0;
+constexpr int ENDFC_MAX = 1;
 constexpr int SHORT_BEEP_MS = 50;
 constexpr int LONG_BEEP_MS = 1000;
 constexpr int START_HOLD_MS = 2000;
@@ -25,6 +35,8 @@ enum MenuItem {
     MENU_ITEM_GROUP = 0,
     MENU_ITEM_SPEED,
     MENU_ITEM_VALUE,
+    MENU_ITEM_BG,
+    MENU_ITEM_ENDFC,
 };
 
 // 当前光标所在菜单项，屏幕右侧的箭头也由它决定。
@@ -97,6 +109,12 @@ void adjust_current_item(int delta)
             break;
         case MENU_ITEM_VALUE:
             Max_01_value = clamp_int(Max_01_value + delta, VALUE_MIN, VALUE_MAX);
+            break;
+        case MENU_ITEM_BG:
+            exposure_value = clamp_int(exposure_value + delta * 10, BG_MIN, BG_MAX);
+            break;
+        case MENU_ITEM_ENDFC:
+            endFC = clamp_int(endFC + delta, ENDFC_MIN, ENDFC_MAX);
             break;
         default:
             break;
@@ -179,7 +197,7 @@ void menu_task()
 
 void ips_draw(){
     // 左上角保留巡线二值图，下方显示三个可调项和当前车辆状态。
-    screen_show_gray_image(0, 0, img_bin[0], TRACK_W, TRACK_H, TRACK_W, TRACK_H, 0);
+    screen_show_gray_image(0, 0, img_gray[0], TRACK_W, TRACK_H, TRACK_W, TRACK_H, 0);
 
     screen_show_string(0,100,"Group:");
     screen_show_int(80,100,Group,1);
@@ -203,12 +221,26 @@ void ips_draw(){
     screen_show_string(0,200,"insp:");
     screen_show_int(80,200,track_state.is_special_barrier,1);
 
-    screen_show_string(0,220,"inZebra:");
-    screen_show_int(80,220,track_state.is_zebra,1);
+    // screen_show_string(0,220,"inZebra:");
+    // screen_show_int(80,220,track_state.is_zebra,1);
 
-    screen_show_string(0,240,"inBarrier:");
-    screen_show_int(80,240,track_state.is_barrier,1);
+    screen_show_string(0,220,"inramp:");
+    screen_show_int(80,220,track_state.is_ramp,1);
 
+    
+    screen_show_string(0,240,"DL1X:");
+    screen_show_int(80,240,dl1x_distance_raw,3);
+
+    screen_show_string(0,260,"rampflag:");
+    screen_show_int(80,260,Ramp_State,1);
+
+    screen_show_string(0,280,"BG:");;
+    screen_show_int(80,280,exposure_value,4);
+    screen_show_string(140,280,selected_item == MENU_ITEM_BG ? "<--" : "   ");
+
+    screen_show_string(0,300,"ENDFC:");;
+    screen_show_int(80,300,endFC,1);
+    screen_show_string(140,300,selected_item == MENU_ITEM_ENDFC ? "<--" : "   ");
 
     //ips200_show_gray_image(0, 180, img_bin[0], TRACK_W, TRACK_H);//显示图像
 } 

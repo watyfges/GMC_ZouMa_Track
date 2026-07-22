@@ -298,7 +298,7 @@ void GPIO_received(void) {
     if (track_state.allow_change_special_barrier == false) {
         return; 
     }
-    if (track_state.is_island==true||track_state.is_barrier==true){
+    if (track_state.is_island==true||track_state.is_barrier==true||track_state.is_ramp==true){
         return;
     }
     // ua_start = std::chrono::high_resolution_clock::now();

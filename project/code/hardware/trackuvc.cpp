@@ -6,6 +6,8 @@ static uint8_t track_gray_buffer[TRACK_W * TRACK_H]; // 内部安全缓存
 static cv::Mat track_bgr_buffer;
 static bool track_has_bgr_frame = false;
 
+int32_t exposure_value = 300;
+
 // 独立的抓取线程函数
 static void track_thread_func() 
 {
@@ -15,12 +17,31 @@ static void track_thread_func()
         return;
     }
 
+    //设置曝光
+    //1. 切换到手动曝光模式
+    if (track_cam.set_auto_exposure(UVC_AUTO_EXPOSURE_DISABLE) != 0) {
+        std::cerr << "Disable Auto Exposure Failed!" << std::endl;
+        return;
+    }
+
+    //2. 设置手动曝光值
+    //范围通常为 0~2500，具体取决于摄像头
+    
+
+    
+
     while (true) {
+        if (track_cam.set_exposure_value(exposure_value) != 0) {
+        std::cerr << "Set Exposure Value Failed!" << std::endl;
+        return;
+    }
         if (track_cam.wait_image_refresh() == 0) {
             // 获取灰度图指针（库内部已经做好了 BGR2GRAY 转换）
             uint8_t* raw_gray = track_cam.get_gray_image_ptr();
             
-            if (raw_gray != nullptr) {
+            cv::Mat raw_bgr = track_cam.get_frame_mjpg();
+            
+            if (raw_gray != nullptr && !raw_bgr.empty()) {
                 // 加锁，将底层更新的图像拷贝到安全缓存区
                 std::lock_guard<std::mutex> lock(track_mutex);
                 std::memcpy(track_gray_buffer, raw_gray, TRACK_W * TRACK_H);

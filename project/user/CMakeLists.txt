@@ -34,7 +34,7 @@ include_directories(
     ../code/control
     ../code/element
     ../code/vision
-    ../code/ai
+    ../code/tflite 
     ../user
     ../model
     ../../libraries/zf_common 
@@ -42,7 +42,7 @@ include_directories(
     ../../libraries/zf_driver
     ../../libraries/zf_components/seekfree_assistant
     
-    # 逐飞公共头仍引用 TFLM 类型定义，仅保留头文件路径，不再编译/链接旧 TFLite 任务
+    # TFLM核心头文件（完全拆分）
     ../../libraries/zf_components/tflm
     ../../libraries/zf_components/tflm/third_party/flatbuffers/include
     ../../libraries/zf_components/tflm/third_party/gemmlowp
@@ -55,13 +55,12 @@ include_directories(
     ../../libraries/zf_components/tflm/tensorflow/lite/core/api
     ../../libraries/zf_components/tflm/tensorflow/lite/core/c
     ../../libraries/zf_components/tflm/tensorflow/lite/schema
-
-    # NCNN核心头文件
     ../../libraries/zf_components/ncnn/include/ncnn
 )
 
 # 静态库路径
 link_directories(
+    ../../libraries/zf_components/tflm/lib
     ../../libraries/zf_components/ncnn/lib
 )
 
@@ -70,7 +69,7 @@ aux_source_directory(../code/hardware DIR_SRCS)
 aux_source_directory(../code/control DIR_SRCS)
 aux_source_directory(../code/element DIR_SRCS)
 aux_source_directory(../code/vision DIR_SRCS)
-aux_source_directory(../code/ai DIR_SRCS)
+aux_source_directory(../code/tflite DIR_SRCS)
 aux_source_directory(../code/communication DIR_SRCS)
 aux_source_directory(../user DIR_SRCS)
 aux_source_directory(../model DIR_SRCS)
@@ -90,7 +89,7 @@ set_target_properties(${PROJ_NAME} PROPERTIES
 target_link_libraries(
 ${PROJ_NAME} 
 ${OpenCV_LIBS}
-ncnn          # 链接 NCNN 静态库
-pthread       # 线程库
-m             # 数学库
+tflm          # 链接TFLM静态库（必须）
+pthread       # 线程库（TFLM内部使用）
+m             # 数学库（算子计算依赖）
 )

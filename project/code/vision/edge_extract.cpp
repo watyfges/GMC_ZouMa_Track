@@ -12,19 +12,22 @@ uint8_t L_boundary[TRACK_H] = {0};
 uint8_t R_boundary[TRACK_H] = {0};
 uint8_t M_boundary[TRACK_H] = {0};
 
+
+extern  volatile int16 dl1x_distance_raw;
+int endFC=0;
+
 //漫水填充队列 (扩大以防8连通爆队列)
 static uint16_t fill_queue[TRACK_W * TRACK_H];
 
 extern void Cross_Detect();
 extern void Island_Detect();
-extern void Barrier_Detect(void);
-extern void Red_Block_Detect(void);
 extern void Get01change_dajin(); 
 extern std::chrono::time_point<std::chrono::high_resolution_clock> ua_start,ua_end;
 //元素检测
 // extern bool detect_zebra_crossing(void); // 斑马线
 // extern bool Special_Barrier_Detect(void); 
 // extern BypassDir_e Get_Special_Barrier_Dir(void); // 获取特殊障碍物绕行方向
+// extern bool Barrier_Detect(void);   // 标准障碍物
 // extern bool Ramp_Detect(void);      // 坡道
 
 // 蜂鸣器
@@ -327,40 +330,83 @@ bool R_Straight_Judge() {
 }
 
 void detect_track_elements(void) {
+
+    if(!track_state.is_island && !track_state.is_special_barrier && !track_state.is_barrier && !track_state.is_cross){
+        Ramp_Detect();
+    }
+    
+     // if(!track_state.is_ramp && !track_state.is_island && !track_state.is_special_barrier && !track_state.is_barrier && !track_state.is_cross){
+    //      Zebra_Check();
+    // }
+
     // ==========================================================
     // 优先级 1：发车斑马线/停止线 (最高级，全局生效)
     // ==========================================================
     // track_state.is_zebra = detect_zebra_crossing();
-    Zebra_Check();
+   
     // ==========================================================
-    // 优先级 2：红块检测 → 判断是否为特殊障碍物
+    // 优先级 2：特殊障碍物 (叠加态 Overlay State)
     // ==========================================================
-    // 红块在赛道中间 → 特殊障碍（设 is_barrier，等 GPIO/串口确定方向）
-    // 红块在赛道边缘 → 普通障碍（由 Barrier_Detect 处理）
-    Red_Block_Detect();
+    // if (Special_Barrier_Detect()) {
+    //     track_state.is_special_barrier = true;
+    //     track_state.special_barrier_dir = Get_Special_Barrier_Dir();
+    // } else {
+    //     track_state.is_special_barrier = false;
+    //     track_state.special_barrier_dir = DIR_NONE;
+    // }
+    //Red_Block_Detect();
+    // ==========================================================
+    // 优先级 3：标准赛道地形 (基础态 Base State，互斥排他)
+    // ==========================================================
+    // bool is_base_locked = track_state.is_island || 
+    //                       track_state.is_cross || 
+    //                       track_state.is_ramp || 
+    //                       track_state.is_barrier; 
 
-    // GPIO/串口接收特殊障碍物绕行方向（由另一块开发板发送）
-    GPIO_received();
-
-    // ==========================================================
-    // 优先级 3：标准赛道地形 (基础态 Base State)
-    // ==========================================================
-
-    //普通障碍物检测（仅在非特殊障碍时执行，避免冲突）
-    if (!track_state.is_special_barrier && !track_state.is_island) {
-        Barrier_Detect();
-    }
+    //if (!is_base_locked) {
+        // if (Barrier_Detect()) {
+        //     track_state.is_barrier = true;
+        // } 
+        // else if (Ramp_Detect()) {
+        //     track_state.is_ramp = true;
+        // } 
+        // else if (Cross_Detect()) {
+        //     track_state.is_cross = true;
+        // } 
+        // else if (Island_Detect()) {
+        //     track_state.is_island = true;
+        // }
+   //}
 
     //十字路口    
-    if (!track_state.is_island && !track_state.is_special_barrier && !track_state.is_barrier){
+    if (!track_state.is_island && !track_state.is_barrier && !track_state.is_ramp){
         Cross_Detect();
     }
 
     //环岛
-    if (!track_state.is_cross && !track_state.is_barrier ){
+    if (!track_state.is_cross && !track_state.is_barrier && !track_state.is_ramp && !track_state.is_special_barrier){
         Island_Detect();
     }
 
+    //坡道
+
+    // if(!track_state.is_island && !track_state.is_cross && !track_state.is_barrier){
+    //     //Ramp_Detect();//检测坡道
+    //     if(track_state.is_ramp)printf("R\r\n");//如果检测到坡道，则输出R
+    // }
+
+    //障碍
+    // if(!track_state.is_special_barrier && !track_state.is_cross && !track_state.is_island ){
+    //     Barrier_Detect();
+    // }
+    
+    if(endFC==1){
+        GPIO_received();
+    }
+    
+
+    //printf("%d",dl1x_distance_raw);
+    
     //如果找到元素蜂鸣器就响
     if (track_state.is_island || track_state.is_cross || 
         track_state.is_ramp || track_state.is_barrier || track_state.is_special_barrier) 
